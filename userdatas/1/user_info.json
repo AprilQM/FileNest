@@ -1,0 +1,22 @@
+{
+    "last_modified_time": "2024-11-23 20:06:35",
+    "user_datas": {
+        "user_id": 1,
+        "username": "AprilQM",
+        "email": "22222",
+        "level": 1,
+        "register_time": "2024-11-23 20:06:35",
+        "logined_time": "",
+        "disclaimer": false,
+        "is_banned": false,
+        "is_admin": false
+    },
+    "user_space_info": {
+        "slogan": "这个人很懒，什么都没有留下。",
+        "user_id": 1,
+        "username": "AprilQM",
+        "email": "22222",
+        "level": 1,
+        "register_time": "2024-11-23 20:06:35"
+    }
+}

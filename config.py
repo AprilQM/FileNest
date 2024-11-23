@@ -1,6 +1,13 @@
-import os
-
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'a_very_secret_key'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///app.db'
+    PASSWORD_SALT = 'filenestWQD153ieq'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///FileNest.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    PERMANENT_SESSION_LIFETIME = 3600 * 24 * 30
+    session_cookie_name = "FileNest"
+    mail_config = {
+        "send_by": "2173840670@qq.com",
+        "mail_password": "zysdlrricebjdihe",
+        "mail_host": "smtp.qq.com",
+        "mail_port": 465
+        }
+    USER_INFO_DIR = "./userdatas"

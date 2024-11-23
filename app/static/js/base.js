@@ -199,22 +199,6 @@ function dark_alert(message) {
 // endregion
 
 
-// region 加载UI
-function create_ui(key) {
-    const ui_both = document.createElement("script");
-    ui_both.src = `/api/get_ui_creator/both/${key}.js`;
-    document.body.appendChild(ui_both);
-    const window_width = window.innerWidth;
-    const ui_device = document.createElement("script");
-    if (window_width < 768) {
-        ui_device.src = `/api/get_ui_creator/mobile/${key}.js`;
-    } else {
-        ui_device.src = `/api/get_ui_creator/pc/${key}.js`;
-    }
-    document.body.appendChild(ui_device);
-}
-// endregion
-
 //region 消息提示框
 let message_box_timer;
 let message_box_show = false;
