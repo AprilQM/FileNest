@@ -1,67 +1,114 @@
 from app import db
 from app.models import DatabaseUser
+import utils.other as other
 import os
+from config import Config
 import json
+from datetime import datetime
 
-from utils.other import aes_encrypt, aes_decrypt
+# 增加用户
+def create_user(username, email, password):
+    try:
+        # 检查是否已存在相同的用户名或邮箱
+        existing_user = DatabaseUser.query.filter(
+            (DatabaseUser.username == username) | (DatabaseUser.email == email)
+        ).first()
+        if existing_user:
+            return {"success": False, "message": "Username or email already exists"}
 
+        # 对密码进行 AES 加密
+        encrypted_password = other.aes_encrypt(password)
 
-# region 用户表单管理
-# 增加新用户
-def add_user(user):
-    # 创建数据库表
-    db.create_all()
-    # 创建用户文件夹和json文件
+        # 创建新用户对象并保存到数据库
+        new_user = DatabaseUser(username=username, email=email, password=encrypted_password)
+        db.session.add(new_user)
+        db.session.commit()  # 提交到数据库以生成 user_id
+
+        # 创建用户对应的文件信息
+        other.create_user_info(new_user)
+
+        return {"success": True, "message": "User created successfully", "user_id": new_user.user_id}
+
+    except Exception as e:
+        db.session.rollback()  # 回滚事务
+        return {"success": False, "message": str(e)}
+
+# 查询用户
+def get_user(user_id):
+    user = DatabaseUser.query.get(user_id)
+    if user:
+        return {"success": True, "user": user}
+    return {"success": False, "message": "User not found"}
+
+# 修改用户信息
+def update_user(user_id, key, value):
+    try:
+        # 查找用户
+        user = DatabaseUser.query.filter_by(user_id=user_id).first()
+        if not user:
+            return {"success": False, "message": "User not found"}
+
+        # 如果字段在数据库中，更新数据库
+        if hasattr(user, key):
+            setattr(user, key, value)
+            db.session.commit()  # 提交到数据库
+        
+        # 更新用户文件（不管字段是否在数据库中）
+        update_user_file(user_id, key, value)
+
+        # 如果更新的是密码，进行加密
+        if key == "password":
+            value = other.aes_encrypt(value)
+
+        return {"success": True, "message": f"User {key} updated successfully"}
+    except Exception as e:
+        db.session.rollback()  # 回滚事务
+        return {"success": False, "message": str(e)}
+
+# 更新用户文件
+def update_user_file(user_id, key, value):
+    user_folder = os.path.join(Config.USER_INFO_DIR, str(user_id))
     
-    
-    
-    # 写入数据库
-    db.session.add(user)
-    db.session.commit() 
+    if os.path.exists(user_folder):
+        user_file_path = os.path.join(user_folder, "user_info.json")
+        if os.path.exists(user_file_path):
+            with open(user_file_path, "r", encoding="utf-8") as file:
+                user_info = json.load(file)
+            
+            # 更新文件中的字段（如果存在于 user_datas 或 user_space_info 中）
+            if key in user_info["user_datas"]:
+                user_info["user_datas"][key] = value
+            elif key in user_info["user_space_info"]:
+                user_info["user_space_info"][key] = value
+            else:
+                return {"success": False, "message": f"Field '{key}' not found in user file"}
 
+            # 更新修改时间
+            user_info["last_modified_time"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+            # 写回更新后的信息
+            with open(user_file_path, "w", encoding="utf-8") as file:
+                json.dump(user_info, file, ensure_ascii=False, indent=4)
+        else:
+            return {"success": False, "message": "User file not found"}
+    else:
+        return {"success": False, "message": "User folder not found"}
 
 # 删除用户
 def delete_user(user_id):
-    # 删除数据库表
-    db.session.query(DatabaseUser).filter_by(user_id=user_id).delete()
-    db.session.commit()
-    # 删除用户文件夹
-    os.rmdir(f"./userdatas/{user_id}")
-    
-# 更新用户信息
-def update_user_info(user_id, new_data_name, new_data_value):
-    # 三项数据库修改内容
-    if new_data_name in ["email", "username", "password"]:
-        user = DatabaseUser.query.filter_by(user_id=user_id).first()
-        if new_data_name == "email":
-            user.email = new_data_value
-        elif new_data_name == "username":
-            user.username = new_data_value
-        elif new_data_name == "password":
-            user.password = aes_encrypt(new_data_value)
-            db.session.commit()
-            # 如果是修改的密码就不用修改用户数据了，直接返回
-            return
+    user = DatabaseUser.query.get(user_id)
+    if not user:
+        return {"success": False, "message": "User not found"}
+    try:
+        db.session.delete(user)
         db.session.commit()
-    # 修改用户信息文件
-    with open(f"./userdatas/{user_id}/user_info.json", "r", encoding="utf-8") as f:
-        user_folder_info = json.load(f)
-
-    if new_data_name in user_folder_info["user_datas"].keys():
-        user_folder_info["user_datas"][new_data_name] = new_data_value
-    if new_data_name in user_folder_info["user_space_info"].keys():
-        user_folder_info["user_space_info"][new_data_name] = new_data_value
+        
+        file_user_data = json.loads(open(os.path.join(Config.USER_INFO_DIR, str(user_id), "user_info.json"), "r", encoding="utf-8").read())
+        file_user_data["user_datas"]["is_cancellation"] = True
+        with open(os.path.join(Config.USER_INFO_DIR, str(user_id), "user_info.json"), "w", encoding="utf-8") as file:
+            json.dump(file_user_data, file, ensure_ascii=False, indent=4)
+        return {"success": True, "message": "User deleted successfully"}
     
-    # 写入文件
-    with open(f"./userdatas/{user_id}/user_info.json", "w", encoding="utf-8") as f:
-        json.dump(user_folder_info, f, ensure_ascii=False, indent=4)
-
-# 查询用户信息
-def query_user_info(user_id):
-    
-    user_datas = json.loads(open(f"./userdatas/{user_id}/user_info.json", "r", encoding="utf-8").read())
-    user_datas["user_datas"]["password"] = aes_decrypt(DatabaseUser.query.filter_by(user_id=user_id).first().password)
-    return user_datas
-    
-
-# endregion
+    except Exception as e:
+        db.session.rollback()
+        return {"success": False, "message": str(e)}

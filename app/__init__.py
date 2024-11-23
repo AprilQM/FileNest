@@ -4,7 +4,7 @@ from config import Config
 
 db = SQLAlchemy()
 from utils.init import init
-import app.models
+from app.models import DatabaseUser
 
 def create_app():
     app = Flask(__name__)

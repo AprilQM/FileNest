@@ -54,10 +54,46 @@ def create_user_info(user):
             if "user_info.json" in os.listdir(os.path.join(Config.USER_INFO_DIR, user_id)):
                 # 判断是否为文件
                 if os.path.isfile(os.path.join(Config.USER_INFO_DIR, user_id, "user_info.json")):
+                    # 检查文件正确性
+                    flag = False
                     
-                    file_user_info = json.loads(open(os.path.join(Config.USER_INFO_DIR, user_id, "user_info.json"), "r", encoding="utf-8").read())
-                    # 判断是否为正确的用户信息 id 用户名 邮箱
-                    if file_user_info["user_datas"]["user_id"] != user.user_id or file_user_info["user_datas"]["username"] != user.username or file_user_info["user_datas"]["email"] != user.email:
+                    try:
+                        file_user_info = json.loads(open(os.path.join(Config.USER_INFO_DIR, user_id, "user_info.json"), "r", encoding="utf-8").read())
+                        # 判断是否为正确的用户信息 id 用户名 邮箱
+                        if file_user_info["user_datas"]["user_id"] != user.user_id or file_user_info["user_datas"]["username"] != user.username or file_user_info["user_datas"]["email"] != user.email:
+                            flag = True
+                    
+                        for i in ["last_modified_time", "user_datas", "user_space_info"]:
+                            if i not in file_user_info:
+                                flag = True
+                        # user_datas子字典的整形判断
+                        if type(file_user_info["user_datas"]["user_id"]) != int:
+                            flag = True
+                        
+                        # user_datas子字典的字符串判断
+                        for i in ["username", "email", "register_time", "logined_time"]:
+                            if type(file_user_info["user_datas"][i]) != str:
+                                flag = True
+                        
+                        # user_datas子字典的布尔判断
+                        for i in ["is_consent_agreement", "is_banned", "is_admin", "is_cancellation"]:
+                            if type(file_user_info["user_datas"][i]) != bool:
+                                flag = True
+                                
+                        # user_space_info的整形判断
+                        for i in ["user_id","level"]:
+                            if type(file_user_info["user_space_info"][i]) != int:
+                                flag = True
+                    
+                        # user_space_info的字符串判断
+                        for i in ["slogan","username", "email", "register_time"]:
+                            if type(file_user_info["user_space_info"][i]) != str:
+                                flag = True
+                    except:
+                        flag = True
+                        
+                    if flag:
+                        print(f"ID为{user_id}的用户信息文件格式错误，重新创建文件")
                         create_user_info_json(user)
                 else:
                     create_user_info_json(user)
@@ -80,9 +116,10 @@ def create_user_info_json(user):
                 "level": 1, 
                 "register_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 
                 "logined_time": "", 
-                "disclaimer": False, 
+                "is_consent_agreement": False, 
                 "is_banned": False,
-                "is_admin": False
+                "is_admin": False,
+                "is_cancellation": False
             },
             "user_space_info":{
                 "slogan":"这个人很懒，什么都没有留下。",
