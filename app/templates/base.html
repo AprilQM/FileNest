@@ -25,6 +25,11 @@
     <div class="alert alert-info alert_box" role="alert" id="alert_info">青色提示框（info）</div>
     <div class="alert alert-light alert_box" role="alert" id="alert_light">白色提示框</div>
     <div class="alert alert-dark alert_box" role="alert" id="alert_dark">深灰色提示框</div>
+
+    <div id="message_box">
+        <h1 id="message_title">标题</h1>
+        <div id="message_content">内容</div>
+    </div>
     {% block content %}{% endblock %}
     <script src="{{ url_for('static', filename='js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>

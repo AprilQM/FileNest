@@ -129,7 +129,7 @@ function hiden_alert() {
     }
 }
 
-const duration = 3000;
+const alert_duration = 3000;
 let alert_hidden;
 function primary_alert(message) {
     hiden_alert()
@@ -137,7 +137,7 @@ function primary_alert(message) {
     $id("alert_primary").classList.remove("alert_hide");
     $id("alert_primary").classList.add("alert_show");
     $id("alert_primary").innerHTML = message;
-    alert_hidden = setTimeout(hiden_alert, duration)
+    alert_hidden = setTimeout(hiden_alert, alert_duration)
 }
 function secondary_alert(message) {
     hiden_alert()
@@ -145,7 +145,7 @@ function secondary_alert(message) {
     $id("alert_secondary").classList.remove("alert_hide");
     $id("alert_secondary").classList.add("alert_show");
     $id("alert_secondary").innerHTML = message;
-    alert_hidden = setTimeout(hiden_alert, duration)
+    alert_hidden = setTimeout(hiden_alert, alert_duration)
 }
 function success_alert(message) {
     hiden_alert()
@@ -153,7 +153,7 @@ function success_alert(message) {
     $id("alert_success").classList.remove("alert_hide");
     $id("alert_success").classList.add("alert_show");
     $id("alert_success").innerHTML = message;
-    alert_hidden = setTimeout(hiden_alert, duration)
+    alert_hidden = setTimeout(hiden_alert, alert_duration)
 }
 function danger_alert(message) {
     hiden_alert()
@@ -161,7 +161,7 @@ function danger_alert(message) {
     $id("alert_danger").classList.remove("alert_hide");
     $id("alert_danger").classList.add("alert_show");
     $id("alert_danger").innerHTML = message;
-    alert_hidden = setTimeout(hiden_alert, duration)
+    alert_hidden = setTimeout(hiden_alert, alert_duration)
 }
 function warning_alert(message) {
     hiden_alert()
@@ -169,7 +169,7 @@ function warning_alert(message) {
     $id("alert_warning").classList.remove("alert_hide");
     $id("alert_warning").classList.add("alert_show");
     $id("alert_warning").innerHTML = message;
-    alert_hidden = setTimeout(hiden_alert, duration)
+    alert_hidden = setTimeout(hiden_alert, alert_duration)
 }
 function info_alert(message) {
     hiden_alert()
@@ -177,7 +177,7 @@ function info_alert(message) {
     $id("alert_info").classList.remove("alert_hide");
     $id("alert_info").classList.add("alert_show");
     $id("alert_info").innerHTML = message;
-    alert_hidden = setTimeout(hiden_alert, duration)
+    alert_hidden = setTimeout(hiden_alert, alert_duration)
 }
 function light_alert(message) {
     hiden_alert()
@@ -185,7 +185,7 @@ function light_alert(message) {
     $id("alert_light").classList.remove("alert_hide");
     $id("alert_light").classList.add("alert_show");
     $id("alert_light").innerHTML = message;
-    alert_hidden = setTimeout(hiden_alert, duration)
+    alert_hidden = setTimeout(hiden_alert, alert_duration)
 }
 function dark_alert(message) {
     hiden_alert()
@@ -193,7 +193,7 @@ function dark_alert(message) {
     $id("alert_dark").classList.remove("alert_hide");
     $id("alert_dark").classList.add("alert_show");
     $id("alert_dark").innerHTML = message;
-    alert_hidden = setTimeout(hiden_alert, duration)
+    alert_hidden = setTimeout(hiden_alert, alert_duration)
 }
 
 // endregion
@@ -214,3 +214,39 @@ function create_ui(key) {
     document.body.appendChild(ui_device);
 }
 // endregion
+
+//region 消息提示框
+let message_box_timer;
+let message_box_show = false;
+const message_duration = 3000;
+function show_message(title, content, fuc = () => { }, color = "cornflowerblue") {
+    if (message_box_show) {
+        return;
+    }
+    const message_box = $id("message_box");
+    const message_title = $id("message_title");
+    const message_content = $id("message_content");
+    message_title.style.color = color;
+    message_title.innerHTML = title;
+    message_content.innerHTML = content;
+    clearInterval(message_box_timer);
+    message_box.classList.remove("message_hide");
+    message_box.classList.add("message_show");
+    message_box_timer = setTimeout(() => {
+        message_box.classList.remove("message_show");
+        message_box_show = false;
+    }, message_duration);
+    message_box_show = true;
+
+    // 设置点击事件
+    message_box.addEventListener("click", () => {
+        if (message_box_show) {
+            clearInterval(message_box_timer);
+            message_box.classList.remove("message_show");
+            message_box.classList.add("message_hide");
+            message_box_show = false;
+            fuc()
+        }
+    });
+}
+//endregion

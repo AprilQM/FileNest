@@ -76,6 +76,9 @@ body {
 .alert_box {
     position: fixed;
     top: -100px;
+    width: 60%;
+    display: flex;
+    justify-content: center;
 }
 
 .alert_show {
@@ -111,5 +114,77 @@ body {
     100% {
         opacity: 0;
         transform: translateY(0);
+    }
+}
+
+#message_box {
+    position: fixed;
+    width: 400px;
+    height: 200px;
+    box-shadow: 0 0 5px #999;
+    z-index: 9998;
+    border-radius: 30px;
+    right: 20px;
+    bottom: -300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.8s ease;
+}
+
+#message_box h1 {
+    height: 30px;
+    padding: 5px;
+    margin: 0;
+    font-size: 30px;
+    font-weight: bold;
+    color: cornflowerblue;
+
+}
+
+#message_box div {
+    margin: 8px;
+    height: 70%;
+    width: 90%;
+    font-size: 20px;
+    padding: 20px;
+}
+
+.message_show {
+    transform: translateY(-320px);
+    cursor: pointer;
+}
+
+.message_hide {
+    animation: message_hide 0.8s ease;
+    opacity: 0;
+}
+
+@keyframes message_hide {
+    0% {
+        transform: translateY(-320px);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-320px) scale(0.9);
+        opacity: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #message_box {
+        width: 90%;
+        height: 150px;
+        top: -200px;
+    }
+
+    .message_show {
+        transform: translateY(220px);
+    }
+
+    .message_hide {
+        transform: translateY(220px) scale(0.9) opacity(0);
     }
 }
