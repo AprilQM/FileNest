@@ -71,7 +71,7 @@ def create_user_info(user):
                             flag = True
                         
                         # user_datas子字典的字符串判断
-                        for i in ["username", "email", "register_time", "logined_time"]:
+                        for i in ["username", "email", "register_time", "logined_time", "color"]:
                             if type(file_user_info["user_datas"][i]) != str:
                                 flag = True
                         
@@ -119,7 +119,8 @@ def create_user_info_json(user):
                 "is_consent_agreement": False, 
                 "is_banned": False,
                 "is_admin": False,
-                "is_cancellation": False
+                "is_cancellation": False,
+                "color": "艳红"
             },
             "user_space_info":{
                 "slogan":"这个人很懒，什么都没有留下。",

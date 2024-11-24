@@ -9,13 +9,27 @@
     <link rel="shortcut icon" href="{{ url_for('static',filename='images/logo-bird.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <style>
+        :root{
+            --theme: {{ color[0] }};
+            --auxiliary:  {{ color[1] }};
+            --text:  {{ color[2] }};
+            --background:  {{ color[3] }};
+            --background_conflict:  {{ color[4] }};
+            --success: {{ color[5] }};
+            --warning: {{ color[6] }};
+            --error: {{ color[7] }};
+            --hover: {{ color[8] }};
+            --click: {{ color[9] }};
+        }
+    </style>
     {% block head %}{% endblock %}
 </head>
 
 <body>
+    <div id="background"></div>
     <div id="loading">
-        <div class="spinner-border text-warning m-2" role="status"></div>
-        <span>FileNest</span>
+        <span></span>
     </div>
     <div class="alert alert-primary alert_box" role="alert" id="alert_primary">蓝色提示框（primary）</div>
     <div class="alert alert-secondary alert_box" role="alert" id="alert_secondary">灰色提示框（secondary）</div>
@@ -29,6 +43,10 @@
     <div id="message_box">
         <h1 id="message_title">标题</h1>
         <div id="message_content">内容</div>
+    </div>
+
+    <div id="menu_box">
+
     </div>
     {% block content %}{% endblock %}
     <script src="{{ url_for('static', filename='js/jquery-3.7.1.min.js') }}"></script>

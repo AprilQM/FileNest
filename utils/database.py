@@ -5,6 +5,7 @@ import os
 from config import Config
 import json
 from datetime import datetime
+import utils.other as other
 
 # 增加用户
 def create_user(username, email, password):
@@ -37,7 +38,9 @@ def create_user(username, email, password):
 def get_user(user_id):
     user = DatabaseUser.query.get(user_id)
     if user:
-        return {"success": True, "user": user}
+        file_user_data = json.loads(open(os.path.join(Config.USER_INFO_DIR, str(user_id), "user_info.json"), "r", encoding="utf-8").read())
+        file_user_data["user_datas"]["password"] = other.aes_decrypt(user.password)
+        return {"success": True, "user": file_user_data}
     return {"success": False, "message": "User not found"}
 
 # 修改用户信息
