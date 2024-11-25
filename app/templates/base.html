@@ -9,18 +9,17 @@
     <link rel="shortcut icon" href="{{ url_for('static',filename='images/logo-bird.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='icon/01/iconfont.css') }}">
     <style>
         :root{
-            --theme: {{ color[0] }};
-            --auxiliary:  {{ color[1] }};
-            --text:  {{ color[2] }};
-            --background:  {{ color[3] }};
-            --background_conflict:  {{ color[4] }};
-            --success: {{ color[5] }};
-            --warning: {{ color[6] }};
-            --error: {{ color[7] }};
-            --hover: {{ color[8] }};
-            --click: {{ color[9] }};
+            --main: {{ color[0] }};
+            --secondary1:  {{ color[1] }};
+            --secondary2:  {{ color[2] }};
+            --text:  {{ color[3] }};
+            --background:  {{ color[4] }};
+            --background_conflict:  {{ color[5] }};
+            --hover: {{ color[6] }};
+            --click: {{ color[7] }};
         }
     </style>
     {% block head %}{% endblock %}
@@ -29,23 +28,21 @@
 <body>
     <div id="background"></div>
     <div id="loading">
-        <span></span>
+        <span>FileNest</span>
     </div>
-    <div class="alert alert-primary alert_box" role="alert" id="alert_primary">蓝色提示框（primary）</div>
-    <div class="alert alert-secondary alert_box" role="alert" id="alert_secondary">灰色提示框（secondary）</div>
-    <div class="alert alert-success alert_box" role="alert" id="alert_success">绿色提示框（success）</div>
-    <div class="alert alert-danger alert_box" role="alert" id="alert_danger">红色提示框（danger）</div>
-    <div class="alert alert-warning alert_box" role="alert" id="alert_warning">黄色提示框（warning）</div>
-    <div class="alert alert-info alert_box" role="alert" id="alert_info">青色提示框（info）</div>
-    <div class="alert alert-light alert_box" role="alert" id="alert_light">白色提示框</div>
-    <div class="alert alert-dark alert_box" role="alert" id="alert_dark">深灰色提示框</div>
+    <div class="alert_box" role="alert" id="alert_success">绿色（成功）</div>
+    <div class="alert_box" role="alert" id="alert_error">红色（错误）</div>
+    <div class="alert_box" role="alert" id="alert_warning">黄色（警告）</div>
 
     <div id="message_box">
         <h1 id="message_title">标题</h1>
         <div id="message_content">内容</div>
     </div>
 
-    <div id="menu_box">
+    <div id="menu_box_pc">
+    </div>
+
+    <div id="menu_box_mobile">
 
     </div>
     {% block content %}{% endblock %}

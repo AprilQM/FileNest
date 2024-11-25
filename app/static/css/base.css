@@ -22,7 +22,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    box-shadow: 0 0 5px var(--auxiliary);
+    box-shadow: 0 0 5px var(--secondary1);
 }
 
 #loading span {
@@ -30,10 +30,6 @@ body {
     font-weight: bold;
     color: var(--background_conflict);
     animation: loading-span-animation 1s ease-in-out infinite alternate;
-}
-
-#loading span::after {
-    content: "FileNest";
 }
 
 @keyframes loading-span-animation {
@@ -91,9 +87,31 @@ body {
 .alert_box {
     position: fixed;
     top: -100px;
-    width: 60%;
+    width: 50%;
     display: flex;
     justify-content: center;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: 520;
+    font-size: 18px;
+}
+
+#alert_success {
+    color: #155724;
+    border: 2px solid #c3e6cb;
+    background-color: #d4edda;
+}
+
+#alert_error {
+    color: #721c24;
+    border: 2px solid #f5c6cb;
+    background-color: #f8d7da;
+}
+
+#alert_warning {
+    color: #916e05;
+    border: 2px solid #ffeeba;
+    background-color: #fff3cd;
 }
 
 .alert_show {
@@ -148,6 +166,7 @@ body {
     justify-content: center;
     align-items: center;
     transition: 0.8s ease;
+    background-color: var(--background);
 }
 
 #message_box h1 {
@@ -156,7 +175,7 @@ body {
     margin: 0;
     font-size: 30px;
     font-weight: bold;
-    color: cornflowerblue;
+    color: var(--main);
 
 }
 
@@ -166,6 +185,7 @@ body {
     width: 90%;
     font-size: 20px;
     padding: 20px;
+    color: var(--text);
 }
 
 .message_show {
@@ -216,19 +236,69 @@ body {
     background-color: var(--background);
 }
 
-#menu_box {
-    height: 90vh;
+#menu_box_pc {
+    height: 60vh;
     width: 100px;
     z-index: 9997;
     position: fixed;
     left: 0;
-    top: 5vh;
-    background-color: var(--auxiliary);
+    top: 15vh;
+    background-color: var(--main);
     border-radius: 0 30px 30px 0;
+    transition: 0.8s ease;
+    padding: 20px;
+    overflow: hidden;
+}
+
+#menu_box_pc:hover {
+    width: 200px;
+}
+
+
+#menu_img_box_pc {
+    height: 20%;
+}
+
+#menu_img_box_pc div {
+    height: 20%;
+    background-color: initial;
+}
+
+#menu_nar_box_pc {
+    height: 40%;
+}
+
+#menu_other_box_pc {
+    height: 40%;
+    border-bottom: var(--secondary2) solid 0;
+}
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+    #menu_box_pc {
+        display: none;
+    }
+}
+
+#menu_box_mobile {
+    height: 60px;
+    width: 100%;
+    z-index: 9997;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: var(--background);
+    box-shadow: 0 0 5px #999;
     transition: 0.8s ease;
     padding: 20px;
 }
 
-#menu_box:hover {
-    width: 200px;
+@media screen and (min-width: 768px) {
+    #menu_box_mobile {
+        display: none;
+    }
 }

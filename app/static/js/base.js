@@ -95,58 +95,22 @@ function $id(key) {
 // region 警告框显示集
 
 function hiden_alert() {
-    if ($id("alert_primary").classList.contains("alert_show")) {
-        $id("alert_primary").classList.remove("alert_show");
-        $id("alert_primary").classList.add("alert_hide");
-    }
-    if ($id("alert_secondary").classList.contains("alert_show")) {
-        $id("alert_secondary").classList.remove("alert_show");
-        $id("alert_secondary").classList.add("alert_hide");
-    }
     if ($id("alert_success").classList.contains("alert_show")) {
         $id("alert_success").classList.remove("alert_show");
         $id("alert_success").classList.add("alert_hide");
     }
-    if ($id("alert_danger").classList.contains("alert_show")) {
-        $id("alert_danger").classList.remove("alert_show");
-        $id("alert_danger").classList.add("alert_hide");
+    if ($id("alert_error").classList.contains("alert_show")) {
+        $id("alert_error").classList.remove("alert_show");
+        $id("alert_error").classList.add("alert_hide");
     }
     if ($id("alert_warning").classList.contains("alert_show")) {
         $id("alert_warning").classList.remove("alert_show");
         $id("alert_warning").classList.add("alert_hide");
     }
-    if ($id("alert_info").classList.contains("alert_show")) {
-        $id("alert_info").classList.remove("alert_show");
-        $id("alert_info").classList.add("alert_hide");
-    }
-    if ($id("alert_light").classList.contains("alert_show")) {
-        $id("alert_light").classList.remove("alert_show");
-        $id("alert_light").classList.add("alert_hide");
-    }
-    if ($id("alert_dark").classList.contains("alert_show")) {
-        $id("alert_dark").classList.remove("alert_show");
-        $id("alert_dark").classList.add("alert_hide");
-    }
 }
 
 const alert_duration = 3000;
 let alert_hidden;
-function primary_alert(message) {
-    hiden_alert()
-    clearInterval(alert_hidden)
-    $id("alert_primary").classList.remove("alert_hide");
-    $id("alert_primary").classList.add("alert_show");
-    $id("alert_primary").innerHTML = message;
-    alert_hidden = setTimeout(hiden_alert, alert_duration)
-}
-function secondary_alert(message) {
-    hiden_alert()
-    clearInterval(alert_hidden)
-    $id("alert_secondary").classList.remove("alert_hide");
-    $id("alert_secondary").classList.add("alert_show");
-    $id("alert_secondary").innerHTML = message;
-    alert_hidden = setTimeout(hiden_alert, alert_duration)
-}
 function success_alert(message) {
     hiden_alert()
     clearInterval(alert_hidden)
@@ -155,12 +119,12 @@ function success_alert(message) {
     $id("alert_success").innerHTML = message;
     alert_hidden = setTimeout(hiden_alert, alert_duration)
 }
-function danger_alert(message) {
+function error_alert(message) {
     hiden_alert()
     clearInterval(alert_hidden)
-    $id("alert_danger").classList.remove("alert_hide");
-    $id("alert_danger").classList.add("alert_show");
-    $id("alert_danger").innerHTML = message;
+    $id("alert_error").classList.remove("alert_hide");
+    $id("alert_error").classList.add("alert_show");
+    $id("alert_error").innerHTML = message;
     alert_hidden = setTimeout(hiden_alert, alert_duration)
 }
 function warning_alert(message) {
@@ -171,30 +135,6 @@ function warning_alert(message) {
     $id("alert_warning").innerHTML = message;
     alert_hidden = setTimeout(hiden_alert, alert_duration)
 }
-function info_alert(message) {
-    hiden_alert()
-    clearInterval(alert_hidden)
-    $id("alert_info").classList.remove("alert_hide");
-    $id("alert_info").classList.add("alert_show");
-    $id("alert_info").innerHTML = message;
-    alert_hidden = setTimeout(hiden_alert, alert_duration)
-}
-function light_alert(message) {
-    hiden_alert()
-    clearInterval(alert_hidden)
-    $id("alert_light").classList.remove("alert_hide");
-    $id("alert_light").classList.add("alert_show");
-    $id("alert_light").innerHTML = message;
-    alert_hidden = setTimeout(hiden_alert, alert_duration)
-}
-function dark_alert(message) {
-    hiden_alert()
-    clearInterval(alert_hidden)
-    $id("alert_dark").classList.remove("alert_hide");
-    $id("alert_dark").classList.add("alert_show");
-    $id("alert_dark").innerHTML = message;
-    alert_hidden = setTimeout(hiden_alert, alert_duration)
-}
 
 // endregion
 
@@ -203,14 +143,13 @@ function dark_alert(message) {
 let message_box_timer;
 let message_box_show = false;
 const message_duration = 3000;
-function show_message(title, content, fuc = () => { }, color = "cornflowerblue") {
+function show_message(title, content, fuc = () => { }) {
     if (message_box_show) {
         return;
     }
     const message_box = $id("message_box");
     const message_title = $id("message_title");
     const message_content = $id("message_content");
-    message_title.style.color = color;
     message_title.innerHTML = title;
     message_content.innerHTML = content;
     clearInterval(message_box_timer);
