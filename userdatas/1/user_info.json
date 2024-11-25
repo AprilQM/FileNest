@@ -1,24 +1,24 @@
 {
-    "last_modified_time": "2024-11-23 22:29:53",
+    "last_modified_time": "2024-11-25 18:45:38",
     "user_datas": {
         "user_id": 1,
-        "username": "admin2",
-        "email": "admin123",
+        "username": "Admin",
+        "email": "114514",
         "level": 1,
-        "register_time": "2024-11-23 22:29:53",
+        "register_time": "2024-11-25 18:45:38",
         "logined_time": "",
         "is_consent_agreement": false,
         "is_banned": false,
         "is_admin": false,
-        "is_cancellation": true
+        "is_cancellation": true,
+        "color": "艳红"
     },
     "user_space_info": {
         "slogan": "这个人很懒，什么都没有留下。",
         "user_id": 1,
-        "username": "admin2",
-        "email": "admin123",
+        "username": "Admin",
+        "email": "114514",
         "level": 1,
-        "register_time": "2024-11-23 22:29:53"
-    },
-    "is_cancellation": true
+        "register_time": "2024-11-25 18:45:38"
+    }
 }

@@ -5,6 +5,7 @@ from config import Config
 import os
 import json
 from datetime import datetime
+import hashlib
 
 
 # region 加密
@@ -24,20 +25,22 @@ def aes_encrypt(plain_text, key = Config.PASSWORD_SALT):
     # 返回IV和密文的组合，并进行Base64编码
     return base64.b64encode(iv + cipher_text).decode('utf-8')
 
-def aes_decrypt(cipher_text, key = Config.PASSWORD_SALT):
-    # 解码Base64编码的密文
-    cipher_text_bytes = base64.b64decode(cipher_text)
-    # 确保密钥长度为32字节
-    key = key.ljust(32)[:32].encode('utf-8')
+
+def hash_encrypt(plain_text, salt=None):
+    """
+    对明文使用哈希算法进行加密。
     
-    # 提取IV和实际的加密内容
-    iv = cipher_text_bytes[:16]
-    actual_cipher_text = cipher_text_bytes[16:]
+    :param plain_text: 要加密的明文
+    :param salt: 可选的盐值，用于增强安全性
+    :return: 哈希值（十六进制字符串）
+    """
+    # 如果提供了盐值，将其拼接到明文前
+    if salt:
+        plain_text = salt + plain_text
     
-    # 创建AES解密器
-    cipher = AES.new(key, AES.MODE_CFB, iv=iv)
-    # 解密数据并返回解码后的字符串
-    return cipher.decrypt(actual_cipher_text).decode('utf-8')
+    # 使用 SHA-256 计算哈希值
+    hash_object = hashlib.sha256(plain_text.encode('utf-8'))
+    return hash_object.hexdigest()
 
 # endregion
 

@@ -18,7 +18,7 @@ def create_user(username, email, password):
             return {"success": False, "message": "Username or email already exists"}
 
         # 对密码进行 AES 加密
-        encrypted_password = other.aes_encrypt(password)
+        encrypted_password = other.hash_encrypt(password)
 
         # 创建新用户对象并保存到数据库
         new_user = DatabaseUser(username=username, email=email, password=encrypted_password)
@@ -39,7 +39,7 @@ def get_user(user_id):
     user = DatabaseUser.query.get(user_id)
     if user:
         file_user_data = json.loads(open(os.path.join(Config.USER_INFO_DIR, str(user_id), "user_info.json"), "r", encoding="utf-8").read())
-        file_user_data["user_datas"]["password"] = other.aes_decrypt(user.password)
+        file_user_data["user_datas"]["password"] = user.password
         return {"success": True, "user": file_user_data}
     return {"success": False, "message": "User not found"}
 
@@ -61,7 +61,7 @@ def update_user(user_id, key, value):
 
         # 如果更新的是密码，进行加密
         if key == "password":
-            value = other.aes_encrypt(value)
+            value = other.hash_encrypt(value)
 
         return {"success": True, "message": f"User {key} updated successfully"}
     except Exception as e:
@@ -103,9 +103,6 @@ def delete_user(user_id):
     if not user:
         return {"success": False, "message": "User not found"}
     try:
-        db.session.delete(user)
-        db.session.commit()
-        
         file_user_data = json.loads(open(os.path.join(Config.USER_INFO_DIR, str(user_id), "user_info.json"), "r", encoding="utf-8").read())
         file_user_data["user_datas"]["is_cancellation"] = True
         with open(os.path.join(Config.USER_INFO_DIR, str(user_id), "user_info.json"), "w", encoding="utf-8") as file:
