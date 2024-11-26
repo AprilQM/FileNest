@@ -77,9 +77,9 @@ class Config:
                 {
                     "name": "暗黑",
                     "colors": {
-                        "main": "#171717",
-                        "secondary1": "#111111",
-                        "secondary2": "#090909",
+                        "main": "#111111",
+                        "secondary1": "#333333",
+                        "secondary2": "#222222",
                         "prominent": "#f9f871",
                         "background": "#202224",
                         "background2": "#171717",
