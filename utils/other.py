@@ -69,12 +69,14 @@ def create_user_info(user):
                         for i in ["last_modified_time", "user_datas", "user_space_info"]:
                             if i not in file_user_info:
                                 flag = True
+                            
                         # user_datas子字典的整形判断
-                        if type(file_user_info["user_datas"]["user_id"]) != int:
-                            flag = True
+                        for i in ["user_id", "color"]:
+                            if type(file_user_info["user_datas"][i]) != int:
+                                flag = True
                         
                         # user_datas子字典的字符串判断
-                        for i in ["username", "email", "register_time", "logined_time", "color"]:
+                        for i in ["username", "email", "register_time", "logined_time"]:
                             if type(file_user_info["user_datas"][i]) != str:
                                 flag = True
                         
@@ -117,13 +119,13 @@ def create_user_info_json(user):
                 "username": user.username, 
                 "email": user.email, 
                 "level": 1, 
+                "color": 0,
                 "register_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 
                 "logined_time": "", 
                 "is_consent_agreement": False, 
                 "is_banned": False,
                 "is_admin": False,
-                "is_cancellation": False,
-                "color": "艳红"
+                "is_cancellation": False
             },
             "user_space_info":{
                 "slogan":"这个人很懒，什么都没有留下。",

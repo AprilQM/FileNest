@@ -1,3 +1,5 @@
+import json
+
 class Config:
     PASSWORD_SALT = 'filenestWQD153ieq'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///FileNest.db'
@@ -11,7 +13,7 @@ class Config:
         "mail_port": 465
         }
     USER_INFO_DIR = "./userdatas"
-    
+    CONFIG_JSON_PATH = "./config.json"
     WEBCONFIG = {
         "rear": {
             "port": 5000,
@@ -19,56 +21,73 @@ class Config:
             "debug": True
         },
         "front": {
-            # 主色
-            # 次色
-            # 次次色
-            # 文本色
-            # 背景色
-            # 背景冲突色
-            # 悬停色
-            # 点击色
-            "theme_color": {
-                "red": [
-                    "#ED5A65",
-                    "#F48B94",
-                    "#FAD1D4",
-                    "#333333",
-                    "#FFFFFF",
-                    "#ED5A65",
-                    "#D7444F",
-                    "#B5353E"
-                ],
-                "yellow": [
-                    "#FEBA07",
-                    "#FFD355",
-                    "#FFF0C2",
-                    "#333333",
-                    "#FFFFFF",
-                    "#FEBA07",
-                    "#E5A506",
-                    "#C58805"
-                ],
-                "green": [
-                    "#45B787",
-                    "#76D2AC",
-                    "#C2EBDD",
-                    "#333333",
-                    "#FFFFFF",
-                    "#45B787",
-                    "#379A6F",
-                    "#2D7D5C"
-                ],
-                "blue": [
-                    "#51C4D3",
-                    "#84D8E1",
-                    "#D2F2F6",
-                    "#333333",
-                    "#FFFFFF",
-                    "#51C4D3",
-                    "#3FA9B6",
-                    "#2F8490"
-                ]
-            }
-        }        
+            "themes": [
+                {
+                    "name": "艳红",
+                    "colors": {
+                        "main": "#ed5a65",
+                        "secondary1": "#faaead",
+                        "secondary2": "#ffe4e2",
+                        "prominent": "#54b9ca",
+                        "background": "#fef6f6",
+                        "background2": "#ffffff",
+                        "background_conflict": "#ed5a65",
+                        "text": "#333333"
+                    }
+                },
+                {
+                    "name": "钴青",
+                    "colors": {
+                        "main": "#1a94bc",
+                        "secondary1": "#71cde3",
+                        "secondary2": "#d3f1f6",
+                        "prominent": "#f9f871",
+                        "background": "#E9F7FC",
+                        "background2": "#ffffff",
+                        "background_conflict": "#1a94bc",
+                        "text": "#333333"
+                    }
+                },
+                {
+                    "name": "炒米黄",
+                    "colors": {
+                        "main": "#f4ce69",
+                        "secondary1": "#f9e39c",
+                        "secondary2": "#fef0c5",
+                        "prominent": "#f9f871",
+                        "background": "#FDF7E7",
+                        "background2": "#ffffff",
+                        "background_conflict": "#f4ce69",
+                        "text": "#333333"
+                    }
+                },
+                {
+                    "name": "铜绿",
+                    "colors": {
+                        "main": "#2bae85",
+                        "secondary1": "#64d0a0",
+                        "secondary2": "#a4f1d3",
+                        "prominent": "#f9f871",
+                        "background": "#EBFAF5",
+                        "background2": "#ffffff",
+                        "background_conflict": "#2bae85",
+                        "text": "#333333"
+                    }
+                },
+                {
+                    "name": "暗黑",
+                    "colors": {
+                        "main": "#171717",
+                        "secondary1": "#111111",
+                        "secondary2": "#090909",
+                        "prominent": "#f9f871",
+                        "background": "#202224",
+                        "background2": "#171717",
+                        "background_conflict": "#f0f0f0",
+                        "text": "#f0f0f0"
+                    }
+                }
+            ]
+            
+        }    
     }
-    

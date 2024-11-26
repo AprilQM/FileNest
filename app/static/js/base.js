@@ -173,3 +173,17 @@ function show_message(title, content, fuc = () => { }) {
     });
 }
 //endregion
+
+//region 左侧菜单
+const menu_box_pc = $id("menu_box_pc");
+const menu_show_btn_pc = $id("menu_show_btn_pc");
+let menu_state_pc = false;
+menu_show_btn_pc.addEventListener("click", (event) => {
+    if (menu_state_pc) {
+        menu_box_pc.style.width = "100px";
+        menu_state_pc = false;
+    } else {
+        menu_box_pc.style.width = "300px";
+        menu_state_pc = true;
+    }
+});

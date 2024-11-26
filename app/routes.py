@@ -10,4 +10,4 @@ def index():
 
 @main.route("/home")
 def home():
-    return render_template('home.html', color=Config.WEBCONFIG["front"]["theme_color"]["red"])
+    return render_template('home.html', theme=Config.WEBCONFIG["front"]["themes"][4])

@@ -6,6 +6,7 @@ from app.models import DatabaseUser
 import utils.database as database_utils
 from config import Config
 import utils.other as other_utils
+import json
 
 def init(app):
     # 主函数

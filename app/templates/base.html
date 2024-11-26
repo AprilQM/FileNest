@@ -12,14 +12,16 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='icon/01/iconfont.css') }}">
     <style>
         :root{
-            --main: {{ color[0] }};
-            --secondary1:  {{ color[1] }};
-            --secondary2:  {{ color[2] }};
-            --text:  {{ color[3] }};
-            --background:  {{ color[4] }};
-            --background_conflict:  {{ color[5] }};
-            --hover: {{ color[6] }};
-            --click: {{ color[7] }};
+            --main: {{ theme["colors"]["main"] }};
+            --secondary1:  {{ theme["colors"]["secondary1"] }};
+            --secondary2:  {{ theme["colors"]["secondary2"] }};
+            --prominent:  {{ theme["colors"]["prominent"] }};
+            --background:  {{ theme["colors"]["background"] }};
+            --background2:  {{ theme["colors"]["background2"] }};
+            --background_conflict:  {{ theme["colors"]["background_conflict"] }};
+            --text:  {{ theme["colors"]["text"] }};
+            //--hover: {{ theme["colors"][6] }};
+            //--click: {{ theme["colors"][7] }};
         }
     </style>
     {% block head %}{% endblock %}
@@ -40,12 +42,16 @@
     </div>
 
     <div id="menu_box_pc">
+        <button id="menu_show_btn_pc">&#9776;</button>
     </div>
 
     <div id="menu_box_mobile">
 
     </div>
     {% block content %}{% endblock %}
+    <script>
+        const color = {{ theme|tojson }}["name"];
+    </script>
     <script src="{{ url_for('static', filename='js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/base.js') }}"></script>
