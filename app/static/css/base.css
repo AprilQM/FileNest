@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     font-size: 2vmin;
+    transition: 0.8s ease;
 }
 
 body {
@@ -29,7 +30,7 @@ body {
     font-size: 20px;
     font-weight: bold;
     color: var(--background_conflict);
-    animation: loading-span-animation 1s ease-in-out infinite alternate;
+    animation: loading-span-animation 1s ease infinite alternate;
 }
 
 @keyframes loading-span-animation {
@@ -44,12 +45,12 @@ body {
 
 
 .loading-out {
-    animation: loading-out 1s ease-in-out forwards;
+    animation: loading-out 1.5s ease forwards;
     transform: translateY(100vh);
 }
 
 .loading-in {
-    animation: loading-in 0.8s ease-in-out forwards;
+    animation: loading-in 0.8s ease forwards;
     transform: translateY(0);
 }
 
@@ -156,7 +157,7 @@ body {
     position: fixed;
     width: 400px;
     height: 200px;
-    box-shadow: 0 0 5px #999;
+    box-shadow: 0 0 5px  var(--secondary1);
     z-index: 9998;
     border-radius: 30px;
     right: 20px;
@@ -165,8 +166,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: 0.8s ease;
-    background-color: var(--background);
+    background-color: var(--background2);
 }
 
 #message_box h1 {
@@ -175,7 +175,7 @@ body {
     margin: 0;
     font-size: 30px;
     font-weight: bold;
-    color: var(--main);
+    color: var(--background_conflict);
 
 }
 
@@ -245,7 +245,6 @@ body {
     top: 0;
     background-color: var(--background2);
     box-shadow: 0 0 5px var(--secondary2);
-    transition: 0.8s ease;
     padding: 20px;
 }
 

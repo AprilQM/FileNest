@@ -36,15 +36,15 @@ class Config:
                     }
                 },
                 {
-                    "name": "钴青",
+                    "name": "淡橘橙",
                     "colors": {
-                        "main": "#1a94bc",
-                        "secondary1": "#71cde3",
-                        "secondary2": "#d3f1f6",
-                        "prominent": "#f9f871",
-                        "background": "#E9F7FC",
+                        "main": "#fba414",
+                        "secondary1": "#fdc456",
+                        "secondary2": "#fee6a2",
+                        "prominent": "#007461",
+                        "background": "#FFF5E6",
                         "background2": "#ffffff",
-                        "background_conflict": "#1a94bc",
+                        "background_conflict": "#fba414",
                         "text": "#333333"
                     }
                 },
@@ -71,6 +71,32 @@ class Config:
                         "background": "#EBFAF5",
                         "background2": "#ffffff",
                         "background_conflict": "#2bae85",
+                        "text": "#333333"
+                    }
+                },
+                {
+                    "name": "钴青",
+                    "colors": {
+                        "main": "#1a94bc",
+                        "secondary1": "#71cde3",
+                        "secondary2": "#d3f1f6",
+                        "prominent": "#f9f871",
+                        "background": "#E9F7FC",
+                        "background2": "#ffffff",
+                        "background_conflict": "#1a94bc",
+                        "text": "#333333"
+                    }
+                },
+                {
+                    "name": "樱草紫",
+                    "colors": {
+                        "main": "#c06f98",
+                        "secondary1": "#d898b3",
+                        "secondary2": "#f1ccdc",
+                        "prominent": "#f9f871",
+                        "background": "#F7EDF2",
+                        "background2": "#ffffff",
+                        "background_conflict": "#c06f98",
                         "text": "#333333"
                     }
                 },

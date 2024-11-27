@@ -140,9 +140,11 @@ function warning_alert(message) {
 
 
 //region 消息提示框
-let message_box_timer;
-let message_box_show = false;
 const message_duration = 3000;
+let message_box_show = false;
+let message_box_timer = null;
+let alertClickHandler = null; // 用来保存事件监听器引用
+
 function show_message(title, content, fuc = () => { }) {
     if (message_box_show) {
         return;
@@ -152,26 +154,41 @@ function show_message(title, content, fuc = () => { }) {
     const message_content = $id("message_content");
     message_title.innerHTML = title;
     message_content.innerHTML = content;
+    
+    // 清除之前的计时器
     clearInterval(message_box_timer);
+    
+    // 显示消息框
     message_box.classList.remove("message_hide");
     message_box.classList.add("message_show");
-    message_box_timer = setTimeout(() => {
-        message_box.classList.remove("message_show");
-        message_box_show = false;
-    }, message_duration);
-    message_box_show = true;
 
-    // 设置点击事件
-    message_box.addEventListener("click", () => {
+    // 如果之前绑定过点击事件，移除之前的事件监听器
+    if (alertClickHandler) {
+        message_box.removeEventListener("click", alertClickHandler);
+    }
+
+    // 新的事件监听器
+    alertClickHandler = () => {
         if (message_box_show) {
             clearInterval(message_box_timer);
             message_box.classList.remove("message_show");
             message_box.classList.add("message_hide");
             message_box_show = false;
-            fuc()
+            fuc(); // 执行回调函数
         }
-    });
+    };
+
+    // 绑定新的点击事件
+    message_box.addEventListener("click", alertClickHandler);
+
+    // 设置定时器关闭消息框
+    message_box_timer = setTimeout(() => {
+        message_box.classList.remove("message_show");
+        message_box_show = false;
+    }, message_duration);
+    message_box_show = true;
 }
+
 //endregion
 
 //region 左侧菜单
@@ -180,10 +197,12 @@ const menu_show_btn_pc = $id("menu_show_btn_pc");
 let menu_state_pc = false;
 menu_show_btn_pc.addEventListener("click", (event) => {
     if (menu_state_pc) {
-        menu_box_pc.style.width = "100px";
         menu_state_pc = false;
+        menu_box_pc.style.width = "100px";
+        menu_show_btn_pc.style.transform = "scale(1)";
     } else {
-        menu_box_pc.style.width = "300px";
         menu_state_pc = true;
+        menu_box_pc.style.width = "300px";
+        menu_show_btn_pc.style.transform = "scale(1.05)";
     }
 });
