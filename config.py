@@ -32,7 +32,9 @@ class Config:
                         "background": "#fef6f6",
                         "background2": "#ffffff",
                         "background_conflict": "#ed5a65",
-                        "text": "#333333"
+                        "text": "#333333",
+                        "text2": "#ffffff",
+                        "text3": "#777777"
                     }
                 },
                 {
@@ -45,7 +47,9 @@ class Config:
                         "background": "#FFF5E6",
                         "background2": "#ffffff",
                         "background_conflict": "#fba414",
-                        "text": "#333333"
+                        "text": "#333333",
+                        "text2": "#ffffff",
+                        "text3": "#777777"
                     }
                 },
                 {
@@ -58,7 +62,9 @@ class Config:
                         "background": "#FDF7E7",
                         "background2": "#ffffff",
                         "background_conflict": "#f4ce69",
-                        "text": "#333333"
+                        "text": "#333333",
+                        "text2": "#ffffff",
+                        "text3": "#777777"
                     }
                 },
                 {
@@ -71,7 +77,9 @@ class Config:
                         "background": "#EBFAF5",
                         "background2": "#ffffff",
                         "background_conflict": "#2bae85",
-                        "text": "#333333"
+                        "text": "#333333",
+                        "text2": "#ffffff",
+                        "text3": "#777777"
                     }
                 },
                 {
@@ -84,7 +92,9 @@ class Config:
                         "background": "#E9F7FC",
                         "background2": "#ffffff",
                         "background_conflict": "#1a94bc",
-                        "text": "#333333"
+                        "text": "#333333",
+                        "text2": "#ffffff",
+                        "text3": "#777777"
                     }
                 },
                 {
@@ -97,20 +107,39 @@ class Config:
                         "background": "#F7EDF2",
                         "background2": "#ffffff",
                         "background_conflict": "#c06f98",
-                        "text": "#333333"
+                        "text": "#333333",
+                        "text2": "#ffffff",
+                        "text3": "#777777"
                     }
                 },
                 {
-                    "name": "暗黑",
+                    "name": "黑白",
                     "colors": {
                         "main": "#111111",
                         "secondary1": "#333333",
                         "secondary2": "#222222",
-                        "prominent": "#f9f871",
+                        "prominent": "#fae9a0",
                         "background": "#202224",
                         "background2": "#171717",
                         "background_conflict": "#f0f0f0",
-                        "text": "#f0f0f0"
+                        "text": "#f0f0f0",
+                        "text2": "#ffffff",
+                        "text3": "#777777"
+                    }
+                },
+                {
+                    "name": "黑金",
+                    "colors": {
+                        "main": "#111111",
+                        "secondary1": "#333333",
+                        "secondary2": "#222222",
+                        "prominent": "#f0f0f0",
+                        "background": "#202224",
+                        "background2": "#171717",
+                        "background_conflict": "#fae9a0",
+                        "text": "#f0f0f0",
+                        "text2": "#fae9a0",
+                        "text3": "#daaf75"
                     }
                 }
             ]

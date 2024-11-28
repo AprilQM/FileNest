@@ -195,26 +195,36 @@ function show_message(title, content, fuc = () => { }) {
 const menu_box_pc = $id("menu_box_pc");
 const menu_show_btn_pc = $id("menu_show_btn_pc");
 const menu_view_box_pc = $id("menu_view_box_pc");
+const menu_item_hide_pc = document.getElementsByClassName("menu_item_hide_pc");
+const menu_item_show_pc = document.getElementsByClassName("menu_item_show_pc");
 let menu_state_pc = false;
 menu_show_btn_pc.addEventListener("click", (event) => {
     if (menu_state_pc) {
         menu_state_pc = false;
+        menu_view_box_pc.classList.add("menu_close_state")
+        menu_view_box_pc.classList.remove("menu_open_state")
         menu_box_pc.style.width = "100px";
-        menu_box_pc.classList.add("menu_box_close");
         menu_show_btn_pc.style.transform = "scale(1)";
-        menu_view_box_pc.classList.remove("menu_open_state");
-        menu_view_box_pc.classList.add("menu_close_state");
+        Array.from(menu_item_show_pc).forEach(item => {
+            item.classList.add("menu_item_hide_pc");
+            item.classList.remove("menu_item_show_pc");
+        });
+        
     } else {
         menu_state_pc = true;
+        menu_view_box_pc.classList.add("menu_open_state")
+        menu_view_box_pc.classList.remove("menu_close_state")
         menu_box_pc.style.width = "300px";
-        menu_box_pc.classList.remove("menu_box_close");
         menu_show_btn_pc.style.transform = "scale(1.05)";
-        menu_view_box_pc.classList.remove("menu_close_state");
-        menu_view_box_pc.classList.add("menu_open_state");
+        Array.from(menu_item_hide_pc).forEach(item => {
+            item.classList.add("menu_item_show_pc");
+            item.classList.remove("menu_item_hide_pc");
+        });
     }
+    
+    console.log(menu_item_hide_pc, menu_item_show_pc);
 });
 
-// 设置logo的颜色
 
 
 //endregion
