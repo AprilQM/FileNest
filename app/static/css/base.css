@@ -213,7 +213,7 @@ body {
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     #message_box {
         width: 90%;
         height: 150px;
@@ -282,6 +282,9 @@ body {
 #menu_logo_box_pc{
     border-top: 0;
     height: 10%;
+}
+.menu_logo_svg{
+    fill: var(--background_conflict);
 }
 #menu_navigation_box_pc{
     height: calc(44% - 25px);
@@ -391,7 +394,7 @@ body {
         opacity: 0;
     }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
     #menu_box_pc {
         display: none;
     }
@@ -440,7 +443,7 @@ body {
 .menu_this_page_mobile{
     color: var(--background_conflict);
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
     #menu_bottom_box_mobile {
         display: none;
     }

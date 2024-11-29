@@ -34,7 +34,8 @@ class Config:
                         "background_conflict": "#ed5a65",
                         "text": "#333333",
                         "text2": "#ffffff",
-                        "text3": "#777777"
+                        "text3": "#777777",
+                        "other": "#ffffff"
                     }
                 },
                 {
@@ -49,7 +50,8 @@ class Config:
                         "background_conflict": "#fba414",
                         "text": "#333333",
                         "text2": "#ffffff",
-                        "text3": "#777777"
+                        "text3": "#777777",
+                        "other": "#ffffff"
                     }
                 },
                 {
@@ -64,7 +66,8 @@ class Config:
                         "background_conflict": "#f4ce69",
                         "text": "#333333",
                         "text2": "#ffffff",
-                        "text3": "#777777"
+                        "text3": "#777777",
+                        "other": "#ffffff"
                     }
                 },
                 {
@@ -79,7 +82,8 @@ class Config:
                         "background_conflict": "#2bae85",
                         "text": "#333333",
                         "text2": "#ffffff",
-                        "text3": "#777777"
+                        "text3": "#777777",
+                        "other": "#ffffff"
                     }
                 },
                 {
@@ -94,7 +98,8 @@ class Config:
                         "background_conflict": "#1a94bc",
                         "text": "#333333",
                         "text2": "#ffffff",
-                        "text3": "#777777"
+                        "text3": "#777777",
+                        "other": "#ffffff"
                     }
                 },
                 {
@@ -109,7 +114,8 @@ class Config:
                         "background_conflict": "#c06f98",
                         "text": "#333333",
                         "text2": "#ffffff",
-                        "text3": "#777777"
+                        "text3": "#777777",
+                        "other": "#ffffff"
                     }
                 },
                 {
@@ -124,7 +130,8 @@ class Config:
                         "background_conflict": "#f0f0f0",
                         "text": "#f0f0f0",
                         "text2": "#ffffff",
-                        "text3": "#777777"
+                        "text3": "#777777",
+                        "other": "#ffffff"
                     }
                 },
                 {
@@ -139,7 +146,8 @@ class Config:
                         "background_conflict": "#fae9a0",
                         "text": "#f0f0f0",
                         "text2": "#fae9a0",
-                        "text3": "#e3bf71"
+                        "text3": "#e3bf71",
+                        "other": "#fae9a0"
                     }
                 }
             ]

@@ -6,6 +6,233 @@
     align-items: center;
     flex-direction: column;
 }
-#menu_bottom_box_mobile, #menu_box_pc{
+#view_box{
+    background-color: var(--background2);
+    width: 700px;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px var(--secondary2);
+    position: relative;
+}
+@media screen and (max-width: 767px) {
+    #view_box{
+        width: 100%;
+        height: 100%;
+        background-color: var(--background);
+    }
+}
+#transition_box{
+    width: 1500px;
+    height: 100%;
+    border-radius: 10% / 30%;
+    background-color: var(--main);
+    position: absolute;
+    top: 0;
+    left: -400px;
+    box-shadow: 0 0 10px var(--main);
+    z-index: 2;
+}
+.login #transition_box{
+    transform: translateX(-50%);
+}
+.register #transition_box {
+    transform: translateX(50%);
+}
+
+@media screen and (max-width: 767px) {
+    #transition_box {
+        width: 100%;
+        height: 120%;
+        border-radius: 30% / 5%;
+        top: -85%;
+        left: 0;
+    }
+    .login #transition_box {
+        transform: translateY(0);
+    }
+
+    .register #transition_box {
+        transform: translateY(125%);
+    }
+}
+
+#logo_svg{
+    width: 60px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 100;
+}
+.login .logo_svg{
+    fill: var(--background_conflict);
+}
+.register .logo_svg {
+    fill: var(--other);
+}
+#logo_text{
     display: none;
+}
+@media screen and (max-width: 767px) {
+    #logo_svg {
+        left: 10px;
+    }
+    #logo_text {
+        display: block;
+        left: 80px;
+        width: 200px;
+        font-size: 40px;
+        z-index: 100;
+        position: absolute;
+        top: 15px;
+    }
+    .login .logo_svg {
+        fill: var(--other);
+    }
+    
+    .register .logo_svg {
+        fill: var(--background_conflict);
+    }
+    .login #logo_text {
+        color: var(--other);
+    }
+    
+    .register #logo_text {
+        color: var(--background_conflict);
+    }
+}
+#login_box, #register_box{
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+}
+@media screen and (min-width: 767px) {
+    .login #login_box{
+        right: 0;
+    }
+    .register #login_box {
+        right: 180%;
+    }
+    .login #register_box {
+        left: 180%;
+    }
+    .register #register_box {
+        left: 0;
+    }
+}
+@media screen and (max-width: 767px) {
+    #login_box{
+        width: 100%;
+        height: 65%;
+    }
+    #register_box {
+        width: 100%;
+        height: 65%;
+    }
+    .login #login_box {
+        top: 35%;
+    }
+
+    .register #login_box {
+        top: 135%;
+    }
+
+    .login #register_box {
+        top: -100%;
+    }
+
+    .register #register_box {
+        top: 0;
+    }
+}
+#to_register_box{
+    z-index: 3;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: var(--text2);
+    overflow: hidden;
+}
+@media screen and (min-width: 767px) {
+    .login #to_register_box {
+        left: 0;
+    }
+    
+    .register #to_register_box {
+        left: -100%;
+    }
+}
+#to_register_box h1, #to_login_box h1{
+    font-size: 40px;
+
+}
+#to_register_box h6, #to_login_box h6{
+    font-size: 15px;
+}
+#to_register_btn{
+    background-color: var(--main);
+    border: var(--text2) solid 2px;
+    border-radius: 5px;
+    color: var(--text2);
+    padding: 10px 20px;
+    font-size: 20px;
+}
+#to_register_btn:hover{
+    background-color: var(--text2);
+    color: var(--main);
+}
+@media screen and (max-width: 767px) {
+    #to_register_box {
+        width: 100%;
+        height: 35%;
+    }
+    .login #to_register_box {
+        top: 0;
+    }
+
+    .register #to_register_box {
+        top: -80%;
+    }
+}
+#to_login_box{
+    z-index: 3;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: var(--text2);
+    overflow: hidden;
+}
+@media screen and (min-width: 767px) {
+    .login #to_login_box {
+        right: -100%;
+    }
+
+    .register #to_login_box {
+        right: 0;
+    }
+}
+@media screen and (max-width: 767px) {
+    #to_login_box {
+        width: 100%;
+        height: 35%;
+    }
+
+    .login #to_login_box {
+        top: 170%;
+    }
+    
+    .register #to_login_box {
+        top: 70%;
+    }
 }
