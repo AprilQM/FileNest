@@ -139,7 +139,7 @@ class Config:
                         "background_conflict": "#fae9a0",
                         "text": "#f0f0f0",
                         "text2": "#fae9a0",
-                        "text3": "#daaf75"
+                        "text3": "#e3bf71"
                     }
                 }
             ]

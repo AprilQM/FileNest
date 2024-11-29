@@ -9,8 +9,8 @@
 
     <link rel="shortcut icon" href="{{ url_for('static',filename='images/logo-bird.svg') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='icon/01/iconfont.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     <style>
         :root{
             --main: {{ theme["colors"]["main"] }};
@@ -68,25 +68,25 @@
                 <h6 class="menu_box_title">导航</h6>
                 <ul>
                     <li>
-                        <button class="menu_btn_pc" id="to_home_button">
+                        <button class="menu_btn_pc" id="to_home_button_pc" onclick="jump_to_other_page_with_ui('/home')">
                             <span class="iconfont icon-home"></span>
                             <span class="menu_item_hide_pc menu_btn_text_pc">主页</span>
                         </button>
                     </li>
                     <li>
-                        <button class="menu_btn_pc" id="to_cloud_button">
+                        <button class="menu_btn_pc" id="to_cloud_button_pc" onclick="jump_to_other_page_with_ui('/cloud')">
                             <span class="iconfont icon-cloud"></span>
                             <span class="menu_item_hide_pc menu_btn_text_pc">云盘</span>
                         </button>
                     </li>
                     <li>
-                        <button class="menu_btn_pc" id="to_project_button">
+                        <button class="menu_btn_pc" id="to_project_button_pc" onclick="jump_to_other_page_with_ui('/project')">
                             <span class="iconfont icon-project"></span>
                             <span class="menu_item_hide_pc menu_btn_text_pc">项目</span>
                         </button>
                     </li>
                     <li>
-                        <button class="menu_btn_pc" id="to_forum_button">
+                        <button class="menu_btn_pc" id="to_forum_button_pc" onclick="jump_to_other_page_with_ui('/forum')">
                             <span class="iconfont icon-forum"></span>
                             <span class="menu_item_hide_pc menu_btn_text_pc">论坛</span>
                         </button>
@@ -97,13 +97,13 @@
                 <h6 class="menu_box_title">功能</h6>
                 <ul>
                     <li>
-                        <button class="menu_btn_pc" id="to_mail_button">
+                        <button class="menu_btn_pc" id="to_mail_button_pc" onclick="jump_to_other_page_with_ui('/mail')">
                             <span class="iconfont icon-mail"></span>
                             <span class="menu_item_hide_pc menu_btn_text_pc">邮箱</span>
                         </button>
                     </li>
                     <li>
-                        <button class="menu_btn_pc" id="to_setting_button">
+                        <button class="menu_btn_pc" id="to_setting_button_pc" onclick="jump_to_other_page_with_ui('/setting')">
                             <span class="iconfont icon-setting"></span>
                             <span class="menu_item_hide_pc menu_btn_text_pc">设置</span>
                         </button>
@@ -116,10 +116,15 @@
         </div>
     </div>
 
-    <div id="menu_box_mobile">
-
+    <div id="menu_bottom_box_mobile">
+        <button class="menu_btn_mobile" id="to_home_button_mobile" onclick="jump_to_other_page_with_ui('/home')"><span class="iconfont icon-home"></span>主页</button>
+        <button class="menu_btn_mobile" id="to_cloud_button_mobile" onclick="jump_to_other_page_with_ui('/cloud')"><span class=" iconfont icon-cloud"></span>云盘</button>
+        <button class="menu_btn_mobile" id="to_project_button_mobile" onclick="jump_to_other_page_with_ui('/project')"><span class=" iconfont icon-project"></span>项目</button>
+        <button class="menu_btn_mobile" id="to_forum_button_mobile" onclick="jump_to_other_page_with_ui('/forum')"><span class=" iconfont icon-forum"></span>论坛</button>
     </div>
-    {% block content %}{% endblock %}
+    <div id="content_box">
+        {% block content %}{% endblock %}
+    </div>
     <script>
         const color = {{ theme|tojson }};
     </script>

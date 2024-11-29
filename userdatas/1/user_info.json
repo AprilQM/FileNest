@@ -1,12 +1,12 @@
 {
-    "last_modified_time": "2024-11-26 21:30:12",
+    "last_modified_time": "2024-11-29 17:17:24",
     "user_datas": {
         "user_id": 1,
         "username": "Admin",
         "email": "114514",
         "level": 1,
-        "color": 0,
-        "register_time": "2024-11-26 21:30:12",
+        "color": 7,
+        "register_time": "2024-11-29 17:17:24",
         "logined_time": "",
         "is_consent_agreement": false,
         "is_banned": false,
@@ -15,10 +15,7 @@
     },
     "user_space_info": {
         "slogan": "这个人很懒，什么都没有留下。",
-        "user_id": 1,
-        "username": "Admin",
-        "email": "114514",
-        "level": 1,
-        "register_time": "2024-11-26 21:30:12"
+        "avatar_path": "",
+        "background_path": ""
     }
 }

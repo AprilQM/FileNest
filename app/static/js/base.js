@@ -16,10 +16,14 @@ window.addEventListener('pageshow', (event) => {
 });
 
 function jump_to_other_page_with_ui(url) {
-    loading.in()
-    setTimeout(() => {
-        window.location.href = url
-    }, 1200)
+    if (url !== window.location.pathname) {  
+        loading.in()
+        setTimeout(() => {
+            window.location.href = url
+        }, 1200)
+    } else {
+        error_alert("不是已经在这个页面了嘛？ (；￣Д￣)？  ")
+    }
 }
 
 // 监听所有a标签的点击时间，并在点击之后触发jump_to_other_page_with_ui函数
@@ -68,7 +72,6 @@ function ajax(method, url, data, successCallback, errorCallback) {
 function copy(text) {
     if (navigator.clipboard) {
         navigator.clipboard.writeText(text).then(function () {
-            console.log('Copied to clipboard successfully!');
         }).catch(function (err) {
             console.error('Could not copy text: ', err);
         });
@@ -80,7 +83,6 @@ function copy(text) {
         textArea.select();
         try {
             document.execCommand('copy');
-            console.log('Copied to clipboard successfully!');
         } catch (err) {
             console.error('Could not copy text: ', err);
         }
@@ -140,7 +142,7 @@ function warning_alert(message) {
 
 
 //region 消息提示框
-const message_duration = 3000;
+const message_duration = 5000;
 let message_box_show = false;
 let message_box_timer = null;
 let alertClickHandler = null; // 用来保存事件监听器引用
@@ -221,10 +223,26 @@ menu_show_btn_pc.addEventListener("click", (event) => {
             item.classList.remove("menu_item_hide_pc");
         });
     }
-    
-    console.log(menu_item_hide_pc, menu_item_show_pc);
 });
-
-
-
+// 当前页面的菜单项高亮
+function highlight_menu_item_pc(index) { 
+    const menu_list = [
+        $id("to_home_button_pc"),
+        $id("to_cloud_button_pc"),
+        $id("to_project_button_pc"),
+        $id("to_forum_button_pc"),
+        $id("to_mail_button_pc"),
+        $id("to_setting_button_pc")
+    ]
+    menu_list[index].classList.add("menu_this_page_pc");
+}
+function highlight_menu_item_mobile(index) { 
+    const menu_list = [
+        $id("to_home_button_mobile"),
+        $id("to_cloud_button_mobile"),
+        $id("to_project_button_mobile"),
+        $id("to_forum_button_mobile")
+    ]
+    menu_list[index].classList.add("menu_this_page_mobile");
+}
 //endregion

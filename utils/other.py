@@ -6,6 +6,7 @@ import os
 import json
 from datetime import datetime
 import hashlib
+import utils.database as database
 
 
 # region 加密
@@ -84,14 +85,10 @@ def create_user_info(user):
                         for i in ["is_consent_agreement", "is_banned", "is_admin", "is_cancellation"]:
                             if type(file_user_info["user_datas"][i]) != bool:
                                 flag = True
-                                
-                        # user_space_info的整形判断
-                        for i in ["user_id","level"]:
-                            if type(file_user_info["user_space_info"][i]) != int:
                                 flag = True
                     
                         # user_space_info的字符串判断
-                        for i in ["slogan","username", "email", "register_time"]:
+                        for i in ["slogan","avatar_path", "background_path"]:
                             if type(file_user_info["user_space_info"][i]) != str:
                                 flag = True
                     except:
@@ -129,13 +126,26 @@ def create_user_info_json(user):
             },
             "user_space_info":{
                 "slogan":"这个人很懒，什么都没有留下。",
-                "user_id": user.user_id, 
-                "username": user.username, 
-                "email": user.email, 
-                "level": 1, 
-                "register_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                "avatar_path": "",
+                "background_path":""
             }
         }
     with open(f"./{Config.USER_INFO_DIR}/{user.user_id}/user_info.json", "w", encoding="utf-8") as f:
         json.dump(init_user_info, f, ensure_ascii=False, indent=4)
+# endregion
+
+# region 前端工具
+def get_user_theme(current_user):
+    if current_user.is_authenticated:
+        user_data = database.get_user(current_user.user_id)
+        if user_data["success"]:
+            user_data = user_data["user"]
+            color_index = user_data["user_datas"]["color"]
+            if not user_data["user_datas"]["is_cancellation"]:
+                color_index = 0
+            return Config.WEBCONFIG["front"]["themes"][color_index]
+        else:
+            return KeyError(f"未知ID: {current_user.user_id}")
+    else:
+        return Config.WEBCONFIG["front"]["themes"][7]
 # endregion
