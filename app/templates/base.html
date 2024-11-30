@@ -106,6 +106,12 @@
             </div>
             <div id="menu_user_box_pc" class="menu_item_box">
             <h6 class="menu_box_title">用户</h6>
+                <div id="menu_img_box">
+                    <img src="/api/get_user_avatar_small" alt="头像">
+                </div>
+                <div id="menu_username_box" class="">
+                    <h1 id="menu_username_text" class="responsive_text">{{username}}</h1>
+                </div>
             </div>
         </div>
     </div>
@@ -113,9 +119,11 @@
     <div id="menu_bottom_box_mobile">
         <button class="menu_btn_mobile" id="to_home_button_mobile" onclick="jump_to_other_page_with_ui('/home')"><span class="iconfont icon-home"></span>主页</button>
         <button class="menu_btn_mobile" id="to_cloud_button_mobile" onclick="jump_to_other_page_with_ui('/cloud')"><span class=" iconfont icon-cloud"></span>云盘</button>
+        <img src="/api/get_user_avatar_small" alt="头像" id="avatar_img_mobile">
         <button class="menu_btn_mobile" id="to_project_button_mobile" onclick="jump_to_other_page_with_ui('/project')"><span class=" iconfont icon-project"></span>项目</button>
         <button class="menu_btn_mobile" id="to_forum_button_mobile" onclick="jump_to_other_page_with_ui('/forum')"><span class=" iconfont icon-forum"></span>论坛</button>
     </div>
+
     <div id="content_box">
         {% block content %}{% endblock %}
     </div>

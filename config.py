@@ -12,7 +12,8 @@ class Config:
         "mail_host": "smtp.qq.com",
         "mail_port": 465
         }
-    USER_INFO_DIR = "./userdatas"
+    USER_INFO_DIR = "./userdatas/"
+    STATIC_DIR = "../static"
     CONFIG_JSON_PATH = "./config.json"
     WEBCONFIG = {
         "rear": {

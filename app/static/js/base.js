@@ -232,7 +232,8 @@ function highlight_menu_item_pc(index) {
         $id("to_project_button_pc"),
         $id("to_forum_button_pc"),
         $id("to_mail_button_pc"),
-        $id("to_setting_button_pc")
+        $id("to_setting_button_pc"),
+        
     ]
     menu_list[index].classList.add("menu_this_page_pc");
 }

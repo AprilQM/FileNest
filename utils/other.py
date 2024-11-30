@@ -7,6 +7,8 @@ import json
 from datetime import datetime
 import hashlib
 import utils.database as database
+from PIL import Image
+import io
 
 
 # region 加密
@@ -87,7 +89,7 @@ def create_user_info(user):
                                 flag = True
                     
                         # user_space_info的字符串判断
-                        for i in ["slogan","avatar_path", "background_path"]:
+                        for i in ["slogan","avatar_file", "background_file"]:
                             if type(file_user_info["user_space_info"][i]) != str:
                                 flag = True
                     except:
@@ -107,6 +109,10 @@ def create_user_info(user):
     else:   
         # 创建文件夹
         os.mkdir(os.path.join(Config.USER_INFO_DIR, user_id))
+    if not os.path.exists(os.path.join(Config.USER_INFO_DIR, user_id, "avatar")):
+        os.mkdir(os.path.join(Config.USER_INFO_DIR, user_id, "avatar"))
+    if not os.path.exists(os.path.join(Config.USER_INFO_DIR, user_id, "background")):
+        os.mkdir(os.path.join(Config.USER_INFO_DIR, user_id, "background"))
 def create_user_info_json(user):
     init_user_info = {
             "last_modified_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -125,8 +131,8 @@ def create_user_info_json(user):
             },
             "user_space_info":{
                 "slogan":"这个人很懒，什么都没有留下。",
-                "avatar_path": "",
-                "background_path":""
+                "avatar_file": "",
+                "background_file":""
             }
         }
     with open(f"./{Config.USER_INFO_DIR}/{user.user_id}/user_info.json", "w", encoding="utf-8") as f:
@@ -147,4 +153,31 @@ def get_user_theme(current_user):
             return KeyError(f"未知ID: {current_user.user_id}")
     else:
         return Config.WEBCONFIG["front"]["themes"][0]
+
+def get_user_name(current_user):
+    if current_user.is_authenticated:
+        return current_user.username
+    else:
+        return "游客"
+    
+def make_png(avatar_path, max_width=150, max_height=150):
+    # 打开头像文件并按比例缩小
+    with Image.open(avatar_path) as img:
+        # 获取原始图片的宽度和高度
+        width, height = img.size
+
+        # 计算缩放比例，保持等比缩放
+        ratio = min(max_width / width, max_height / height)
+        
+        # 根据计算出的比例调整图片大小
+        new_width = int(width * ratio)
+        new_height = int(height * ratio)
+        img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
+
+        # 将压缩后的图片保存到内存流
+        img_io = io.BytesIO()
+        img.save(img_io, format='JPEG', quality=85)  # 调整质量参数 (0-100)
+        img_io.seek(0)
+        
+        return img_io
 # endregion
