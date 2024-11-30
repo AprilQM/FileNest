@@ -1,17 +1,17 @@
 {
-    "last_modified_time": "2024-11-29 17:17:24",
+    "last_modified_time": "2024-11-30 11:06:30",
     "user_datas": {
         "user_id": 1,
         "username": "Admin",
         "email": "114514",
         "level": 1,
-        "color": 7,
-        "register_time": "2024-11-29 17:17:24",
+        "color": 1,
+        "register_time": "2024-11-30 11:06:30",
         "logined_time": "",
         "is_consent_agreement": false,
         "is_banned": false,
-        "is_admin": false,
-        "is_cancellation": true
+        "is_admin": true,
+        "is_cancellation": false
     },
     "user_space_info": {
         "slogan": "这个人很懒，什么都没有留下。",

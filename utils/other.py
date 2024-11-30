@@ -85,7 +85,6 @@ def create_user_info(user):
                         for i in ["is_consent_agreement", "is_banned", "is_admin", "is_cancellation"]:
                             if type(file_user_info["user_datas"][i]) != bool:
                                 flag = True
-                                flag = True
                     
                         # user_space_info的字符串判断
                         for i in ["slogan","avatar_path", "background_path"]:
@@ -141,11 +140,11 @@ def get_user_theme(current_user):
         if user_data["success"]:
             user_data = user_data["user"]
             color_index = user_data["user_datas"]["color"]
-            if not user_data["user_datas"]["is_cancellation"]:
+            if user_data["user_datas"]["is_cancellation"]:
                 color_index = 0
             return Config.WEBCONFIG["front"]["themes"][color_index]
         else:
             return KeyError(f"未知ID: {current_user.user_id}")
     else:
-        return Config.WEBCONFIG["front"]["themes"][7]
+        return Config.WEBCONFIG["front"]["themes"][0]
 # endregion

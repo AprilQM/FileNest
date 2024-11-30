@@ -36,6 +36,16 @@
                 <button id="to_register_btn" onclick="to_register_form()">去注册</button>
             </div>
             <div id="login_box">
+                <h3>登录</h3><br>
+                <form action="/api/login" method="post" id="login_form">
+                    <input type="hidden" name="next_url" value="{{ next_url }}">
+                    <input type="text" name="username" id="login_username_input" placeholder="用户名">
+                    <input type="password" name="password" id="login_password_input" placeholder="密码">
+                    <br>
+                    <a href="/forget_password" id="login_forget_password">忘记密码？</a>
+                    <br>
+                    <button id="login_btn">提交</button>
+                </form>
             </div>
             <div id="register_box">
             </div>

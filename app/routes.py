@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect
+from flask import Blueprint, render_template, redirect, request
 from flask_login import login_required, current_user
 from config import Config
 from utils.other import get_user_theme as get_user_theme
@@ -11,7 +11,10 @@ def index():
 
 @main.route('/auth')
 def auth():
-    return render_template('auth.html', theme=get_user_theme(current_user))
+    next_url = request.args.get('next')
+    if not next_url:
+        next_url = "/home"
+    return render_template('auth.html', theme=get_user_theme(current_user), next_url=next_url)
 
 @main.route("/home")
 def home():

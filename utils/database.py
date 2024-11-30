@@ -112,3 +112,17 @@ def delete_user(user_id):
     except Exception as e:
         db.session.rollback()
         return {"success": False, "message": str(e)}
+
+# 用用户名查找用户id
+def get_user_id_by_username(username):
+    user = DatabaseUser.query.filter_by(username=username).first()
+    if user:
+        return {"success": True, "user_id": user.user_id}
+    return {"success": False, "message": "User not found"}
+
+# 用邮箱查找用户id
+def get_user_id_by_email(email):
+    user = DatabaseUser.query.filter_by(email=email).first()
+    if user:
+        return {"success": True, "user_id": user.user_id}
+    return {"success": False, "message": "User not found"}

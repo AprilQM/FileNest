@@ -25,7 +25,7 @@ def create_app():
     @login_manager.user_loader
     def load_user(user_id):
         p = database.get_user(user_id)["user"]
-        return web.WebUser(p)
+        return web.WebUser(p["user_datas"]["user_id"], p["user_datas"]["username"])
 
     # 注册UI路由
     from app.routes import main as main_blueprint
@@ -34,9 +34,4 @@ def create_app():
     # 注册API路由
     from app.api import api as api_blueprint
     app.register_blueprint(api_blueprint, url_prefix='/api')
-
-    import utils.database as database
-    
-    with app.app_context():
-        database.delete_user(1)
     return app

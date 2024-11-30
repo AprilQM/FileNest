@@ -95,6 +95,7 @@ body {
     padding: 10px;
     font-weight: 520;
     font-size: 18px;
+    z-index: 9996;
 }
 
 #alert_success {

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}文栖 | 云盘{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cloud.css') }}">
+{% endblock %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/cloud.js') }}"></script>
+{% endblock %}
