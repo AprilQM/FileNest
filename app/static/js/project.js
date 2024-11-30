@@ -1,0 +1,2 @@
+highlight_menu_item_pc(2)
+highlight_menu_item_mobile(2)

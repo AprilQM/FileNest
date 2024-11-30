@@ -12,6 +12,8 @@ def index():
 
 @main.route('/auth')
 def auth():
+    if current_user.is_authenticated:
+        return redirect('/home')
     next_url = request.args.get('next')
     if not next_url:
         next_url = "/home"
@@ -25,3 +27,28 @@ def home():
 @login_required
 def cloud():
     return render_template('cloud.html', theme=get_user_theme(current_user), username=get_user_name(current_user))
+
+@main.route("/project")
+@login_required
+def project():
+    return render_template('project.html', theme=get_user_theme(current_user), username=get_user_name(current_user))
+
+@main.route("/forum")
+@login_required
+def forum():
+    return render_template('forum.html', theme=get_user_theme(current_user), username=get_user_name(current_user))
+
+@main.route("/notification")
+@login_required
+def notification():
+    return render_template('notification.html', theme=get_user_theme(current_user), username=get_user_name(current_user))
+
+@main.route("/setting")
+@login_required
+def setting():
+    return render_template('setting.html', theme=get_user_theme(current_user), username=get_user_name(current_user))
+
+@main.route("/user_space")
+@login_required
+def user_space():
+    return render_template('user_space.html', theme=get_user_theme(current_user), username=get_user_name(current_user))

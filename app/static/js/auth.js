@@ -82,7 +82,6 @@ document.getElementById("register_form_1").addEventListener("submit", function (
         username: formData.get("username"),
         password: formData.get("password"),
     };
-    console.log(param);
     
 
     if (!param['email']) {

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}文栖 | 项目{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/project.css') }}">
+{% endblock %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/project.js') }}"></script>
+{% endblock %}
