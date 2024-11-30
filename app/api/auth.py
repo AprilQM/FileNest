@@ -1,10 +1,14 @@
-from flask import Blueprint, jsonify, request, send_from_directory, abort, request, current_app, redirect
+from flask import Blueprint, jsonify, request, send_from_directory, abort, request, current_app, redirect, session
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.utils import safe_join
 import utils.database as database
 import utils.other as other
+from app.models import DatabaseUser
+from config import Config
 from utils.web import WebUser
+import time
 import os
+from app import db
 
 from app.api import api
 
@@ -48,3 +52,76 @@ def login():
 def logout():
     logout_user()
     return redirect("/home")
+
+
+@api.route('/register_1', methods=['POST'])
+def register_1():
+    datas = request.get_json()
+    email = datas.get('email')
+    username = datas.get('username').replace(" ", "")
+    password = datas.get('password')
+    if len(DatabaseUser.query.filter_by(email=email).all()) > 0:
+        return jsonify({
+            "massage":"fail",
+            "reason": "email_exist"
+        })
+    if len(DatabaseUser.query.filter_by(username=username).all()) > 0:
+        return jsonify({
+            "massage":"fail",
+            "reason": "username_exist"
+        })
+    session['temp_email'] = email
+    session['temp_username'] = username
+    session['temp_password'] = password
+    session['temp_code'] = (other.send_code(email), time.time())
+    return jsonify({
+        "massage":"success",
+        "reason": ""
+    })
+    
+@api.route('/register_2', methods=['POST'])
+def register_2():
+    datas = request.get_json()
+    code = datas.get('code')
+    try:
+        if session['temp_code'][0] != code:
+            return jsonify({
+                "massage":"fail",
+                "reason": "code_error"
+            })
+    except:
+        return jsonify({
+            "massage":"fail",
+            "reason": "code_error"
+        })
+    if time.time() - session['temp_code'][1] > 300:
+        session.pop('temp_email', None)
+        session.pop('temp_username', None)
+        session.pop('temp_password', None)
+        session.pop('temp_code', None)
+        return jsonify({
+            "massage":"fail",
+            "reason": "code_timeout"
+        })
+        
+    if len(DatabaseUser.query.filter_by(email=session["temp_email"]).all()) > 0:
+        return jsonify({
+            "massage":"fail",
+            "reason": "email_exist"
+        })
+    if len(DatabaseUser.query.filter_by(username=session["temp_username"]).all()) > 0:
+        return jsonify({
+            "massage":"fail",
+            "reason": "username_exist"
+        })
+    with current_app.app_context():
+        user_id = database.create_user(session["temp_username"], session["temp_email"], session["temp_password"])["user_id"]
+    login_user(WebUser(user_id, session["temp_username"]))
+    session.pop('temp_email', None)
+    session.pop('temp_username', None)
+    session.pop('temp_password', None)
+    session.pop('temp_code', None)
+    return jsonify({
+        "massage":"success",
+        "reason": ""
+    })

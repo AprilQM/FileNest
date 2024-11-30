@@ -9,6 +9,9 @@ import hashlib
 import utils.database as database
 from PIL import Image
 import io
+import random
+import smtplib
+from email.mime.text import MIMEText
 
 
 # region 加密
@@ -109,10 +112,13 @@ def create_user_info(user):
     else:   
         # 创建文件夹
         os.mkdir(os.path.join(Config.USER_INFO_DIR, user_id))
+        create_user_info_json(user)
     if not os.path.exists(os.path.join(Config.USER_INFO_DIR, user_id, "avatar")):
         os.mkdir(os.path.join(Config.USER_INFO_DIR, user_id, "avatar"))
     if not os.path.exists(os.path.join(Config.USER_INFO_DIR, user_id, "background")):
         os.mkdir(os.path.join(Config.USER_INFO_DIR, user_id, "background"))
+
+
 def create_user_info_json(user):
     init_user_info = {
             "last_modified_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -180,4 +186,38 @@ def make_png(avatar_path, max_width=150, max_height=150):
         img_io.seek(0)
         
         return img_io
+# endregion
+
+#region 其他
+def create_code(length=16, state=0):
+    s = ""
+    for i in range(length):
+        if state == 0:
+            s += chr(random.randint(33, 126))
+        elif state == 1:
+            up = chr(random.randint(65, 90))
+            low = chr(random.randint(97, 122))
+            num = str(random.randint(0, 9))
+            choice = (up, low, num)
+            s += random.choice(choice)
+        elif state == 2:
+            s += str(random.randint(0, 9))
+    return s
+
+# 发送验证码
+def send_code(mail):
+    try:
+        code = create_code(6, 2)
+        content = f"您的验证码为:{code}，时效为5分钟。\n\n如果不是本人操作，请忽略此信息。"
+        message = MIMEText(content, "plain", "utf-8")
+        message["From"] = Config.mail_config["send_by"]
+        message["To"] = mail
+        message["Subject"] = "【文栖验证码】"
+        # 使用第三方服务发送
+        smtp = smtplib.SMTP_SSL(Config.mail_config["mail_host"], Config.mail_config["mail_port"], "utf-8")
+        smtp.login(Config.mail_config["send_by"], Config.mail_config["mail_password"])
+        smtp.sendmail(Config.mail_config["send_by"], mail, message.as_string())
+        return code
+    except Exception as e:
+        return e
 # endregion

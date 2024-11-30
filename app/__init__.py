@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_session import Session
 from flask_login import LoginManager
 from config import Config
 
@@ -16,6 +17,7 @@ def create_app():
     app.session_cookie_name = 'filenest_session'
 
     init(app)
+    Session(app)
     
     # 身份验证
     login_manager = LoginManager()

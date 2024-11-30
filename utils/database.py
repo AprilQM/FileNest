@@ -17,7 +17,6 @@ def create_user(username, email, password):
         if existing_user:
             return {"success": False, "message": "Username or email already exists"}
 
-        # 对密码进行 AES 加密
         encrypted_password = other.hash_encrypt(password)
 
         # 创建新用户对象并保存到数据库

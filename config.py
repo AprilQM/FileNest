@@ -1,7 +1,11 @@
 import json
 
 class Config:
-    PASSWORD_SALT = 'filenestWQD153ieq'
+    SECRET_KEY = "FileNestFileNest"
+    SESSION_TYPE = 'filesystem'  # 或 'redis'，'sqlalchemy' 等
+    SESSION_FILE_DIR = './flask_session'
+    SESSION_KEY_PREFIX = 'filenest_'
+    PASSWORD_SALT = 'filenestWQ'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///FileNest.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     PERMANENT_SESSION_LIFETIME = 3600 * 24 * 30
