@@ -3,6 +3,8 @@ from flask_login import login_required, current_user
 from config import Config
 from utils.other import get_user_theme as get_user_theme
 from utils.other import get_user_name as get_user_name
+from app import socketio
+from flask_socketio import emit
 
 main = Blueprint('main', __name__)
 
