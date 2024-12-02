@@ -191,22 +191,21 @@ function show_message(title, content, fuc = () => { }) {
     message_box_show = true;
 }
 
-var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+var socket = io("/broadcast");
 
 socket.on('connect', function() {
-    console.log("SocketIO connected!");  // 确保连接成功
+    console.log("广播已连接");
 });
 
-socket.on('broadcast', function (msg) {
-    console.log("Broadcast message received:", msg);  // 打印收到的消息
-    console.log(1);  // 确保这里的 1 被打印
+socket.on('message', function(msg) {
     show_message(msg.title, msg.content, () => {
-        msg.fuc();
-    });
+        const t = new Function(msg.fuc)
+        t();
+    })
 });
 
 socket.on('disconnect', function() {
-    console.log("SocketIO disconnected.");
+    console.log("广播已断开");
 });
 
 

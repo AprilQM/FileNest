@@ -190,4 +190,21 @@ function show_message(title, content, fuc = () => { }) {
     }, message_duration);
     message_box_show = true;
 }
+
+var socket = io("/broadcast");
+
+socket.on('connect', function() {
+    console.log("广播已连接");
+});
+
+socket.on('message', function(msg) {
+    show_message(msg.title, msg.content, () => {
+        const t = new Function(msg.fuc)
+        t();
+    })
+});
+
+socket.on('disconnect', function() {
+    console.log("广播已断开");
+});
 //endregion

@@ -169,6 +169,10 @@ body {
     align-items: center;
     background-color: var(--background2);
     padding: 15px;
+    overflow: auto;
+}
+#message_box::-webkit-scrollbar{
+    width: 0;
 }
 
 #message_box h1 {

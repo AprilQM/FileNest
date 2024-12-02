@@ -2,7 +2,6 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 from flask_login import LoginManager
-from config import Config
 from flask_socketio import SocketIO
 
 db = SQLAlchemy()
@@ -10,6 +9,7 @@ from utils.init import init
 import utils.web as web
 import utils.database as database
 from app.models import DatabaseUser
+from config import Config
 
 app = Flask(__name__)
 app.secret_key = 'filenest_secret_key'
@@ -38,3 +38,6 @@ app.register_blueprint(main_blueprint)
 # 注册API路由
 from app.api import api as api_blueprint
 app.register_blueprint(api_blueprint, url_prefix='/api')
+
+# 注册websocket路由
+from utils import websocket
