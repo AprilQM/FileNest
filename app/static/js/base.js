@@ -191,22 +191,23 @@ function show_message(title, content, fuc = () => { }) {
     message_box_show = true;
 }
 
-var socket = io("/broadcast");
+const broadcast_socket = io("/broadcast");
 
-socket.on('connect', function() {
+broadcast_socket.on('connect', function() {
     console.log("广播已连接");
 });
 
-socket.on('message', function(msg) {
+broadcast_socket.on('message', function(msg) {
     show_message(msg.title, msg.content, () => {
         const t = new Function(msg.fuc)
         t();
     })
 });
 
-socket.on('disconnect', function() {
+broadcast_socket.on('disconnect', function() {
     console.log("广播已断开");
 });
+
 
 
 //endregion
@@ -265,3 +266,25 @@ function highlight_menu_item_mobile(index) {
     menu_list[index].classList.add("menu_this_page_mobile");
 }
 //endregion
+
+//region 聊天消息
+const chat_socket = io("/chat")
+
+chat_socket.on('connect', function() {
+    console.log("聊天已连接");
+});
+
+chat_socket.on('fuc', function(fuc) {
+    const t = new Function(fuc)
+    t();
+});
+
+chat_socket.on('message', function (msg) {
+    show_message("有新的未读消息", `你有一条来自 ${msg.from} 的未读消息，点击此处跳转到通知界面。`, () => {
+        jump_to_other_page_with_ui('/notification')
+    })
+});
+
+chat_socket.on('disconnect', function() {
+    console.log("聊天已断开");
+});

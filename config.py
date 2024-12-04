@@ -17,6 +17,7 @@ class Config:
         "mail_port": 465
         }
     USER_INFO_DIR = "./userdatas/"
+    LOG_DIR = "./logs/"
     STATIC_DIR = "../static"
     CONFIG_JSON_PATH = "./config.json"
     WEBCONFIG = {

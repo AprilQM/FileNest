@@ -12,6 +12,15 @@ import io
 import random
 import smtplib
 from email.mime.text import MIMEText
+import logging
+from logging.handlers import TimedRotatingFileHandler
+import time
+from flask import request, current_app
+from flask_login import current_user
+from urllib.parse import urlparse
+import re
+
+
 
 
 # region 加密
@@ -188,6 +197,86 @@ def make_png(avatar_path, max_width=150, max_height=150):
         return img_io
 # endregion
 
+# region 日志
+def re_analyze_log(log):
+    log_re = r'\[(?P<time>[^\]]+)\] \[(?P<method>[^\]]+)\] \[(?P<type>[^\]]+)\] \(\s*ID : (?P<user_id>[^\)]+)\s*\) - (?P<request_path>[^\s]+)'
+
+    response = re.match(log_re, log)
+    response = response.groupdict()
+    response["type"] = response["type"].upper()
+    response["request_path"] = urlparse(response["request_path"]).path
+    response["method"] = response["method"].upper()
+    response["user_id"] = int(response["user_id"])
+    
+    return response
+
+
+
+def analyze_log(log_nema, group_by="time"):
+    log_dict = {}
+    
+    # 读取日志文件
+    with open(Config.LOG_DIR + log_nema, "r", encoding="utf-8") as file:
+        for line in file.readlines():
+            this_log = re_analyze_log(line)
+            
+            # 根据group_by参数进行分组
+            if group_by == "time":
+                group_key = int(this_log["time"].split(":")[0])  # 按小时分组
+            elif group_by == "method":
+                group_key = this_log["method"]  # 按请求方法分组
+            elif group_by == "user_id":
+                group_key = this_log["user_id"]  # 按用户ID分组
+            elif group_by == "request_path":
+                group_key = this_log["request_path"]  # 按请求路径分组
+            else:
+                raise ValueError(f"Unsupported group_by value: {group_by}")
+            
+            # 初始化该分组的统计数据
+            if group_key not in log_dict:
+                log_dict[group_key] = {
+                    'time': {},
+                    'method': {},
+                    'type': {},
+                    'user_id': {},
+                    'request_path': {}
+                }
+            
+            # 访问时间统计
+            this_time = this_log["time"].split(":")[0]
+            if this_time not in log_dict[group_key]["time"]:
+                log_dict[group_key]["time"][this_time] = 1
+            else:
+                log_dict[group_key]["time"][this_time] += 1
+            
+            # 访问方法统计
+            if this_log["method"] not in log_dict[group_key]["method"]:
+                log_dict[group_key]["method"][this_log["method"]] = 1
+            else:
+                log_dict[group_key]["method"][this_log["method"]] += 1
+                
+            # 访问类型统计
+            if this_log["type"] not in log_dict[group_key]["type"]:
+                log_dict[group_key]["type"][this_log["type"]] = 1
+            else:
+                log_dict[group_key]["type"][this_log["type"]] += 1
+                
+            # 访问用户ID统计
+            if this_log["user_id"] not in log_dict[group_key]["user_id"]:
+                log_dict[group_key]["user_id"][this_log["user_id"]] = 1
+            else:
+                log_dict[group_key]["user_id"][this_log["user_id"]] += 1
+                
+            # 访问路径统计
+            if this_log["request_path"] not in log_dict[group_key]["request_path"]:
+                log_dict[group_key]["request_path"][this_log["request_path"]] = 1
+            else:
+                log_dict[group_key]["request_path"][this_log["request_path"]] += 1
+    
+    return log_dict
+
+# endregion
+
 #region 其他
 def create_code(length=16, state=0):
     s = ""
@@ -220,4 +309,8 @@ def send_code(mail):
         return code
     except Exception as e:
         return e
+    
+    
+# 日志记录
+
 # endregion

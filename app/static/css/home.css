@@ -1,0 +1,6 @@
+#content_box{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+}

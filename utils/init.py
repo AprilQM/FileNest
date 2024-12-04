@@ -25,6 +25,7 @@ def database_init(app):
 
 # 文件夹初始化
 def folder_init():
+    # 用户数据文件夹
     if os.path.exists(Config.USER_INFO_DIR):
         if os.path.isdir(Config.USER_INFO_DIR):
             pass
@@ -33,6 +34,17 @@ def folder_init():
             os.mkdir(Config.USER_INFO_DIR)
     else:
         os.mkdir(Config.USER_INFO_DIR)
+    
+    # 日志文件夹
+    if os.path.exists(Config.LOG_DIR):
+        if os.path.isdir(Config.LOG_DIR):
+            pass
+        else:
+            os.remove(Config.LOG_DIR)
+            os.mkdir(Config.LOG_DIR)
+    else:
+        os.mkdir(Config.LOG_DIR)
+
     
 
 # 校验文件与数据库一致性
