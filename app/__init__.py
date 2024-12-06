@@ -84,7 +84,3 @@ import utils.database as database
 
 # 初始化
 init(app)
-
-
-# 测试用区域
-from utils.other import analyze_log

@@ -65,11 +65,36 @@ def register_1():
             "massage":"fail",
             "reason": "email_exist"
         })
+    # 验证用户名不存在
     if len(DatabaseUser.query.filter_by(username=username).all()) > 0:
         return jsonify({
             "massage":"fail",
             "reason": "username_exist"
         })
+    # 验证用户名长度
+    if not 3 <= len(username) <= 12:
+        return jsonify({
+            "massage":"fail",
+            "reason": "username_length_error"
+        }) 
+    # 验证密码长度
+    if len(password) < 6:
+        return jsonify({
+            "massage":"fail",
+            "reason": "password_length_error"
+        })
+    # 验证用户名是否包含非法字符
+    flag = False
+    for i in username:
+        if i in Config.ILLEGAL_CHARACTERS:
+            flag = True
+            break
+    if flag:
+        return jsonify({
+            "massage":"fail",
+            "reason": "username_illegal_character"
+        })
+    
     session['temp_email'] = email
     session['temp_username'] = username
     session['temp_password'] = password

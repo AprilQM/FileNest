@@ -101,8 +101,13 @@ def create_user_info(user):
                                 flag = True
                     
                         # user_space_info的字符串判断
-                        for i in ["slogan","avatar_file", "background_file"]:
+                        for i in ["slogan","avatar_file"]:
                             if type(file_user_info["user_space_info"][i]) != str:
+                                flag = True
+                        
+                        # friends的好友消息的布尔判断
+                        for i in file_user_info["friends"]:
+                            if type(file_user_info["friends"][i]) != bool:
                                 flag = True
                     except:
                         flag = True
@@ -124,8 +129,8 @@ def create_user_info(user):
         create_user_info_json(user)
     if not os.path.exists(os.path.join(Config.USER_INFO_DIR, user_id, "avatar")):
         os.mkdir(os.path.join(Config.USER_INFO_DIR, user_id, "avatar"))
-    if not os.path.exists(os.path.join(Config.USER_INFO_DIR, user_id, "background")):
-        os.mkdir(os.path.join(Config.USER_INFO_DIR, user_id, "background"))
+    if not os.path.exists(os.path.join(Config.USER_INFO_DIR, user_id, "chat")):
+        os.mkdir(os.path.join(Config.USER_INFO_DIR, user_id, "chat"))
 
 
 def create_user_info_json(user):
@@ -146,16 +151,16 @@ def create_user_info_json(user):
             },
             "user_space_info":{
                 "slogan":"这个人很懒，什么都没有留下。",
-                "avatar_file": "",
-                "background_file":""
-            }
+                "avatar_file": ""
+            },
+            "friends" : {}
         }
     with open(f"./{Config.USER_INFO_DIR}/{user.user_id}/user_info.json", "w", encoding="utf-8") as f:
         json.dump(init_user_info, f, ensure_ascii=False, indent=4)
 # endregion
 
 # region 前端工具
-def get_user_theme(current_user):
+def get_user_theme():
     if current_user.is_authenticated:
         user_data = database.get_user(current_user.user_id)
         if user_data["success"]:
@@ -169,13 +174,31 @@ def get_user_theme(current_user):
     else:
         return Config.WEBCONFIG["front"]["themes"][0]
 
-def get_user_name(current_user):
+def get_user_datas():
     if current_user.is_authenticated:
-        return current_user.username
+        user_datas = database.get_user(current_user.user_id)
+        if user_datas["success"]:
+            del user_datas["user"]["last_modified_time"]
+            del user_datas["user"]["user_datas"]["password"]
+            del user_datas["user"]["user_datas"]["is_consent_agreement"]
+            del user_datas["user"]["user_datas"]["is_banned"]
+            del user_datas["user"]["user_datas"]["is_admin"]
+            del user_datas["user"]["user_datas"]["is_cancellation"]
+            return user_datas["user"]
     else:
-        return "游客"
+        return {
+            "user_datas":{
+                "user_id": 0,
+                "username": "游客",
+                "email": "游客",
+                "level": 0,
+                "color": 0,
+                "register_time": "游客",
+                "logined_time": "",
+            },
+        }
     
-def make_png(avatar_path, max_width=150, max_height=150):
+def make_png(avatar_path, max_width=100, max_height=100):
     # 打开头像文件并按比例缩小
     with Image.open(avatar_path) as img:
         # 获取原始图片的宽度和高度

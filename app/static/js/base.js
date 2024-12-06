@@ -208,6 +208,11 @@ broadcast_socket.on('disconnect', function() {
     console.log("广播已断开");
 });
 
+broadcast_socket.on('fuc', function(fuc) {
+    const t = new Function(fuc)
+    t();
+});
+
 
 
 //endregion
@@ -274,11 +279,6 @@ chat_socket.on('connect', function() {
     console.log("聊天已连接");
 });
 
-chat_socket.on('fuc', function(fuc) {
-    const t = new Function(fuc)
-    t();
-});
-
 chat_socket.on('message', function (msg) {
     show_message("有新的未读消息", `你有一条来自 ${msg.from} 的未读消息，点击此处跳转到通知界面。`, () => {
         jump_to_other_page_with_ui('/notification')
@@ -288,3 +288,24 @@ chat_socket.on('message', function (msg) {
 chat_socket.on('disconnect', function() {
     console.log("聊天已断开");
 });
+
+// region 其他功能
+const illegal_characters = [
+        '/', '\\', ':', '*', '?', '"', "'", '<', '>', '|', ';',
+        '?', '&', '#', '%', '=', '+',
+        '<', '>', '"', "'", '/',
+        '(', ')', '[', ']', '{', '}', '^', '$', '.', '*', '+', '?', '|',
+        '~', '$',
+        '\r', '\n', '\t',
+        ' ', ',', '@'
+]
+    
+function check_str_legal(str) {
+    for (let i = 0; i < illegal_characters.length; i++) {
+        if (str.includes(illegal_characters[i])) {
+            return false;
+        }
+    }
+    return true;
+}
+// endregion

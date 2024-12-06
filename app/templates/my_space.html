@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}文栖 | {{user_datas["user_datas"]["username"]}}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/my_space.css') }}">
+{% endblock %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/my_space.js') }}"></script>
+{% endblock %}
+
+{%block content%}
+<div id="user_box" class="box">
+    <div id="user_avatar_box">
+        <img src="/api/get_user_avatar/{{user_datas["user_datas"]["username"]}}" alt="头像" id="user_avatar">
+        <div id="level_box">
+            <img src="/api/get_user_lv_img/{{user_datas["user_datas"]["username"]}}" alt="等级{{user_datas["user_datas"]["level"]}}" id="level_img">
+            <h1>12/123</h1>
+        </div>
+    </div>
+    <div id="user_info_box">
+        <h1>{{user_datas["user_datas"]["username"]}}</h1>
+        <h2>{{user_datas["user_space_info"]["slogan"]}}</h2>
+    </div>
+</div>
+{%endblock%}

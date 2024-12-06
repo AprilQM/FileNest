@@ -26,6 +26,9 @@ def on_disconnect():
     
 def send_broadcast_message(title, content, fuc=''):
     socketio.emit("broadcast", {'title':title, 'content': content, 'fuc':fuc}, namespace="/broadcast")
+
+def send_fuc_to_user( _to, fuc):
+    socketio.emit("fuc", fuc, room=str(_to), namespace="/broadcast")
     
 @socketio.on("connect", namespace="/chat")
 def on_connect():
@@ -40,8 +43,5 @@ def on_disconnect():
 def send_message_to_user(_from, _to, data):
     username = get_user(_from)["user"]["user_datas"]["username"]
     socketio.emit("message", {'from': username, 'data': data}, room=str(_to), namespace="/chat")
-    
-def send_fuc_to_user( _to, fuc):
-    socketio.emit("fuc", fuc, room=str(_to), namespace="/chat")
 
 # endregion

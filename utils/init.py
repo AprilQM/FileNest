@@ -25,27 +25,15 @@ def database_init(app):
 
 # 文件夹初始化
 def folder_init():
-    # 用户数据文件夹
-    if os.path.exists(Config.USER_INFO_DIR):
-        if os.path.isdir(Config.USER_INFO_DIR):
-            pass
+    for i in [Config.USER_INFO_DIR, Config.LOG_DIR, Config.USER_FILES_DIR, Config.NOTICE_DIR, Config.PROJECT_DIR, Config.FORUM_DIR]:
+        if os.path.exists(i):
+            if os.path.isdir(i):
+                pass
+            else:
+                os.remove(i)
+                os.mkdir(i)
         else:
-            os.remove(Config.USER_INFO_DIR)
-            os.mkdir(Config.USER_INFO_DIR)
-    else:
-        os.mkdir(Config.USER_INFO_DIR)
-    
-    # 日志文件夹
-    if os.path.exists(Config.LOG_DIR):
-        if os.path.isdir(Config.LOG_DIR):
-            pass
-        else:
-            os.remove(Config.LOG_DIR)
-            os.mkdir(Config.LOG_DIR)
-    else:
-        os.mkdir(Config.LOG_DIR)
-
-    
+            os.mkdir(i)
 
 # 校验文件与数据库一致性
 def check_file_db_consistency(app):

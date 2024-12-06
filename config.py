@@ -18,8 +18,21 @@ class Config:
         }
     USER_INFO_DIR = "./userdatas/"
     LOG_DIR = "./logs/"
-    STATIC_DIR = "../static"
+    STATIC_DIR = "../static/"
+    USER_FILES_DIR = "./userfiles/"
+    NOTICE_DIR = "./notice/"
+    PROJECT_DIR = "./projects/"
+    FORUM_DIR = "./forums/"
     CONFIG_JSON_PATH = "./config.json"
+    ILLEGAL_CHARACTERS = [
+        '/', '\\', ':', '*', '?', '"', "'", '<', '>', '|', ';',  # 路径和文件系统符号
+        '?', '&', '#', '%', '=', '+',  # URL相关符号
+        '<', '>', '"', "'", '/',  # HTML和JavaScript相关符号
+        '(', ')', '[', ']', '{', '}', '^', '$', '.', '*', '+', '?', '|',  # 正则表达式符号
+        '~', '$',  # 操作系统相关符号
+        '\r', '\n', '\t',  # 控制字符
+        ' ', ',', '@'  # 其他危险字符
+    ]
     WEBCONFIG = {
         "rear": {
             "port": 5000,

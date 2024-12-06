@@ -43,7 +43,6 @@ document.getElementById("login_form").addEventListener("submit", function (event
     }else {
         // 修改表单数据后发送请求
         ajax('POST', '/api/login', param, function (response) { 
-            console.log(response);
             
             if (response["success"]) {
                 success_alert("登录成功");
@@ -68,7 +67,6 @@ document.getElementById("login_form").addEventListener("submit", function (event
         })
     }
 });
-
 // 注册1表单提交
 document.getElementById("register_form_1").addEventListener("submit", function (event) {
 
@@ -97,18 +95,32 @@ document.getElementById("register_form_1").addEventListener("submit", function (
         }, alert_duration);
         error_alert("用户名不能为空");
     } else if (param['username'].length < 3 || param['username'].length > 12) { 
+        
         $id("register_username_input").style.borderColor = "var(--background_conflict)";
         input_hidden = setTimeout(() => {
             $id("register_username_input").style.borderColor = "var(--background)";
         }, alert_duration);
         error_alert("用户名应为3~12位字符");
-    } else if (!param['password']) {
+    } else if (!check_str_legal(param['username'])) {
+        $id("register_username_input").style.borderColor = "var(--background_conflict)";
+        input_hidden = setTimeout(() => {
+            $id("register_username_input").style.borderColor = "var(--background)";
+        }, alert_duration);
+        error_alert("用户名包含了非法字符");
+    }else if (!param['password']) {
         $id("register_password_input").style.borderColor = "var(--background_conflict)";
         input_hidden = setTimeout(() => {
             $id("register_password_input").style.borderColor = "var(--background)";
         }, alert_duration);
         error_alert("密码不能为空");
-    } else { 
+    }else if (param['password'].length < 6) {
+        $id("register_password_input").style.borderColor = "var(--background_conflict)";
+        input_hidden = setTimeout(() => {
+            $id("register_password_input").style.borderColor = "var(--background)";
+        }, alert_duration);
+        error_alert("密码应为6位以上字符");
+    }
+    else { 
         ajax('POST', '/api/register_1', param, function (response) { 
             if (response["massage"] === "fail") {
                 if (response["reason"] === "email_exist") {
@@ -123,6 +135,24 @@ document.getElementById("register_form_1").addEventListener("submit", function (
                         $id("register_username_input").style.borderColor = "var(--background)";
                     }, alert_duration);
                     error_alert("用户名已被注册");
+                } else if (response["reason"] === "username_length_error") {
+                    $id("register_username_input").style.borderColor = "var(--background_conflict)";
+                    input_hidden = setTimeout(() => {
+                        $id("register_username_input").style.borderColor = "var(--background)";
+                    }, alert_duration);
+                    error_alert("用户名应为3~12位字符");
+                }else if (response["reason"] === "password_length_error") {
+                    $id("register_password_input").style.borderColor = "var(--background_conflict)";
+                    input_hidden = setTimeout(() => {
+                        $id("register_password_input").style.borderColor = "var(--background)";
+                    }, alert_duration);
+                    error_alert("密码应为6位以上字符");
+                } else if (response["reason"] === "username_illegal_character") {
+                    $id("register_username_input").style.borderColor = "var(--background_conflict)";
+                    input_hidden = setTimeout(() => {
+                        $id("register_username_input").style.borderColor = "var(--background)";
+                    }, alert_duration);
+                    error_alert("用户名包含了非法字符");
                 }
             } else { 
                 $id("register_box").classList.remove("register_1");

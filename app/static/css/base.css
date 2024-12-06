@@ -403,6 +403,7 @@ body {
         display: none;
     }
     #content_box{
+        padding: 10px;
         position: fixed;
         top: 0;
         right: 0;
@@ -452,6 +453,7 @@ body {
         display: none;
     }
     #content_box {
+        padding: 20px;
         position: fixed;
         top: 0;
         right: 0;
@@ -508,4 +510,16 @@ body {
     border-radius: 50%;
     transform: translateY(-5px);
     box-shadow: 0 3px 5px var(--secondary2);
+}
+#content_box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.box{
+    background-color: var(--background2);
+    border-radius: 10px;
+    box-shadow: 0 0 5px var(--secondary2);
+    padding: 10px;
+    position: relative;
 }
