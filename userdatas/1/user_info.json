@@ -5,15 +5,14 @@
         "username": "AprilQM",
         "email": "april2730391712@outlook.com",
         "level": 2,
-        "color": 0,
+        "color": 7,
         "check_in_days": 8,
         "last_check_time": 1733556343,
         "register_time": "2024-12-07 13:35:13",
         "logined_time": "",
         "is_consent_agreement": false,
         "is_banned": false,
-        "is_admin": false,
-        "is_cancellation": false
+        "is_admin": false
     },
     "user_space_info": {
         "slogan": "这个人很懒，什么都没有留下。",

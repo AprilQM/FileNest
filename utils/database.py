@@ -7,6 +7,7 @@ import json
 from datetime import datetime
 import utils.other as other
 import time
+import shutil
 
 # 增加用户
 def create_user(username, email, password):
@@ -103,10 +104,13 @@ def delete_user(user_id):
     if not user:
         return {"success": False, "message": "User not found"}
     try:
-        file_user_data = json.loads(open(os.path.join(Config.USER_INFO_DIR, str(user_id), "user_info.json"), "r", encoding="utf-8").read())
-        file_user_data["user_datas"]["is_cancellation"] = True
-        with open(os.path.join(Config.USER_INFO_DIR, str(user_id), "user_info.json"), "w", encoding="utf-8") as file:
-            json.dump(file_user_data, file, ensure_ascii=False, indent=4)
+        # 删除数据库中的用户
+        db.session.delete(user)
+        db.session.commit()
+        
+        # 删除用户文件夹
+        shutil.rmtree(os.path.join(Config.USER_INFO_DIR, str(user_id)))
+        
         return {"success": True, "message": "User deleted successfully"}
     
     except Exception as e:

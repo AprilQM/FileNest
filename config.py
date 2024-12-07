@@ -12,7 +12,7 @@ class Config:
     session_cookie_name = "FileNest"
     mail_config = {
         "send_by": "2173840670@qq.com",
-        "mail_password": "zysdlrricebjdihe",
+        "mail_password": "xsvyvafzgzyedijc",
         "mail_host": "smtp.qq.com",
         "mail_port": 465
         }

@@ -1,23 +1,22 @@
 {
-    "last_modified_time": 1733549713,
+    "last_modified_time": 1733560864,
     "user_datas": {
         "user_id": 2,
-        "username": "april",
-        "email": "2730391712@qq.com",
+        "username": "yueyan",
+        "email": "zxc19801129@163.com",
         "level": 1,
-        "color": 0,
+        "color": 7,
         "check_in_days": 0,
-        "last_check_time": 1733549713,
-        "register_time": "2024-12-07 13:35:13",
+        "last_check_time": 1733560864,
+        "register_time": "2024-12-07 16:41:04",
         "logined_time": "",
         "is_consent_agreement": false,
         "is_banned": false,
-        "is_admin": false,
-        "is_cancellation": false
+        "is_admin": false
     },
     "user_space_info": {
         "slogan": "这个人很懒，什么都没有留下。",
-        "avatar_file": ""
+        "avatar_file": "微信图片_20241207164825.jpg"
     },
     "friends": {}
 }

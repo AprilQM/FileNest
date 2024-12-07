@@ -52,3 +52,15 @@ def setting():
 @login_required
 def user_space():
     return render_template('my_space.html', theme=get_user_theme(), user_datas=get_user_datas())
+
+
+from utils import web
+
+@main.route("/test")
+def test():
+    from flask import current_app
+    from utils.database import delete_user
+    with current_app.app_context():
+        delete_user(3)
+    return "ok"
+    

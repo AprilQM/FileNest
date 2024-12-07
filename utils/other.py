@@ -96,7 +96,7 @@ def create_user_info(user):
                                 flag = True
                         
                         # user_datas子字典的布尔判断
-                        for i in ["is_consent_agreement", "is_banned", "is_admin", "is_cancellation"]:
+                        for i in ["is_consent_agreement", "is_banned", "is_admin"]:
                             if type(file_user_info["user_datas"][i]) != bool:
                                 flag = True
                     
@@ -148,8 +148,7 @@ def create_user_info_json(user):
                 "logined_time": "", 
                 "is_consent_agreement": False, 
                 "is_banned": False,
-                "is_admin": False,
-                "is_cancellation": False
+                "is_admin": False
             },
             "user_space_info":{
                 "slogan":"这个人很懒，什么都没有留下。",
@@ -346,9 +345,10 @@ def send_code(mail):
         smtp = smtplib.SMTP_SSL(Config.mail_config["mail_host"], Config.mail_config["mail_port"], "utf-8")
         smtp.login(Config.mail_config["send_by"], Config.mail_config["mail_password"])
         smtp.sendmail(Config.mail_config["send_by"], mail, message.as_string())
+        print(code)
         return code
     except Exception as e:
-        return e
+        print(e)
     
     
 # 日志记录

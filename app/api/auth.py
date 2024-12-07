@@ -32,12 +32,6 @@ def login():
             back["massage"] = "no_user"
             return jsonify(back)
     user_data = database.get_user(user_id)["user"]
-    if user_data["user_datas"]["is_cancellation"]:
-        back["massage"] = "no_user"
-        return jsonify(back)
-    if user_data["user_datas"]["is_banned"]:
-        back["massage"] = "banned"
-        return jsonify(back)
     if other.hash_encrypt(password) == user_data["user_datas"]["password"]:
         back["success"] = True
         login_user(WebUser(user_id, user_data["user_datas"]["username"]))

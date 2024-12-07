@@ -25,7 +25,7 @@ def on_disconnect():
     pass
     
 def send_broadcast_message(title, content, fuc=''):
-    socketio.emit("broadcast", {'title':title, 'content': content, 'fuc':fuc}, namespace="/broadcast")
+    socketio.emit("message", {'title':title, 'content': content, 'fuc':fuc}, namespace="/broadcast")
 
 def send_fuc_to_user( _to, fuc):
     socketio.emit("fuc", fuc, room=str(_to), namespace="/broadcast")
