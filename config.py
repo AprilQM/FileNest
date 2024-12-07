@@ -33,6 +33,7 @@ class Config:
         '\r', '\n', '\t',  # 控制字符
         ' ', ',', '@'  # 其他危险字符
     ]
+    FILTRATION_API = True
     WEBCONFIG = {
         "rear": {
             "port": 5000,

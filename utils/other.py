@@ -167,8 +167,6 @@ def get_user_theme():
         if user_data["success"]:
             user_data = user_data["user"]
             color_index = user_data["user_datas"]["color"]
-            if user_data["user_datas"]["is_cancellation"]:
-                color_index = 0
             return Config.WEBCONFIG["front"]["themes"][color_index]
         else:
             return KeyError(f"未知ID: {current_user.user_id}")
@@ -184,7 +182,6 @@ def get_user_datas():
             del user_datas["user"]["user_datas"]["is_consent_agreement"]
             del user_datas["user"]["user_datas"]["is_banned"]
             del user_datas["user"]["user_datas"]["is_admin"]
-            del user_datas["user"]["user_datas"]["is_cancellation"]
             next_level_need_days = [0, 5, 15, 35, 65, 105]
             if user_datas["user"]["user_datas"]["level"] >= 6:
                 user_datas["user"]["user_datas"]["next_level_need_days"] = "∞"

@@ -49,6 +49,8 @@ def log_request_info():
         type = "NORMAL"
         if "/api/" in request.path:
             type = "API"
+            if Config.FILTRATION_API:
+                return
         logger.info(f"[{now_time}] [{request.method}] [{type}] (ID : {user_id}) - {request.path}")
         
 # endregion 
