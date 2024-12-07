@@ -6,6 +6,7 @@ from config import Config
 import json
 from datetime import datetime
 import utils.other as other
+import time
 
 # 增加用户
 def create_user(username, email, password):
@@ -86,7 +87,7 @@ def update_user_file(user_id, key, value):
                 return {"success": False, "message": f"Field '{key}' not found in user file"}
 
             # 更新修改时间
-            user_info["last_modified_time"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            user_info["last_modified_time"] = int(time.time())
 
             # 写回更新后的信息
             with open(user_file_path, "w", encoding="utf-8") as file:

@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 96%;
+    width: 100%;
 }
 @media screen and (min-width: 767px) {
     #user_box {
@@ -15,8 +15,8 @@
     }
 }
 #user_avatar_box{
-    margin-left: 100px;
-    width:400px;
+    margin-left: 5vw;
+    width:25vw;
     height: 320px;
     display: flex;
     flex-direction: column;
@@ -28,10 +28,10 @@
     aspect-ratio: 1/1;
     border-radius: 50%;
     border: var(--background_conflict) solid 4px;
-    box-shadow: var(--background_conflict) 0 0 5px;
+    box-shadow: var(--secondary2) 0 0 10px;
 }
 #user_info_box{
-    width: calc(100% - 400px);
+    width: calc(100% - 25vw);
     height: 100%;
     padding: 30px;
     display: flex;
@@ -41,7 +41,7 @@
 }
 #user_info_box h1{
     color: var(--background_conflict);
-    font-size: 100px;
+    font-size: 7vw;
     font-weight: 530;
 }
 #user_info_box h2 {
@@ -51,7 +51,7 @@
 #level_box{
     margin-top: 10px;
     width: 100%;
-    height: 80px;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -96,4 +96,89 @@
     height: 4px;
     border-radius: 5px;
     background-color: var(--background_conflict);
+}
+
+@media screen and (max-width: 767px) { 
+    #content_box{
+        padding: 8px;
+    }
+    #user_box{
+        flex-direction: row;
+    }
+    #user_info_box h2 {
+        color: var(--background_conflict);
+        font-size: 8px;
+    }
+    #level_box span {
+        font-size: 30px;
+        margin-right: 0;
+    }
+    #user_avatar {
+        border: var(--background_conflict) solid 2px;
+        box-shadow: var(--secondary2) 0 0 5px;
+    }
+    #user_info_box h1 {
+        font-size: 11vw;
+    }
+}
+#function_box{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+}
+@media screen and (max-width: 767px) {
+    #function_box {
+        height: 500px;
+    }
+}
+#function_box h5{
+    color: var(--secondary1);
+    font-size: 20px;
+}
+#function_inner_box{
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#check_in_box{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary2);
+    border-radius: 10px;
+    position: relative;
+}
+@media screen and (max-width: 767px) { 
+    #function_inner_box{
+        flex-direction: column;
+    }
+    #check_in_box{
+        width: 100%;
+        height: 25%;
+    }
+    
+}
+#check_in_box h6 {
+    color: var(--secondary1);
+    font-size: 15PX;
+}
+#check_in_btn{
+    border: var(--background_conflict) 2px solid;
+    padding: 10px 20px;
+    background-color: var(--secondary2);
+    color: var(--background_conflict);
+    border-radius: 8px;
+    font-weight: bold;
+}
+#check_in_btn:hover {
+    background-color: var(--background_conflict);
+    color: var(--secondary2);
 }

@@ -86,7 +86,7 @@ def create_user_info(user):
                                 flag = True
                             
                         # user_datas子字典的整形判断
-                        for i in ["user_id", "color", "level", "check_in_days", "next_level_need_days"]:
+                        for i in ["user_id", "color", "level", "check_in_days", "last_check_time"]:
                             if type(file_user_info["user_datas"][i]) != int:
                                 flag = True
                         
@@ -135,7 +135,7 @@ def create_user_info(user):
 
 def create_user_info_json(user):
     init_user_info = {
-            "last_modified_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "last_modified_time": int(time.time()),
             "user_datas":{
                 "user_id": user.user_id, 
                 "username": user.username, 
@@ -143,7 +143,7 @@ def create_user_info_json(user):
                 "level": 1, 
                 "color": 0,
                 "check_in_days": 0,
-                "next_level_need_days": 10,
+                "last_check_time": int(time.time()),
                 "register_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 
                 "logined_time": "", 
                 "is_consent_agreement": False, 
@@ -186,6 +186,21 @@ def get_user_datas():
             del user_datas["user"]["user_datas"]["is_banned"]
             del user_datas["user"]["user_datas"]["is_admin"]
             del user_datas["user"]["user_datas"]["is_cancellation"]
+            next_level_need_days = [0, 5, 15, 35, 65, 105]
+            if user_datas["user"]["user_datas"]["level"] >= 6:
+                user_datas["user"]["user_datas"]["next_level_need_days"] = "∞"
+            else:
+                user_datas["user"]["user_datas"]["next_level_need_days"] = next_level_need_days[user_datas["user"]["user_datas"]["level"]]
+            
+            
+            # 其他的信息传送
+            user_datas["user"]["other"] = {}
+            if  int(time.time()) - user_datas["user"]["user_datas"]["last_check_time"] > 86400:
+                user_datas["user"]["other"]["can_check"] = True
+            else:
+                user_datas["user"]["other"]["can_check"] = False
+                
+            
             return user_datas["user"]
     else:
         return {
@@ -337,5 +352,14 @@ def send_code(mail):
     
     
 # 日志记录
+
+def figout_user_level(days):
+    next_level_need_days_list = [0, 5, 15, 35, 65, 105]
+    new_level = 105
+    for i in next_level_need_days_list:
+        if days >= i:
+            new_level = next_level_need_days_list.index(i) + 1
+    return new_level
+    
 
 # endregion

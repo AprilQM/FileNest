@@ -21,9 +21,9 @@
     <div id="user_avatar_box">
         <img src="/api/get_user_avatar/{{user_datas["user_datas"]["username"]}}" alt="头像" id="user_avatar">
         <div id="level_box">
-            <span class="iconfont icon-level-{{user_datas["user_datas"]["level"]}} level_icon"></span>
+            <span class="iconfont icon-level-{{user_datas["user_datas"]["level"]}} level_icon" id="level_icon"></span>
             <div id="level_bar_box">
-                <h6>{{user_datas["user_datas"]["check_in_days"]}}/{{user_datas["user_datas"]["next_level_need_days"]}}</h6>
+                <h6 id="level_text">{{user_datas["user_datas"]["check_in_days"]}}/{{user_datas["user_datas"]["next_level_need_days"]}}</h6>
                 <div id="level_bar">
                 </div>
             </div>
@@ -32,6 +32,15 @@
     <div id="user_info_box">
         <h1>{{user_datas["user_datas"]["username"]}}</h1>
         <h2>{{user_datas["user_space_info"]["slogan"]}}</h2>
+    </div>
+</div>
+<div id="function_box" class="box">
+    <h5>功能区</h5>
+    <div id="function_inner_box">
+        <div id="check_in_box">
+            <button id="check_in_btn" onclick="check_in()">点击这里签到</button>
+            <h6 id="have_checked_light">你今天已经签过到了哦~</h6>
+        </div>
     </div>
 </div>
 {%endblock%}

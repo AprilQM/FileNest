@@ -512,9 +512,8 @@ body {
     box-shadow: 0 3px 5px var(--secondary2);
 }
 #content_box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    place-items: center;
+    overflow: auto;
 }
 .box{
     background-color: var(--background2);
@@ -522,6 +521,12 @@ body {
     box-shadow: 0 0 5px var(--secondary2);
     padding: 10px;
     position: relative;
+    margin: 10px 0;
+}
+@media screen and (max-width: 767px) { 
+    .box {
+        border-radius: 5px;
+    }
 }
 .level_icon{
     color: var(--background_conflict);
