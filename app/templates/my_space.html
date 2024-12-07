@@ -4,6 +4,12 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/my_space.css') }}">
+<style>
+    :root{
+        --check_in_days: {{user_datas["user_datas"]["check_in_days"]}};
+        --next_level_need_days: {{user_datas["user_datas"]["next_level_need_days"]}};
+    }
+</style>
 {% endblock %}
 
 {% block script %}
@@ -15,8 +21,12 @@
     <div id="user_avatar_box">
         <img src="/api/get_user_avatar/{{user_datas["user_datas"]["username"]}}" alt="头像" id="user_avatar">
         <div id="level_box">
-            <img src="/api/get_user_lv_img/{{user_datas["user_datas"]["username"]}}" alt="等级{{user_datas["user_datas"]["level"]}}" id="level_img">
-            <h1>12/123</h1>
+            <span class="iconfont icon-level-{{user_datas["user_datas"]["level"]}} level_icon"></span>
+            <div id="level_bar_box">
+                <h6>{{user_datas["user_datas"]["check_in_days"]}}/{{user_datas["user_datas"]["next_level_need_days"]}}</h6>
+                <div id="level_bar">
+                </div>
+            </div>
         </div>
     </div>
     <div id="user_info_box">

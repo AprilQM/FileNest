@@ -86,7 +86,7 @@ def create_user_info(user):
                                 flag = True
                             
                         # user_datas子字典的整形判断
-                        for i in ["user_id", "color"]:
+                        for i in ["user_id", "color", "level", "check_in_days", "next_level_need_days"]:
                             if type(file_user_info["user_datas"][i]) != int:
                                 flag = True
                         
@@ -142,6 +142,8 @@ def create_user_info_json(user):
                 "email": user.email, 
                 "level": 1, 
                 "color": 0,
+                "check_in_days": 0,
+                "next_level_need_days": 10,
                 "register_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 
                 "logined_time": "", 
                 "is_consent_agreement": False, 

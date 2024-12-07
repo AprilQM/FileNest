@@ -49,6 +49,7 @@ def get_user_avatar(username):
         # 返回处理后的图片
         return send_file("." + avatar_path, mimetype='image/jpeg')
     
+
 @api.route("/get_user_lv_img/<username>")
 def get_user_lv_img(username):
     if username == "游客":
