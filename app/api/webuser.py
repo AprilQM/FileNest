@@ -6,6 +6,8 @@ import utils.other as other
 from utils.web import WebUser
 from config import Config
 import os
+import time
+
 
 from app.api import api
 
@@ -50,6 +52,28 @@ def get_user_avatar(username):
         return send_file("." + avatar_path, mimetype='image/jpeg')
     
 
+@api.route("/get_user_background/<username>")
+def get_user_background(username):
+    if username == "游客":
+        return send_from_directory(Config.STATIC_DIR, "default_background.png")
+    user_id = database.get_user_id_by_username(username)["user_id"]
+    with current_app.app_context():
+        user_datas = database.get_user(user_id)["user"]
+        avatar_file = user_datas["user_space_info"]["background_file"]
+        
+        # 构建头像文件路径，使用 os.path.join 正确拼接
+        avatar_path = os.path.join(Config.USER_INFO_DIR, str(user_id),"avatar", avatar_file)
+
+        
+        # 检查文件是否存在
+        if not os.path.exists(avatar_path) or avatar_file == "":
+            return send_from_directory(Config.STATIC_DIR, "default_background.png")
+
+        # 返回处理后的图片
+        return send_file("." + avatar_path, mimetype='image/jpeg')
+    
+
+
 @api.route("/get_user_lv_img/<username>")
 def get_user_lv_img(username):
     if username == "游客":
@@ -59,3 +83,26 @@ def get_user_lv_img(username):
         user_datas = database.get_user(user_id)["user"]
         level = user_datas["user_datas"]["level"]
         return send_from_directory(Config.STATIC_DIR, f"lv_img/lv{level}.svg")
+
+@api.route("/check_in", methods=["POST"])
+def check_in():
+    back = {
+        'success': False
+    }
+    user_datas = database.get_user(current_user.user_id)["user"]
+    if int(time.time()) - user_datas["user_datas"]['last_check_time'] > 43200:
+        database.update_user(current_user.user_id, "check_in_days", user_datas["user_datas"]['check_in_days'] + 1)
+        database.update_user(current_user.user_id, "last_check_time", int(time.time()))
+        database.update_user(current_user.user_id, "level", other.figout_user_level(user_datas["user_datas"]['check_in_days'] + 1))
+        back['success'] = True
+        next_level_need_days_list = [0, 5, 15, 35, 65, 105]
+        user_datas = database.get_user(current_user.user_id)["user"]
+        if user_datas["user_datas"]["level"] >= 6:
+            next_level_need_days = user_datas["user_datas"]["check_in_days"]
+        else:
+            next_level_need_days = next_level_need_days_list[user_datas["user_datas"]["level"]]
+        back["level"] = user_datas["user_datas"]['level']
+        back["check_in_days"] = user_datas["user_datas"]['check_in_days']
+        back["next_level_need_days"] = next_level_need_days
+    
+    return back

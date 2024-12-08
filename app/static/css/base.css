@@ -403,7 +403,6 @@ body {
         display: none;
     }
     #content_box{
-        padding: 10px;
         position: fixed;
         top: 0;
         right: 0;
@@ -453,7 +452,6 @@ body {
         display: none;
     }
     #content_box {
-        padding: 20px;
         position: fixed;
         top: 0;
         right: 0;
@@ -515,6 +513,23 @@ body {
     place-items: center;
     overflow: auto;
 }
+/* 滚动条样式 */
+#content_box::-webkit-scrollbar {
+    width: 8px;
+    /* 滚动条宽度 */
+    background-color: #f4f4f4;
+    /* 滚动条背景色 */
+}
+
+/* 滚动条滑块 */
+#content_box::-webkit-scrollbar-thumb {
+    background-color: var(--secondary1);
+}
+
+/* 滚动条轨道 */
+#content_box::-webkit-scrollbar-track {
+    background-color: var(--secondary2);
+}
 .box{
     background-color: var(--background2);
     border-radius: 10px;
@@ -530,4 +545,8 @@ body {
 }
 .level_icon{
     color: var(--background_conflict);
+}
+button.disabled {
+    pointer-events: none;
+    opacity: 0.6;
 }

@@ -58,9 +58,6 @@ from utils import web
 
 @main.route("/test")
 def test():
-    from flask import current_app
-    from utils.database import delete_user
-    with current_app.app_context():
-        delete_user(3)
+    web.send_broadcast_message("傻逼张睿","测试一下广播消息，这个提示框能点", 'success_alert("不是你还真点啊")')
     return "ok"
     

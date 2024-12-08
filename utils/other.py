@@ -101,8 +101,18 @@ def create_user_info(user):
                                 flag = True
                     
                         # user_space_info的字符串判断
-                        for i in ["slogan","avatar_file"]:
+                        for i in ["slogan","avatar_file", "background_file"]:
                             if type(file_user_info["user_space_info"][i]) != str:
+                                flag = True
+                                
+                        # user_space_info的整形判断
+                        for i in ["praise_count"]:
+                            if type(file_user_info["user_space_info"][i]) != int:
+                                flag = True
+                        
+                        # user_space_info的praise列表内容判断
+                        for i in file_user_info["user_space_info"]["praise"]:
+                            if type(i) != int:
                                 flag = True
                         
                         # friends的好友消息的布尔判断
@@ -152,7 +162,10 @@ def create_user_info_json(user):
             },
             "user_space_info":{
                 "slogan":"这个人很懒，什么都没有留下。",
-                "avatar_file": ""
+                "avatar_file": "",
+                "background_file": "",
+                "praise_count": 0,
+                "praise": [],
             },
             "friends" : {}
         }
@@ -184,14 +197,14 @@ def get_user_datas():
             del user_datas["user"]["user_datas"]["is_admin"]
             next_level_need_days = [0, 5, 15, 35, 65, 105]
             if user_datas["user"]["user_datas"]["level"] >= 6:
-                user_datas["user"]["user_datas"]["next_level_need_days"] = "∞"
+                user_datas["user"]["user_datas"]["next_level_need_days"] = user_datas["user"]["user_datas"]["check_in_days"]
             else:
                 user_datas["user"]["user_datas"]["next_level_need_days"] = next_level_need_days[user_datas["user"]["user_datas"]["level"]]
             
             
             # 其他的信息传送
             user_datas["user"]["other"] = {}
-            if  int(time.time()) - user_datas["user"]["user_datas"]["last_check_time"] > 86400:
+            if  int(time.time()) - user_datas["user"]["user_datas"]["last_check_time"] > 43200:
                 user_datas["user"]["other"]["can_check"] = True
             else:
                 user_datas["user"]["other"]["can_check"] = False

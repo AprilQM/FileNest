@@ -1,13 +1,13 @@
 {
-    "last_modified_time": 1733668705,
+    "last_modified_time": 1733666316,
     "user_datas": {
-        "user_id": 1,
-        "username": "AprilQM",
-        "email": "april2730391712@outlook.com",
+        "user_id": 3,
+        "username": "乌坎本",
+        "email": "zr2385290553@outlook.com",
         "level": 1,
-        "color": 7,
-        "check_in_days": 1,
-        "last_check_time": 1733668705,
+        "color": 0,
+        "check_in_days": 0,
+        "last_check_time": 1733666316,
         "register_time": "2024-12-08 21:58:36",
         "logined_time": "",
         "is_consent_agreement": false,
@@ -16,7 +16,7 @@
     },
     "user_space_info": {
         "slogan": "这个人很懒，什么都没有留下。",
-        "avatar_file": "参赛纪念图.jpeg",
+        "avatar_file": "",
         "background_file": "",
         "praise_count": 0,
         "praise": []
