@@ -1,5 +1,5 @@
 {
-    "last_modified_time": 1733716880,
+    "last_modified_time": 1733747465,
     "user_datas": {
         "user_id": 3,
         "username": "乌坎本",
@@ -7,8 +7,8 @@
         "level": 1,
         "color": 0,
         "check_in_days": 0,
-        "last_check_time": 1733716880,
-        "register_time": "2024-12-09 12:01:20",
+        "last_check_time": 1733747465,
+        "register_time": "2024-12-09 20:31:05",
         "logined_time": "",
         "is_consent_agreement": false,
         "is_banned": false,
@@ -20,9 +20,10 @@
         "background_file": "",
         "praise_count": 0,
         "praise": [],
-        "tag": [
-            ["星阁元老", "#163172"]
-        ]
+        "tag": []
+    },
+    "setting": {
+        "visit_my_space": true
     },
     "friends": {}
 }

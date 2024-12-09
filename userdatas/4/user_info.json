@@ -1,14 +1,14 @@
 {
-    "last_modified_time": 1733729286,
+    "last_modified_time": 1733747465,
     "user_datas": {
         "user_id": 4,
         "username": "feiherui",
         "email": "feiherui@outlook.com",
-        "level": 6,
-        "color": 7,
-        "check_in_days": 106,
-        "last_check_time": 1733729286,
-        "register_time": "2024-12-09 15:16:07",
+        "level": 1,
+        "color": 0,
+        "check_in_days": 0,
+        "last_check_time": 1733747465,
+        "register_time": "2024-12-09 20:31:05",
         "logined_time": "",
         "is_consent_agreement": false,
         "is_banned": false,
@@ -20,12 +20,10 @@
         "background_file": "",
         "praise_count": 0,
         "praise": [],
-        "tag": [
-            [
-                "星阁元老",
-                "#163172"
-            ]
-        ]
+        "tag": []
+    },
+    "setting": {
+        "visit_my_space": true
     },
     "friends": {}
 }

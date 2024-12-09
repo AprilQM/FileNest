@@ -103,6 +103,11 @@ def create_user_info(user):
 
                         if "tag" not in file_user_info["user_space_info"]:
                             flag = True
+                            
+                        # setting的布尔判断
+                        for i in ["visit_my_space"]:
+                            if type(file_user_info["setting"][i]) != bool:
+                                flag = True
 
                     except:
                         flag = True
@@ -154,6 +159,9 @@ def create_user_info_json(user):
                 "praise_count": 0,
                 "praise": [],
                 "tag": []
+            },
+            "setting":{
+                "visit_my_space": True,
             },
             "friends" : {}
         }

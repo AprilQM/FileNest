@@ -11,10 +11,36 @@
 {% endblock %}
 
 {%block content%}
-        <div id="user_setting_box">
-            <h3 class="setting_title">用户设置</h3>
-            <div class="one_setting_box"><h6>修改用户名</h6> <span class="one_setting_value">{{user_datas["user_datas"]["username"]}}</span></div>
-            <div class="one_setting_box"><h6>修改邮箱</h6> <span class="one_setting_value">{{user_datas["user_datas"]["email"]}}</span></div>
-            <div class="one_setting_box"><h6>修改密码</h6></div>
+        <div id="title_box">
+            <h5>设置</h5>
+        </div>
+        <div class="setting_title_box">
+            <h6 class="setting_title">账号</h6>
+        </div>
+        <div class="setting_box box">
+            <button class="setting_item"><span class="setting_key"><span class="iconfont icon-username"></span>用户名</span> <span class="setting_value">{{user_datas["user_datas"]["username"]}}</span></button>
+            <button class="setting_item"><span class="setting_key"><span class="iconfont icon-mail"></span>邮箱</span> <span class="setting_value">{{user_datas["user_datas"]["email"]}}</span></button>
+            <button class="setting_item"><span class="setting_key"><span class="iconfont icon-icons_password"></span>密码</span></button>
+        </div>
+        <div class="setting_title_box">
+            <h6 class="setting_title">个性化</h6>
+        </div>
+        <div class="setting_box box">
+            <button class="setting_item"><span class="setting_key"><span class="iconfont icon-color"></span>主题色</span> <span class="setting_value">{{theme["name"]}}</span></button>
+        </div>
+        <div class="setting_title_box">
+            <h6 class="setting_title">隐私</h6>
+        </div>
+        <div class="setting_box box">
+            <button class="setting_item"><span class="setting_key"><span class="iconfont icon-Privacy"></span>个人空间</span><span class="setting_value">
+            {%if user_datas["setting"]["visit_my_space"]%}
+            公开
+            {%else%}
+            隐藏
+            {%endif%}
+            </span></button>
+        </div>
+        <div class="setting_box box">
+            <button id="logout_btn" onclick="window.location.href = '/api/logout'">退出登录</button>
         </div>
 {%endblock%}

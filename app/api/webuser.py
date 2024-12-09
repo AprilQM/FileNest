@@ -45,8 +45,7 @@ def get_user_avatar(username):
 
         
         # 检查文件是否存在
-        print(avatar_path)
-        if not os.path.exists(avatar_path) or avatar_file == "":
+        if not os.path.exists(avatar_path) or avatar_file == "" or (not user_datas["setting"]["visit_my_space"] and current_user.user_id != user_id):
             return send_from_directory(Config.STATIC_DIR, "default_avatar.png")
 
         # 返回处理后的图片
@@ -67,7 +66,7 @@ def get_user_background(username):
 
         
         # 检查文件是否存在
-        if not os.path.exists(avatar_path) or avatar_file == "":
+        if not os.path.exists(avatar_path) or avatar_file == "" or (not user_datas["setting"]["visit_my_space"] and current_user.user_id != user_id):
             return send_from_directory(Config.STATIC_DIR, "default_background.png")
 
         # 返回处理后的图片

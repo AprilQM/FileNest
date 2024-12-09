@@ -36,7 +36,7 @@ class Config:
     FILTRATION_API = True
     WEBCONFIG = {
         "rear": {
-            "port": 56895,
+            "port": 5000,
             "host": "0.0.0.0",
             "debug": True
         },
