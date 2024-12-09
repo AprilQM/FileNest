@@ -26,3 +26,11 @@ function check_in() {
         $id("check_in_btn").classList.remove("disabled")
     })
 }
+for(let i of user_data["user_space_info"]["tag"]){
+    const b = document.createElement("b")
+    b.className = "tag"
+    console.log(i);
+    b.innerText = i[0]
+    b.style.backgroundColor = i[1]
+    $id("tag_box").appendChild(b)
+}

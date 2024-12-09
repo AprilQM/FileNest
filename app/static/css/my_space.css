@@ -36,6 +36,7 @@
     border-bottom: var(--secondary1) 1px solid;
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 #avatar_img{
     width: 150px;
@@ -52,6 +53,7 @@
 }
 #info_box{
     padding: 50px 0;
+    max-width: 200px;
 }
 @media screen and (max-width: 767px) {
     #info_box {
@@ -60,12 +62,12 @@
 }
 #user_info_username{
     color: var(--background_conflict);
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
 }
 @media screen and (max-width: 767px) {
     #user_info_username {
-        font-size: 30px;
+        font-size: 25px;
     }
 }
 #level_box{
@@ -117,15 +119,11 @@
 }
 #praise_box{
     display: flex;
-    justify-content: end;
     align-items: center;
-    width: 100%;
-    margin-right: 30px;
-}
-@media screen and (max-width: 767px) {
-    #praise_box {
-        margin-right: 0;
-    }
+    transform: translateY(-20px);
+    height: 100%;
+    position: absolute;
+    right: 50px;
 }
 #praise_btn{
     background-color: initial;
@@ -135,10 +133,21 @@
     font-weight: bold;
     transform: translateY(15px);
 }
+#praise_btn:hover{
+    transition: 0.2s ease;
+    color: var(--background_conflict);
+}
+#praise_btn:hover ~ #praise_count{
+    transition: 0.2s ease;
+    color: var(--background_conflict);
+}
 @media screen and (max-width: 767px) {
     #praise_btn {
-        font-size: 25px;
+        font-size: 22px;
         transform: translateY(8px);
+    }
+    #praise_box{
+        right: 15px;
     }
 }
 #praise_btn_box{
@@ -146,10 +155,9 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-}
-#praise_btn_box h5{
     color: var(--text3);
 }
+
 
 #function_box{
     width: 100%;
@@ -175,4 +183,20 @@
 #check_in_btn:hover{
     background-color: var(--background_conflict);
     color: var(--background);
+}
+#tag_box{
+    width: 100%;
+    margin-top: 20px;
+    padding: 0x;
+    height: 30px;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+.tag{
+    font-size: 10px;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 5px 10px;
+    margin-right: 10px;
 }

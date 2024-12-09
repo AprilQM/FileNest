@@ -41,14 +41,15 @@
         </div>
     </div>
     <div id="function_box">
+        {%if user_datas["other"]["can_check"]%}
+            <button id="check_in_btn" onclick="check_in()">签到</button>
+        {%else%}
+            <button id="check_in_btn" class="disabled">已签到</button>
+        {%endif%}
         <div id="slogan_box">
-            {%if user_datas["other"]["can_check"]%}
-                <button id="check_in_btn" onclick="check_in()">签到</button>
-            {%else%}
-                <button id="check_in_btn" class="disabled">已签到</button>
-            {%endif%}
             <h3 id="slogan_text">{{user_datas["user_space_info"]["slogan"]}}</h3>
         </div>
+        <div id="tag_box"></div>
     </div>
 </div>
 

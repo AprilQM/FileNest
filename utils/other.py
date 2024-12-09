@@ -1,5 +1,3 @@
-from Crypto.Cipher import AES
-from Crypto.Random import get_random_bytes
 import base64
 from config import Config
 import os
@@ -24,23 +22,6 @@ import re
 
 
 # region 加密
-# 定义加密和解密函数
-def aes_encrypt(plain_text, key = Config.PASSWORD_SALT):
-    # 将明文转换为字节数据
-    plain_text_bytes = plain_text.encode('utf-8')
-    # 确保密钥是16字节、24字节或32字节长（AES的密钥长度限制）
-    key = key.ljust(32)[:32].encode('utf-8')
-    
-    # 生成随机的初始化向量 (IV)
-    iv = get_random_bytes(16)
-    # 创建AES加密器
-    cipher = AES.new(key, AES.MODE_CFB, iv=iv)
-    # 加密数据
-    cipher_text = cipher.encrypt(plain_text_bytes)
-    # 返回IV和密文的组合，并进行Base64编码
-    return base64.b64encode(iv + cipher_text).decode('utf-8')
-
-
 def hash_encrypt(plain_text, salt=None):
     """
     对明文使用哈希算法进行加密。
@@ -119,6 +100,10 @@ def create_user_info(user):
                         for i in file_user_info["friends"]:
                             if type(file_user_info["friends"][i]) != bool:
                                 flag = True
+
+                        if "tag" not in file_user_info["user_space_info"]:
+                            flag = True
+
                     except:
                         flag = True
                         
@@ -166,6 +151,7 @@ def create_user_info_json(user):
                 "background_file": "",
                 "praise_count": 0,
                 "praise": [],
+                "tag": []
             },
             "friends" : {}
         }

@@ -1,14 +1,14 @@
 {
-    "last_modified_time": 1733668705,
+    "last_modified_time": 1733716880,
     "user_datas": {
         "user_id": 1,
         "username": "AprilQM",
         "email": "april2730391712@outlook.com",
         "level": 1,
         "color": 7,
-        "check_in_days": 1,
-        "last_check_time": 1733668705,
-        "register_time": "2024-12-08 21:58:36",
+        "check_in_days": 0,
+        "last_check_time": 1733716880,
+        "register_time": "2024-12-09 12:01:20",
         "logined_time": "",
         "is_consent_agreement": false,
         "is_banned": false,
@@ -16,10 +16,13 @@
     },
     "user_space_info": {
         "slogan": "这个人很懒，什么都没有留下。",
-        "avatar_file": "参赛纪念图.jpeg",
+        "avatar_file": "1.jpeg",
         "background_file": "",
         "praise_count": 0,
-        "praise": []
+        "praise": [],
+        "tag": [
+            ["星阁元老", "#163172"]
+        ]
     },
     "friends": {}
 }
