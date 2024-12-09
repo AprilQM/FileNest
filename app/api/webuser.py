@@ -32,6 +32,7 @@ def get_user_avatar_small(username):
         return send_file(other.make_png(avatar_path), mimetype='image/jpeg')
     
 @api.route("/get_user_avatar/<username>")
+@login_required
 def get_user_avatar(username):
     if username == "游客":
         return send_from_directory(Config.STATIC_DIR, "default_avatar.png")
@@ -53,6 +54,7 @@ def get_user_avatar(username):
     
 
 @api.route("/get_user_background/<username>")
+@login_required
 def get_user_background(username):
     if username == "游客":
         return send_from_directory(Config.STATIC_DIR, "default_background.png")
@@ -75,6 +77,7 @@ def get_user_background(username):
 
 
 @api.route("/get_user_lv_img/<username>")
+@login_required
 def get_user_lv_img(username):
     if username == "游客":
         abort(404)
@@ -85,6 +88,7 @@ def get_user_lv_img(username):
         return send_from_directory(Config.STATIC_DIR, f"lv_img/lv{level}.svg")
 
 @api.route("/check_in", methods=["POST"])
+@login_required
 def check_in():
     back = {
         'success': False

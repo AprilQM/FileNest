@@ -34,7 +34,7 @@
     align-items: center;
 }
 .setting_item:hover, #logout_btn:hover{
-    background-color: var(--secondary1);
+    background-color: var(--secondary2);
 }
 .setting_key{
     position: absolute;
@@ -59,4 +59,32 @@
     color: #fd4d4d;
     height: 70px;
     font-size: 18px;
+}
+#color_box{
+    height: 80px;
+}
+#show_color_box{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: row;
+}
+.color_box{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    margin-right: 20px;
+}
+.color_block{
+    width: 30px;
+    height: 30px;
+    box-shadow: var(--background_conflict) 0 0 3px ;
+    border-radius: 50%;
+}
+.color_text{
+    font-size: 13px;
+    font-weight: bold;
 }

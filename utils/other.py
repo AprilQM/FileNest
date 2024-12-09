@@ -186,11 +186,6 @@ def get_user_datas():
     if current_user.is_authenticated:
         user_datas = database.get_user(current_user.user_id)
         if user_datas["success"]:
-            del user_datas["user"]["last_modified_time"]
-            del user_datas["user"]["user_datas"]["password"]
-            del user_datas["user"]["user_datas"]["is_consent_agreement"]
-            del user_datas["user"]["user_datas"]["is_banned"]
-            del user_datas["user"]["user_datas"]["is_admin"]
             next_level_need_days = [0, 5, 15, 35, 65, 105]
             if user_datas["user"]["user_datas"]["level"] >= 6:
                 user_datas["user"]["user_datas"]["next_level_need_days"] = user_datas["user"]["user_datas"]["check_in_days"]
@@ -204,7 +199,29 @@ def get_user_datas():
                 user_datas["user"]["other"]["can_check"] = True
             else:
                 user_datas["user"]["other"]["can_check"] = False
-                
+            
+            level = user_datas["user"]["user_datas"]["level"]
+            
+            user_datas["user"]["other"]["colors_can_use"] = []
+            color_list = Config.WEBCONFIG["front"]["themes"]
+            
+            for i in range(level):
+                user_datas["user"]["other"]["colors_can_use"].append([color_list[i]["name"], color_list[i]["colors"]["background_conflict"], color_list[i]["colors"]["background2"]])
+            
+            # 6级添加两个主题
+            if level == 6:
+                user_datas["user"]["other"]["colors_can_use"].append([color_list[6]["name"], color_list[6]["colors"]["background_conflict"], color_list[6]["colors"]["background2"]])
+            
+            # 添加管理员主题
+            if user_datas["user"]["user_datas"]["is_admin"]:
+                user_datas["user"]["other"]["colors_can_use"].append([color_list[7]["name"], color_list[7]["colors"]["background_conflict"], color_list[7]["colors"]["background2"]])
+            
+            
+            del user_datas["user"]["last_modified_time"]
+            del user_datas["user"]["user_datas"]["password"]
+            del user_datas["user"]["user_datas"]["is_consent_agreement"]
+            del user_datas["user"]["user_datas"]["is_banned"]
+            del user_datas["user"]["user_datas"]["is_admin"]
             
             return user_datas["user"]
     else:

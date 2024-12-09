@@ -26,7 +26,17 @@
             <h6 class="setting_title">个性化</h6>
         </div>
         <div class="setting_box box">
-            <button class="setting_item"><span class="setting_key"><span class="iconfont icon-color"></span>主题色</span> <span class="setting_value">{{theme["name"]}}</span></button>
+            <div id="color_box">
+                <button class="setting_item" onclick="open_change_ui_color_box()"><span class="setting_key"><span class="iconfont icon-color"></span>主题色</span> <span class="setting_value" id="theme_name_text">{{theme["name"]}}</span></button>
+                <div id="show_color_box">
+                    {%for i in user_datas["other"]["colors_can_use"]%}
+                        <div class="color_box" onclick="change_to_this_color('{{i[0]}}')">
+                            <div class="color_block" style="border: {{i[2]}} 5px solid;background-color:{{i[1]}}"></div>
+                            <span class="color_text" style="color:{{i[1]}}">{{i[0]}}</span>
+                        </div>
+                    {%endfor%}
+                </div>
+            </div>
         </div>
         <div class="setting_title_box">
             <h6 class="setting_title">隐私</h6>
