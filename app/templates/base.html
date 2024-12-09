@@ -27,6 +27,70 @@
             --text3:  {{ theme["colors"]["text3"] }};
             --other:  {{ theme["colors"]["other"] }};
         }
+        #loading {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--background);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            box-shadow: 0 0 5px var(--secondary1);
+        }
+        
+        #loading span {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--background_conflict);
+            animation: loading-span-animation 1s ease infinite alternate;
+        }
+        
+        @keyframes loading-span-animation {
+            0% {
+                opacity: 1;
+            }
+        
+            100% {
+                opacity: 0.3;
+            }
+        }
+        
+        
+        .loading-out {
+            animation: loading-out 1.5s ease forwards;
+            transform: translateY(100vh);
+        }
+        
+        .loading-in {
+            animation: loading-in 0.8s ease forwards;
+            transform: translateY(0);
+        }
+        
+        @keyframes loading-out {
+            0% {
+                transform: translateY(0);
+            }
+            10%{
+                transform: translateY(0);
+            }
+        
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+        
+        @keyframes loading-in {
+        
+            0% {
+                transform: translateY(100vh);
+            }
+        
+            100% {
+                transform: translateY(0);
+            }
+        }
     </style>
     {% block head %}{% endblock %}
 </head>

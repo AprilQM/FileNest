@@ -29,7 +29,6 @@ function check_in() {
 for(let i of user_data["user_space_info"]["tag"]){
     const b = document.createElement("b")
     b.className = "tag"
-    console.log(i);
     b.innerText = i[0]
     b.style.backgroundColor = i[1]
     $id("tag_box").appendChild(b)

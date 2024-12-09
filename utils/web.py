@@ -18,11 +18,13 @@ class WebUser(UserMixin):
 # region websocket
 @socketio.on("connect", namespace="/broadcast")
 def on_connect():
-    pass
+    if current_user.is_authenticated:
+        join_room(str(current_user.user_id))
     
 @socketio.on("disconnect", namespace="/broadcast")
 def on_disconnect():
-    pass
+    if current_user.is_authenticated:
+        leave_room(str(current_user.user_id))
     
 def send_broadcast_message(title, content, fuc=''):
     socketio.emit("message", {'title':title, 'content': content, 'fuc':fuc}, namespace="/broadcast")

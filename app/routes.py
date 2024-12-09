@@ -58,6 +58,6 @@ from utils import web
 
 @main.route("/test")
 def test():
-    web.send_broadcast_message("傻逼张睿","测试一下广播消息，这个提示框能点", 'success_alert("不是你还真点啊")')
+    web.send_fuc_to_user(4, 'jump_to_other_page_with_ui("/api/logout")')
     return "ok"
     

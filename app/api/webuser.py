@@ -45,6 +45,7 @@ def get_user_avatar(username):
 
         
         # 检查文件是否存在
+        print(avatar_path)
         if not os.path.exists(avatar_path) or avatar_file == "":
             return send_from_directory(Config.STATIC_DIR, "default_avatar.png")
 
@@ -62,7 +63,7 @@ def get_user_background(username):
         avatar_file = user_datas["user_space_info"]["background_file"]
         
         # 构建头像文件路径，使用 os.path.join 正确拼接
-        avatar_path = os.path.join(Config.USER_INFO_DIR, str(user_id),"avatar", avatar_file)
+        avatar_path = os.path.join(Config.USER_INFO_DIR, str(user_id),"background", avatar_file)
 
         
         # 检查文件是否存在

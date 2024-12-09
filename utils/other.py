@@ -126,6 +126,8 @@ def create_user_info(user):
         os.mkdir(os.path.join(Config.USER_INFO_DIR, user_id, "avatar"))
     if not os.path.exists(os.path.join(Config.USER_INFO_DIR, user_id, "chat")):
         os.mkdir(os.path.join(Config.USER_INFO_DIR, user_id, "chat"))
+    if not os.path.exists(os.path.join(Config.USER_INFO_DIR, user_id, "background")):
+        os.mkdir(os.path.join(Config.USER_INFO_DIR, user_id, "background"))
 
 
 def create_user_info_json(user):
