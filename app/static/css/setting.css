@@ -1,0 +1,36 @@
+#user_setting_box{
+    width: 100%;
+    border-bottom: var(--secondary1) 1px solid;
+    padding: 20px 0 0 0 ;
+}
+.setting_title{
+    color: var(--background_conflict);
+    margin: 20px;
+}
+@media screen and (max-width: 767px) {
+    .setting_title{
+        font-size: 20px;
+    }
+}
+.one_setting_box{
+    width: 100%;
+    color: var(--text);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    border-top: var(--secondary1) 1px solid;
+    cursor: pointer;
+    padding: 0 20px;
+}
+.one_setting_box:hover{
+    background-color: var(--background2);
+}
+.one_setting_value{
+    color: var(--text3);
+    position: absolute;
+    right: 10px;
+}
+.one_setting_box:hover .one_setting_value{
+    color: var(--text2);
+}

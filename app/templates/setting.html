@@ -9,3 +9,12 @@
 {% block script %}
 <script src="{{ url_for('static', filename='js/setting.js') }}"></script>
 {% endblock %}
+
+{%block content%}
+        <div id="user_setting_box">
+            <h3 class="setting_title">用户设置</h3>
+            <div class="one_setting_box"><h6>修改用户名</h6> <span class="one_setting_value">{{user_datas["user_datas"]["username"]}}</span></div>
+            <div class="one_setting_box"><h6>修改邮箱</h6> <span class="one_setting_value">{{user_datas["user_datas"]["email"]}}</span></div>
+            <div class="one_setting_box"><h6>修改密码</h6></div>
+        </div>
+{%endblock%}
