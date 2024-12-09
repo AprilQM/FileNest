@@ -47,6 +47,16 @@
     font-size: 15px;
     color: var(--background_conflict);
 }
+@media screen and (max-width: 767px) {
+    .setting_value {
+        font-size: 12px;
+        right: 10px;
+    }
+    .setting_key {
+        left: 10px;
+        font-size: 15px;
+    }
+}
 .setting_box .iconfont{
     font-size: 20px;
     margin-right: 8px;
@@ -63,20 +73,22 @@
 #color_box{
     height: 80px;
 }
-#show_color_box{
-    width: 100%;
+#show_color_box {
     height: 70px;
-    display: flex;
-    justify-content: end;
+    display: grid;
+    grid-template-columns: auto;
+    grid-auto-flow: column;
+    justify-items: center;
     align-items: center;
-    flex-direction: row;
+    overflow-y: hidden;
+    overflow-x: auto;
 }
 .color_box{
+    margin-right: 10px;
     display: flex;
     align-items: center;
     flex-direction: column;
     cursor: pointer;
-    margin-right: 20px;
 }
 .color_block{
     width: 30px;
@@ -87,4 +99,9 @@
 .color_text{
     font-size: 13px;
     font-weight: bold;
+}
+@media screen and (max-width: 767px) {
+    .color_text {
+        font-size: 9px;
+    }
 }
