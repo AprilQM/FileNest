@@ -85,11 +85,6 @@ def create_user_info(user):
                         for i in ["slogan","avatar_file", "background_file"]:
                             if type(file_user_info["user_space_info"][i]) != str:
                                 flag = True
-                                
-                        # user_space_info的整形判断
-                        for i in ["praise_count"]:
-                            if type(file_user_info["user_space_info"][i]) != int:
-                                flag = True
                         
                         # user_space_info的praise列表内容判断
                         for i in file_user_info["user_space_info"]["praise"]:
@@ -156,7 +151,6 @@ def create_user_info_json(user):
                 "slogan":"这个人很懒，什么都没有留下。",
                 "avatar_file": "",
                 "background_file": "",
-                "praise_count": 0,
                 "praise": [],
                 "tag": []
             },
@@ -186,37 +180,6 @@ def get_user_datas():
     if current_user.is_authenticated:
         user_datas = database.get_user(current_user.user_id)
         if user_datas["success"]:
-            next_level_need_days = [0, 5, 15, 35, 65, 105]
-            if user_datas["user"]["user_datas"]["level"] >= 6:
-                user_datas["user"]["user_datas"]["next_level_need_days"] = user_datas["user"]["user_datas"]["check_in_days"]
-            else:
-                user_datas["user"]["user_datas"]["next_level_need_days"] = next_level_need_days[user_datas["user"]["user_datas"]["level"]]
-            
-            
-            # 其他的信息传送
-            user_datas["user"]["other"] = {}
-            if  int(time.time()) - user_datas["user"]["user_datas"]["last_check_time"] > 43200:
-                user_datas["user"]["other"]["can_check"] = True
-            else:
-                user_datas["user"]["other"]["can_check"] = False
-            
-            level = user_datas["user"]["user_datas"]["level"]
-            
-            user_datas["user"]["other"]["colors_can_use"] = []
-            color_list = Config.WEBCONFIG["front"]["themes"]
-            
-            for i in range(level):
-                user_datas["user"]["other"]["colors_can_use"].append([color_list[i]["name"], color_list[i]["colors"]["background_conflict"], color_list[i]["colors"]["background2"]])
-            
-            # 6级添加两个主题
-            if level == 6:
-                user_datas["user"]["other"]["colors_can_use"].append([color_list[6]["name"], color_list[6]["colors"]["background_conflict"], color_list[6]["colors"]["background2"]])
-            
-            # 添加管理员主题
-            if user_datas["user"]["user_datas"]["is_admin"]:
-                user_datas["user"]["other"]["colors_can_use"].append([color_list[7]["name"], color_list[7]["colors"]["background_conflict"], color_list[7]["colors"]["background2"]])
-            
-            
             del user_datas["user"]["last_modified_time"]
             del user_datas["user"]["user_datas"]["password"]
             del user_datas["user"]["user_datas"]["is_consent_agreement"]
@@ -229,11 +192,7 @@ def get_user_datas():
             "user_datas":{
                 "user_id": 0,
                 "username": "游客",
-                "email": "游客",
                 "level": 0,
-                "color": 0,
-                "register_time": "游客",
-                "logined_time": "",
             },
         }
     

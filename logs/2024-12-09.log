@@ -605,3 +605,7 @@
 [21:51:46] [GET] [NORMAL] (ID : 1) - /setting
 [21:51:49] [GET] [NORMAL] (ID : 1) - /setting
 [21:51:58] [GET] [NORMAL] (ID : 1) - /home
+[21:58:03] [GET] [NORMAL] (ID : 0) - /
+[21:58:03] [GET] [NORMAL] (ID : 0) - /home
+[21:58:49] [GET] [NORMAL] (ID : 0) - /home
+[21:59:20] [GET] [NORMAL] (ID : 0) - /home

@@ -59,7 +59,7 @@ class Config:
                     }
                 },
                 {
-                    "name": "淡橘橙",
+                    "name": "橘橙",
                     "colors": {
                         "main": "#fba414",
                         "secondary1": "#fdc456",
@@ -75,7 +75,7 @@ class Config:
                     }
                 },
                 {
-                    "name": "炒米黄",
+                    "name": "米黄",
                     "colors": {
                         "main": "#f4ce69",
                         "secondary1": "#f9e39c",
@@ -123,7 +123,7 @@ class Config:
                     }
                 },
                 {
-                    "name": "樱草紫",
+                    "name": "樱紫",
                     "colors": {
                         "main": "#c06f98",
                         "secondary1": "#d898b3",

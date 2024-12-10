@@ -1,24 +1,24 @@
 {
-    "last_modified_time": 1733752312,
+    "last_modified_time": 1733806797,
     "user_datas": {
         "user_id": 1,
         "username": "AprilQM",
         "email": "april2730391712@outlook.com",
-        "level": 6,
+        "level": 1,
         "color": 7,
-        "check_in_days": 0,
-        "last_check_time": 1733716880,
+        "check_in_days": 1,
+        "last_check_time": 1733806797,
         "register_time": "2024-12-09 12:01:20",
         "logined_time": "",
         "is_consent_agreement": false,
         "is_banned": false,
-        "is_admin": true
+        "is_admin": true,
+        "visit_my_space": true
     },
     "user_space_info": {
         "slogan": "这个人很懒，什么都没有留下。",
         "avatar_file": "参赛纪念图.jpeg",
         "background_file": "1.png",
-        "praise_count": 0,
         "praise": [],
         "tag": [
             [

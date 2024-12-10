@@ -12,11 +12,11 @@ def change_ui_color():
     color = data.get("color")
     color_name_dict = {
         "艳红": 0,
-        "淡橘橙": 1,
-        "炒米黄": 2,
+        "橘橙": 1,
+        "米黄": 2,
         "铜绿": 3,
         "钴青": 4,
-        "樱草紫": 5,
+        "樱紫": 5,
         "黑白": 6,
         "黑金": 7
     }
@@ -57,3 +57,22 @@ def change_ui_color():
                     "colors": Config.WEBCONFIG["front"]["themes"][color_name_dict[color]]
                 }
             )
+    
+@api.route("/change_privacy_mode", methods=["POST"])
+@login_required
+def change_privacy_mode():
+    try:
+        user_datas = get_user(current_user.user_id)["user"]
+        visit_my_space = user_datas["setting"]["visit_my_space"]
+        update_user(current_user.user_id, "visit_my_space", not visit_my_space)
+
+        return jsonify({
+            "success": True,
+            "state": not visit_my_space
+        })
+    except:
+        return jsonify(
+            {
+                "success": True
+            }
+        )

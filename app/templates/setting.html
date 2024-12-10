@@ -42,7 +42,7 @@
             <h6 class="setting_title">隐私</h6>
         </div>
         <div class="setting_box box">
-            <button class="setting_item"><span class="setting_key"><span class="iconfont icon-Privacy"></span>个人空间</span><span class="setting_value">
+            <button class="setting_item" onclick="change_privacy_mode()"><span class="setting_key"><span class="iconfont icon-Privacy"></span>个人空间</span><span class="setting_value" id="privacy_text">
             {%if user_datas["setting"]["visit_my_space"]%}
             公开
             {%else%}

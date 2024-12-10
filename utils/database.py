@@ -41,6 +41,38 @@ def get_user(user_id):
     if user:
         file_user_data = json.loads(open(os.path.join(Config.USER_INFO_DIR, str(user_id), "user_info.json"), "r", encoding="utf-8").read())
         file_user_data["user_datas"]["password"] = user.password
+        next_level_need_days = [0, 5, 15, 35, 65, 105]
+        if file_user_data["user_datas"]["level"] >= 6:
+            file_user_data["user_datas"]["next_level_need_days"] = file_user_data["user_datas"]["check_in_days"]
+        else:
+            file_user_data["user_datas"]["next_level_need_days"] = next_level_need_days[file_user_data["user_datas"]["level"]]
+        
+        
+        # 其他的信息传送
+        file_user_data["other"] = {}
+        if  int(time.time()) - file_user_data["user_datas"]["last_check_time"] > 43200:
+            file_user_data["other"]["can_check"] = True
+        else:
+            file_user_data["other"]["can_check"] = False
+        
+        level = file_user_data["user_datas"]["level"]
+        
+        file_user_data["other"]["colors_can_use"] = []
+        color_list = Config.WEBCONFIG["front"]["themes"]
+        
+        for i in range(level):
+            file_user_data["other"]["colors_can_use"].append([color_list[i]["name"], color_list[i]["colors"]["background_conflict"], color_list[i]["colors"]["background2"]])
+        
+        # 6级添加两个主题
+        if level == 6:
+            file_user_data["other"]["colors_can_use"].append([color_list[6]["name"], color_list[6]["colors"]["background_conflict"], color_list[6]["colors"]["background2"]])
+        
+        # 添加管理员主题
+        if file_user_data["user_datas"]["is_admin"]:
+            file_user_data["other"]["colors_can_use"].append([color_list[7]["name"], color_list[7]["colors"]["background_conflict"], color_list[7]["colors"]["background2"]])
+        
+        file_user_data["user_space_info"]["praise_count"] = len(file_user_data["user_space_info"]["praise"])
+        
         return {"success": True, "user": file_user_data}
     return {"success": False, "message": "User not found"}
 
@@ -80,11 +112,13 @@ def update_user_file(user_id, key, value):
                 user_info = json.load(file)
             
             # 更新文件中的字段（如果存在于 user_datas 或 user_space_info 中）
-            if key in user_info["user_datas"]:
-                user_info["user_datas"][key] = value
-            elif key in user_info["user_space_info"]:
-                user_info["user_space_info"][key] = value
-            else:
+            user_info_list = ["user_datas", "user_space_info", "setting", "friends"]
+            flag = True
+            for user_info_key in user_info_list:
+                if key in user_info[user_info_key]:
+                    user_info[user_info_key][key] = value
+                    flag = False
+            if flag:
                 return {"success": False, "message": f"Field '{key}' not found in user file"}
 
             # 更新修改时间

@@ -75,6 +75,8 @@
 }
 #show_color_box {
     height: 70px;
+    width: 80%;
+    margin-left: 10%;
     display: grid;
     grid-template-columns: auto;
     grid-auto-flow: column;
@@ -103,5 +105,9 @@
 @media screen and (max-width: 767px) {
     .color_text {
         font-size: 9px;
+    }
+    #show_color_box {
+        width: 100%;
+        margin: 0;
     }
 }
