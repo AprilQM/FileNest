@@ -98,6 +98,9 @@
     box-shadow: var(--background_conflict) 0 0 3px ;
     border-radius: 50%;
 }
+.color_block:hover{
+    transform: scale(1.1);
+}
 .color_text{
     font-size: 13px;
     font-weight: bold;

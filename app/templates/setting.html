@@ -18,9 +18,9 @@
             <h6 class="setting_title">账号</h6>
         </div>
         <div class="setting_box box">
-            <button class="setting_item"><span class="setting_key"><span class="iconfont icon-username"></span>用户名</span> <span class="setting_value">{{user_datas["user_datas"]["username"]}}</span></button>
-            <button class="setting_item"><span class="setting_key"><span class="iconfont icon-mail"></span>邮箱</span> <span class="setting_value">{{user_datas["user_datas"]["email"]}}</span></button>
-            <button class="setting_item"><span class="setting_key"><span class="iconfont icon-icons_password"></span>密码</span></button>
+            <button class="setting_item" onclick="jump_to_other_page_with_ui('/change_name?back=/setting')"><span class="setting_key"><span class="iconfont icon-username"></span>用户名</span> <span class="setting_value">{{user_datas["user_datas"]["username"]}}</span></button>
+            <button class="setting_item" onclick="jump_to_other_page_with_ui('/change_mail?back=/setting')"><span class="setting_key"><span class="iconfont icon-mail"></span>邮箱</span> <span class="setting_value">{{user_datas["user_datas"]["email"]}}</span></button>
+            <button class="setting_item" onclick="jump_to_other_page_with_ui('/change_password?back=/setting')"><span class="setting_key"><span class="iconfont icon-icons_password"></span>密码</span></button>
         </div>
         <div class="setting_title_box">
             <h6 class="setting_title">个性化</h6>

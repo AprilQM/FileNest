@@ -1,9 +1,11 @@
 from flask import request, jsonify, current_app
 from flask_login import current_user,login_required
 from app.api import api
+from app.models import DatabaseUser
 
 from utils.database import get_user, update_user
 from config import Config
+
 
 @api.route("/change_ui_color", methods=["POST"])
 @login_required
@@ -77,3 +79,24 @@ def change_privacy_mode():
                 "success": True
             }
         )
+        
+@api.route("/change_name", methods=["POST"])
+@login_required
+def change_name():
+    data = request.get_json()
+    values = data.get("values")
+    new_name = values[0]
+    
+    if DatabaseUser.query.filter_by(username=new_name).first():
+        return jsonify({
+            "success": False,
+            "message": "用户名存在"
+        })
+        
+    with current_app.app_context():
+        update_user(current_user.user_id, "username", new_name)
+    
+    return jsonify({
+        "success": True,
+        "message": "修改成功！"
+    })

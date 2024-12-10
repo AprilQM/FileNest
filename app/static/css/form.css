@@ -1,0 +1,123 @@
+#content_box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#menu_box_pc,
+#menu_bottom_box_mobile {
+    display: none;
+}
+#view_box{
+    width: 500px;
+    min-height: 400px;
+    background-color: var(--background2);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: var(--secondary2) 0 0 10px;
+    position: relative;
+}
+@media screen and (max-width: 767px) {
+    #view_box {
+        padding: 8px;
+        width: 100%;
+        height: 100%;
+    }
+}
+#view_box_logo{
+    width: 60px;
+}
+.view_box_logo{
+    fill: var(--background_conflict);
+}
+#form_title{
+    margin: 0 10px;
+    font-size: 25px;
+    font-weight: 520;
+    color: var(--background_conflict);
+    display: inline;
+}
+#main_form{
+    width: 100%;
+    position: relative;
+    min-height: 300px;
+    padding: 30px;
+}
+@media screen and (max-width: 767px) {
+    #main_form {
+        padding: 8px;
+    }
+}
+#title_box{
+    width: 100%;
+    height: 80px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+.input{
+    width: 90%;
+    margin-left: 5%;
+    display: block;
+    border: none;
+    background-color: var(--background2);
+    font-size: 20px;
+    border-bottom: var(--secondary1) 2px solid;
+    color: var(--text);
+}
+@media screen and (max-width: 767px) {
+    #title_box{
+        margin-top: 80px;
+        margin-bottom: 50px;
+    }
+    .input{
+        width: 94%;
+        margin-left: 3%;
+    }
+}
+.input:focus{
+    outline: none;
+    border-bottom: var(--background_conflict) 2px solid;
+}
+#button{
+    border: var(--background_conflict) 2px solid;
+    padding: 5px 20px;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: var(--background2);
+    color: var(--background_conflict);
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+}
+#button:hover{
+    background-color: var(--background_conflict);
+    color: var(--background2);
+}
+@media screen and (max-width: 767px) {
+    #button{
+        right: 20px;
+        bottom: 20px;
+    }
+    
+}
+#back_btn{
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    border: none;
+    color: var(--background_conflict);
+    font-size: 18px;
+    font-weight: 500;
+    background-color: initial;
+    z-index: 700;
+}
+@media screen and (max-width: 767px) {
+    #back_btn {
+        top: 30px;
+    }
+}
+#back_btn:hover {
+    transform: scale(1.1);
+}
