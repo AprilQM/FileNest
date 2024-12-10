@@ -63,13 +63,14 @@ def get_user(user_id):
         for i in range(level):
             file_user_data["other"]["colors_can_use"].append([color_list[i]["name"], color_list[i]["colors"]["background_conflict"], color_list[i]["colors"]["background2"]])
         
-        # 6级添加两个主题
+        # 6级添加三个主题
         if level == 6:
             file_user_data["other"]["colors_can_use"].append([color_list[6]["name"], color_list[6]["colors"]["background_conflict"], color_list[6]["colors"]["background2"]])
+            file_user_data["other"]["colors_can_use"].append([color_list[7]["name"], color_list[7]["colors"]["background_conflict"], color_list[7]["colors"]["background2"]])
         
         # 添加管理员主题
         if file_user_data["user_datas"]["is_admin"]:
-            file_user_data["other"]["colors_can_use"].append([color_list[7]["name"], color_list[7]["colors"]["background_conflict"], color_list[7]["colors"]["background2"]])
+            file_user_data["other"]["colors_can_use"].append([color_list[8]["name"], color_list[8]["colors"]["background_conflict"], color_list[8]["colors"]["background2"]])
         
         file_user_data["user_space_info"]["praise_count"] = len(file_user_data["user_space_info"]["praise"])
         

@@ -16,29 +16,30 @@ def change_ui_color():
         "米黄": 2,
         "铜绿": 3,
         "钴青": 4,
-        "樱紫": 5,
-        "黑白": 6,
-        "黑金": 7
+        "星阁": 5,
+        "樱紫": 6,
+        "黑白": 7,
+        "黑金": 8
     }
     user_datas = get_user(current_user.user_id)["user"]["user_datas"]
     
-    if user_datas["is_admin"] and color_name_dict[color] == 7:
+    if user_datas["is_admin"] and color_name_dict[color] == 8:
         with current_app.app_context():
             update_user(current_user.user_id, "color", color_name_dict[color])
         return jsonify(
                 {
                     "success": True, 
-                    "colors": Config.WEBCONFIG["front"]["themes"][7]
+                    "colors": Config.WEBCONFIG["front"]["themes"][8]
                 }
             )
         
-    if user_datas["level"] == 6 and color_name_dict[color] == 6:
+    if user_datas["level"]  == 6 and color_name_dict[color] in [6, 7]:
         with current_app.app_context():
             update_user(current_user.user_id, "color", color_name_dict[color])
         return jsonify(
                 {
                     "success": True, 
-                    "colors": Config.WEBCONFIG["front"]["themes"][6]
+                    "colors": Config.WEBCONFIG["front"]["themes"][color_name_dict[color]]
                 }
             )
     

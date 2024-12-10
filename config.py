@@ -123,6 +123,22 @@ class Config:
                     }
                 },
                 {
+                    "name": "星阁",
+                    "colors": {
+                        "main": "#163172",
+                        "secondary1": "#4a88a0",
+                        "secondary2": "#a8d0e3",
+                        "prominent": "#f9f871",
+                        "background": "#EAEFFB",
+                        "background2": "#ffffff",
+                        "background_conflict": "#163172",
+                        "text": "#333333",
+                        "text2": "#ffffff",
+                        "text3": "#777777",
+                        "other": "#ffffff"
+                    }
+                },
+                {
                     "name": "樱紫",
                     "colors": {
                         "main": "#c06f98",
