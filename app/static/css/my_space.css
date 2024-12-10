@@ -188,10 +188,10 @@
 #tag_box{
     width: 100%;
     margin-top: 20px;
-    padding: 0x;
-    height: 30px;
+    min-height: 30px;
     overflow-y: hidden;
     overflow-x: auto;
+    padding: 10px 0;
 }
 .tag{
     font-size: 10px;

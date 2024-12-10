@@ -1,1 +1,1 @@
-highlight_menu_item_pc(4)
+highlight_menu_item(4)

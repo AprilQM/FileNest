@@ -249,8 +249,8 @@ menu_show_btn_pc.addEventListener("click", (event) => {
     }
 });
 // 当前页面的菜单项高亮
-function highlight_menu_item_pc(index) { 
-    const menu_list = [
+function highlight_menu_item(index) { 
+    const menu_list_pc = [
         $id("to_home_button_pc"),
         $id("to_cloud_button_pc"),
         $id("to_project_button_pc"),
@@ -259,16 +259,17 @@ function highlight_menu_item_pc(index) {
         $id("to_setting_button_pc"),
         
     ]
-    menu_list[index].classList.add("menu_this_page_pc");
-}
-function highlight_menu_item_mobile(index) { 
-    const menu_list = [
+    const menu_list_mobile = [
         $id("to_home_button_mobile"),
         $id("to_cloud_button_mobile"),
         $id("to_project_button_mobile"),
-        $id("to_forum_button_mobile")
+        $id("to_forum_button_mobile"),
+        $id("to_mail_button_mobile"),
+        $id("to_setting_button_mobile"),
+
     ]
-    menu_list[index].classList.add("menu_this_page_mobile");
+    menu_list_pc[index].classList.add("menu_this_page_pc");
+    menu_list_mobile[index].classList.add("menu_this_page_mobile");
 }
 //endregion
 

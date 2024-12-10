@@ -1,2 +1,1 @@
-highlight_menu_item_pc(1)
-highlight_menu_item_mobile(1)
+highlight_menu_item(1)

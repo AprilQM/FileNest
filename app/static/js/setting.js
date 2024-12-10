@@ -1,4 +1,4 @@
-highlight_menu_item_pc(5)
+highlight_menu_item(5)
 
 let color_box_state = false
 function open_change_ui_color_box() {

@@ -391,9 +391,6 @@ body {
         width: calc(100% - 100px);
         height: 100vh;
     }
-    #avatar_img_mobile{
-        display: none;
-    }
 }
 #menu_img_box{
     margin-top: 10px;
@@ -434,21 +431,13 @@ body {
 .menu_close_state #menu_username_text{
     opacity: 0;
 }
-#avatar_img_mobile{
-    width: 20%;
-    aspect-ratio: 1;
-    z-index: 9996;
-    border-radius: 50%;
-    transform: translateY(-5px);
-    box-shadow: 0 3px 5px var(--secondary2);
-}
 #content_box{
     place-items: center;
     overflow: auto;
 }
 /* 滚动条样式 */
 #content_box::-webkit-scrollbar {
-    width: 8px;
+    width: 5px;
     /* 滚动条宽度 */
     background-color: #f4f4f4;
     /* 滚动条背景色 */
@@ -482,4 +471,35 @@ body {
 button.disabled {
     pointer-events: none;
     opacity: 0.6;
+}
+#other_btn{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#other_box{
+    height: 300px;
+    width: 90vw;
+    overflow: hidden;
+    background-color: var(--background2);
+    border-radius: 8px;
+    position: fixed;
+    right: calc(5vw - 100vw);
+    bottom: 70px;
+    box-shadow: var(--secondary1) 0 0 10px;
+    padding: 20px;
+}
+#other_btn:hover #other_box {
+    transform: translateX(-100vw);
+}
+#to_mail_button_mobile, #to_setting_button_mobile{
+    height: 50px;
+    width: 50px;
+}
+#other_menu_title{
+    width: 100%;
+    height: 30px;
+    font-size: 15px;
+    color: var(--text3);
+    text-align: center;
 }

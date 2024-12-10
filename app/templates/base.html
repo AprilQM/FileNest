@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='icon/02/iconfont.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='icon/03/iconfont.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='icon/04/iconfont.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='icon/05/iconfont.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     <style>
         :root{
@@ -186,9 +187,16 @@
     <div id="menu_bottom_box_mobile">
         <button class="menu_btn_mobile" id="to_home_button_mobile" onclick="jump_to_other_page_with_ui('/home')"><span class="iconfont icon-home"></span>主页</button>
         <button class="menu_btn_mobile" id="to_cloud_button_mobile" onclick="jump_to_other_page_with_ui('/cloud')"><span class=" iconfont icon-cloud"></span>云盘</button>
-        <img src="/api/get_user_avatar_small/{{user_datas["user_datas"]["username"]}}" alt="头像" id="avatar_img_mobile" onclick="jump_to_other_page_with_ui('/my_space')">
         <button class="menu_btn_mobile" id="to_project_button_mobile" onclick="jump_to_other_page_with_ui('/project')"><span class=" iconfont icon-project"></span>项目</button>
         <button class="menu_btn_mobile" id="to_forum_button_mobile" onclick="jump_to_other_page_with_ui('/forum')"><span class=" iconfont icon-forum"></span>论坛</button>
+        <div class="menu_btn_mobile" id="other_btn">
+            <span class=" iconfont icon-OTHER_SYSTEM"></span>其他
+            <div id="other_box">
+                <h6 id="other_menu_title">其他菜单</h6>
+                <button class="menu_btn_mobile" id="to_mail_button_mobile" onclick="jump_to_other_page_with_ui('/notification')"><span class="iconfont icon-mail"></span>消息</button>
+                <button class="menu_btn_mobile" id="to_setting_button_mobile" onclick="jump_to_other_page_with_ui('/setting')"><span class="iconfont icon-setting"></span>设置</button>
+            </div>
+        </div>
     </div>
 
     <div id="content_box">
