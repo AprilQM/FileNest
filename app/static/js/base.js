@@ -266,9 +266,11 @@ function highlight_menu_item(index) {
         $id("to_forum_button_mobile"),
         $id("to_mail_button_mobile"),
         $id("to_setting_button_mobile"),
-
+        $id("to_user_space_button_mobile")
     ]
-    menu_list_pc[index].classList.add("menu_this_page_pc");
+    if (index !== 6){
+        menu_list_pc[index].classList.add("menu_this_page_pc");
+    }
     menu_list_mobile[index].classList.add("menu_this_page_mobile");
 }
 //endregion

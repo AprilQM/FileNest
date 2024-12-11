@@ -4,6 +4,7 @@ from app.api import api
 from app.models import DatabaseUser
 
 from utils.database import get_user, update_user
+from utils.other import hash_encrypt
 from config import Config
 
 
@@ -100,3 +101,31 @@ def change_name():
         "success": True,
         "message": "修改成功！"
     })
+
+@api.route("/change_password", methods=["POST"])
+@login_required
+def change_password():
+    data = request.get_json()
+    values = data.get("values")
+    
+    user_datas = get_user(current_user.user_id)["user"]
+    old_password_database = user_datas["user_datas"]["password"]
+
+    old_password_web = values[0]
+    new_password_web = values[1]
+
+    if hash_encrypt(old_password_web) == old_password_database:
+        update_user(current_user.user_id, "password", hash_encrypt(new_password_web))
+        return jsonify(
+            {
+                "success" : True,
+                "message" : "修改成功" 
+            }
+        )
+    else:
+        return jsonify(
+            {
+                "success" : False,
+                "message" : "原密码错误" 
+            }
+        )

@@ -1,13 +1,13 @@
 {
-    "last_modified_time": 1733803939,
+    "last_modified_time": 1733890285,
     "user_datas": {
         "user_id": 3,
-        "username": "乌坎本",
+        "username": "August13",
         "email": "zr2385290553@outlook.com",
         "level": 6,
-        "color": 7,
-        "check_in_days": 1,
-        "last_check_time": 1733803860,
+        "color": 5,
+        "check_in_days": 105,
+        "last_check_time": 1733890260,
         "register_time": "2024-12-09 20:31:05",
         "logined_time": "",
         "is_consent_agreement": false,
@@ -26,4 +26,3 @@
     },
     "friends": {}
 }
-

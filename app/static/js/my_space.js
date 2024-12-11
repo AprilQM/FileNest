@@ -1,3 +1,5 @@
+highlight_menu_item(6)
+
 function check_in() {
     ajax("POST", "/api/check_in", null, function (data) {
         

@@ -492,7 +492,7 @@ button.disabled {
 #other_btn:hover #other_box {
     transform: translateX(-100vw);
 }
-#to_mail_button_mobile, #to_setting_button_mobile{
+#to_mail_button_mobile, #to_setting_button_mobile, #to_user_space_button_mobile{
     height: 50px;
     width: 50px;
 }

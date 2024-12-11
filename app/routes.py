@@ -77,4 +77,14 @@ def change_mail():
         "back_url": back_url
     }
     return render_template('form.html', theme=get_user_theme(), user_datas=get_user_datas(), form=forms.ChangeMail(), form_info=form_info)
-    
+
+@main.route("/change_password")
+@login_required
+def change_password():
+    back_url = request.args.get('back')
+    form_info = {
+        "title": "修改邮箱",
+        "form_action": "/api/change_password",
+        "back_url": back_url
+    }
+    return render_template('form.html', theme=get_user_theme(), user_datas=get_user_datas(), form=forms.ChangePassowrd(), form_info=form_info)

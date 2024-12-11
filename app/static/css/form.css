@@ -58,7 +58,7 @@
 }
 .input{
     width: 90%;
-    margin-left: 5%;
+    margin: 0 0 35px 5%;
     display: block;
     border: none;
     background-color: var(--background2);
