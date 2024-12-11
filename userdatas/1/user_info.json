@@ -1,5 +1,5 @@
 {
-    "last_modified_time": 1733893040,
+    "last_modified_time": 1733927941,
     "user_datas": {
         "user_id": 1,
         "username": "AprilQM",
@@ -9,17 +9,19 @@
         "check_in_days": 106,
         "last_check_time": 1733890464,
         "register_time": "2024-12-09 12:01:20",
-        "logined_time": "",
+        "logined_time": "2024-12-11 22:17:12",
         "is_consent_agreement": false,
         "is_banned": false,
         "is_admin": true,
-        "visit_my_space": false
+        "visit_my_space": true
     },
     "user_space_info": {
         "slogan": "这个人很懒，什么都没有留下。",
         "avatar_file": "参赛纪念图.jpeg",
         "background_file": "1.png",
-        "praise": [],
+        "praise": [
+            1
+        ],
         "tag": [
             [
                 "星阁元老",
@@ -28,7 +30,7 @@
         ]
     },
     "setting": {
-        "visit_my_space": false
+        "visit_my_space": true
     },
     "friends": {}
 }

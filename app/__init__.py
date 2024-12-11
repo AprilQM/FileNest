@@ -4,7 +4,7 @@ from flask_login import LoginManager, current_user
 from flask_socketio import SocketIO
 import logging
 from logging.handlers import TimedRotatingFileHandler
-from flask import Flask, request
+from flask import Flask, request, render_template
 from datetime import datetime
 import os
 
@@ -12,6 +12,8 @@ import os
 db = SQLAlchemy()
 from app.models import DatabaseUser
 from config import Config
+from utils.other import get_user_theme as get_user_theme
+from utils.other import get_user_datas as get_user_datas
 
 app = Flask(__name__)
 app.secret_key = 'filenest_secret_key'
@@ -69,6 +71,22 @@ login_manager.init_app(app)
 def load_user(user_id):
     p = database.get_user(user_id)["user"]
     return web.WebUser(p["user_datas"]["user_id"], p["user_datas"]["username"])
+
+
+
+# 捕获所有错误
+@app.errorhandler(Exception)
+def handle_exception(e):
+    # 检查是否是 HTTPException 类型
+    if hasattr(e, 'code'):
+        # 针对 HTTP 错误返回对应的错误页面
+        return render_template("error.html", error_code=e.code, error_message=e.description, theme=get_user_theme(), user_datas=get_user_datas()[1]), e.code
+    else:
+        print(e)
+        # 针对非 HTTP 错误返回通用错误页面
+        return render_template("error.html", error_code=500, error_message="Internal Server Error", theme=get_user_theme(), user_datas=get_user_datas()[1]), 500
+
+
 
 # 注册UI路由
 from app.routes import main as main_blueprint

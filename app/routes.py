@@ -7,6 +7,8 @@ from app import forms
 
 main = Blueprint('main', __name__)
 
+
+
 @main.route('/')
 def index():
     return redirect('/home')
@@ -18,41 +20,41 @@ def auth():
     next_url = request.args.get('next')
     if not next_url:
         next_url = "/home"
-    return render_template('auth.html', theme=get_user_theme(), next_url=next_url, user_datas=get_user_datas())
+    return render_template('auth.html', theme=get_user_theme(), next_url=next_url, user_datas=get_user_datas()[1])
 
 @main.route("/home")
 def home():
-    return render_template('home.html', theme=get_user_theme(), user_datas=get_user_datas())
+    return render_template('home.html', theme=get_user_theme(), user_datas=get_user_datas()[1])
 
 @main.route("/cloud")
 @login_required
 def cloud():
-    return render_template('cloud.html', theme=get_user_theme(), user_datas=get_user_datas())
+    return render_template('cloud.html', theme=get_user_theme(), user_datas=get_user_datas()[1])
 
 @main.route("/project")
 @login_required
 def project():
-    return render_template('project.html', theme=get_user_theme(), user_datas=get_user_datas())
+    return render_template('project.html', theme=get_user_theme(), user_datas=get_user_datas()[1])
 
 @main.route("/forum")
 @login_required
 def forum():
-    return render_template('forum.html', theme=get_user_theme(), user_datas=get_user_datas())
+    return render_template('forum.html', theme=get_user_theme(), user_datas=get_user_datas()[1])
 
 @main.route("/notification")
 @login_required
 def notification():
-    return render_template('notification.html', theme=get_user_theme(), user_datas=get_user_datas())
+    return render_template('notification.html', theme=get_user_theme(), user_datas=get_user_datas()[1])
 
 @main.route("/setting")
 @login_required
 def setting():
-    return render_template('setting.html', theme=get_user_theme(), user_datas=get_user_datas())
+    return render_template('setting.html', theme=get_user_theme(), user_datas=get_user_datas()[1])
 
 @main.route("/my_space")
 @login_required
 def user_space():
-    return render_template('my_space.html', theme=get_user_theme(), user_datas=get_user_datas())
+    return render_template('my_space.html', theme=get_user_theme(), user_datas=get_user_datas()[1])
 
 
 @main.route("/change_name")
@@ -64,7 +66,7 @@ def change_name():
         "form_action": "/api/change_name",
         "back_url": back_url
     }
-    return render_template('form.html', theme=get_user_theme(), user_datas=get_user_datas(), form=forms.ChangName(), form_info=form_info)
+    return render_template('form.html', theme=get_user_theme(), user_datas=get_user_datas()[1], form=forms.ChangName(), form_info=form_info)
 
 
 @main.route("/change_mail")
@@ -76,7 +78,7 @@ def change_mail():
         "form_action": "/api/change_mail",
         "back_url": back_url
     }
-    return render_template('form.html', theme=get_user_theme(), user_datas=get_user_datas(), form=forms.ChangeMail(), form_info=form_info)
+    return render_template('form.html', theme=get_user_theme(), user_datas=get_user_datas()[1], form=forms.ChangeMail(), form_info=form_info)
 
 @main.route("/change_password")
 @login_required
@@ -87,4 +89,10 @@ def change_password():
         "form_action": "/api/change_password",
         "back_url": back_url
     }
-    return render_template('form.html', theme=get_user_theme(), user_datas=get_user_datas(), form=forms.ChangePassowrd(), form_info=form_info)
+    return render_template('form.html', theme=get_user_theme(), user_datas=get_user_datas()[1], form=forms.ChangePassowrd(), form_info=form_info)
+
+@main.route("/user_sapce/<username>")
+@login_required
+def user_sapce(username):
+    user_datas = get_user_datas(username)
+    return render_template('user_space.html', theme=get_user_theme(), user_datas=get_user_datas()[1] ,target_user_datas=user_datas[1], can_visit=user_datas[0])

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='icon/03/iconfont.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='icon/04/iconfont.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='icon/05/iconfont.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='icon/06/iconfont.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     <style>
         :root{
@@ -175,7 +176,7 @@
             <div id="menu_user_box_pc" class="menu_item_box">
             <h6 class="menu_box_title">用户</h6>
                 <div id="menu_img_box" onclick="jump_to_other_page_with_ui('/my_space')">
-                    <img src="/api/get_user_avatar_small/{{user_datas["user_datas"]["username"]}}" alt="头像">
+                    <img src="/api/get_user_avatar_small/{{user_datas['user_datas']['username']}}" alt="头像">
                 </div>
                 <div id="menu_username_box" onclick="jump_to_other_page_with_ui('/my_space')">
                     <h1 id="menu_username_text" class="responsive_text">{{user_datas["user_datas"]["username"]}}</h1>

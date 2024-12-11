@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}文栖 | {{ error_code }}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/error.css') }}">
+{% endblock %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/error.js') }}"></script>
+{% endblock %}
+
+{%block content%}
+<div id="error_box">
+    <h1>{{ error_code }}</h1>
+    <h6>{{ error_message }}</h6>
+    <a href="/home">返回首页</a>
+</div>
+{%endblock%}

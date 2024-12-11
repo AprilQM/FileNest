@@ -176,24 +176,72 @@ def get_user_theme():
     else:
         return Config.WEBCONFIG["front"]["themes"][0]
 
-def get_user_datas():
-    if current_user.is_authenticated:
-        user_datas = database.get_user(current_user.user_id)
-        if user_datas["success"]:
-            del user_datas["user"]["last_modified_time"]
-            del user_datas["user"]["user_datas"]["password"]
-            del user_datas["user"]["user_datas"]["is_consent_agreement"]
-            del user_datas["user"]["user_datas"]["is_banned"]
-            del user_datas["user"]["user_datas"]["is_admin"]
-            
-            return user_datas["user"]
-    else:
-        return {
+def get_user_datas(username=None):
+    if username:
+        user_id = database.get_user_id_by_username(username)["user_id"]
+    
+        user_datas = database.get_user(user_id)
+        
+        if user_datas["user"]["setting"]["visit_my_space"]:
+            user_datas = database.get_user(user_id)
+            if user_datas["success"]:
+                user_datas = user_datas["user"]
+                del user_datas["last_modified_time"]
+                
+                usename = user_datas["user_datas"]["username"]
+                level = user_datas["user_datas"]["level"]
+                
+                del user_datas["user_datas"]
+                
+                user_datas["user_datas"] = {}
+                user_datas["user_datas"]["user_id"] = user_id
+                user_datas["user_datas"]["level"] = level
+                user_datas["user_datas"]["username"] = usename
+                
+                
+                if current_user.is_authenticated:
+                    user_datas["is_praise"] = current_user.user_id in user_datas["user_space_info"]["praise"]
+                else:
+                    user_datas["is_praise"] = False
+                    
+                
+                del user_datas["friends"]
+                del user_datas["other"]
+                del user_datas["setting"]
+                
+                return True, user_datas
+        
+        return False, {
             "user_datas":{
                 "user_id": 0,
                 "username": "游客",
-                "level": 0,
+                "level": 0
             },
+            "user_space_info":{
+                "tag": []
+            }
+        }
+    if current_user.is_authenticated:
+        user_datas = database.get_user(current_user.user_id)
+        if user_datas["success"]:
+            user_datas = user_datas["user"]
+            del user_datas["last_modified_time"]
+            del user_datas["user_datas"]["password"]
+            del user_datas["user_datas"]["is_consent_agreement"]
+            del user_datas["user_datas"]["is_banned"]
+            del user_datas["user_datas"]["is_admin"]
+            
+            return True, user_datas
+    else:
+        return False, {
+            "user_datas":{
+                "user_id": 0,
+                "username": "游客",
+                "level": 0
+            },
+            "user_space_info":{
+                "tag": []
+            }
         }
     
 def make_png(avatar_path, max_width=100, max_height=100):

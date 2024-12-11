@@ -1,0 +1,181 @@
+#background_img_box {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 1s ease;
+    display: grid;
+    place-items: center;
+}
+
+#background_img_box:hover {
+    height: 40vh;
+}
+
+#background_img_box:hover #background_img {
+    transition: all 1s ease;
+    transform: scale(1.1);
+}
+
+#background_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* 图片充满容器且不变形 */
+}
+
+#user_content_box {
+    width: 100%;
+    min-height: 100%;
+    transform: translateY(-30px);
+    border-radius: 30px;
+    background-color: var(--background);
+    padding: 10px;
+}
+
+#user_info_box {
+    border: none;
+    width: 100%;
+    padding: 20px;
+    height: auto;
+    border-bottom: var(--secondary1) 1px solid;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+#avatar_img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 20px;
+}
+
+@media screen and (max-width: 767px) {
+    #avatar_img {
+        width: 80px;
+        height: 80px;
+        margin: 8px 20px 8px 8px;
+    }
+}
+
+#info_box {
+    padding: 50px 0;
+    max-width: 200px;
+    min-width: 120px;
+}
+
+@media screen and (max-width: 767px) {
+    #info_box {
+        padding: 10px 0;
+    }
+}
+
+#user_info_username {
+    color: var(--background_conflict);
+    font-size: 30px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 767px) {
+    #user_info_username {
+        font-size: 25px;
+    }
+}
+
+#level_box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#user_info_level {
+    color: var(--background_conflict);
+    font-size: 35px;
+    display: inline;
+    transform: translateY(8px);
+}
+
+@media screen and (max-width: 767px) {
+    #user_info_level {
+        font-size: 25px;
+    }
+}
+
+#praise_box {
+    display: flex;
+    align-items: center;
+    transform: translateY(-20px);
+    height: 100%;
+    position: absolute;
+    right: 50px;
+}
+
+#praise_btn {
+    background-color: initial;
+    border: none;
+    color: var(--text3);
+    font-size: 35px;
+    font-weight: bold;
+    transform: translateY(15px);
+}
+
+#praise_btn:hover {
+    transition: 0.2s ease;
+    color: var(--background_conflict);
+}
+
+#praise_btn:hover~#praise_count {
+    transition: 0.2s ease;
+    color: var(--background_conflict);
+}
+
+@media screen and (max-width: 767px) {
+    #praise_btn {
+        font-size: 22px;
+        transform: translateY(8px);
+    }
+
+    #praise_box {
+        right: 15px;
+    }
+}
+
+#praise_btn_box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text3);
+}
+
+
+#function_box {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    border-bottom: var(--secondary1) 1px solid;
+}
+
+#slogan_text {
+    font-size: 15px;
+    color: var(--text);
+}
+
+#tag_box {
+    width: 100%;
+    margin-top: 20px;
+    min-height: 30px;
+    overflow-y: hidden;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.tag {
+    font-size: 10px;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 5px 10px;
+    margin-right: 10px;
+}

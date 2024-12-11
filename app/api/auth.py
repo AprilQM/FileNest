@@ -7,6 +7,7 @@ from app.models import DatabaseUser
 from config import Config
 from utils.web import WebUser
 import time
+from datetime import datetime
 import os
 from app import db
 
@@ -34,6 +35,7 @@ def login():
     user_data = database.get_user(user_id)["user"]
     if other.hash_encrypt(password) == user_data["user_datas"]["password"]:
         back["success"] = True
+        database.update_user(user_id, "logined_time", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         login_user(WebUser(user_id, user_data["user_datas"]["username"]))
         back["next_url"] = next_url
         return jsonify(back)

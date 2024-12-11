@@ -110,3 +110,23 @@ def check_in():
         back["next_level_need_days"] = next_level_need_days
     
     return back
+
+@api.route("/praise_user", methods=['POST'])
+@login_required
+def praise_user():
+    back = {
+        'success': False
+    }
+    datas = request.get_json()
+    target_id = int(datas.get('target_id'))
+    user_datas = database.get_user(current_user.user_id)["user"]
+    target_user_datas = database.get_user(target_id)["user"]
+    
+    if current_user.user_id in target_user_datas["user_space_info"]["praise"]:
+        back["message"] = "already_praise"
+        return jsonify(back)
+    else:
+        back["success"] = True
+        back["praise_count"] = target_user_datas["user_space_info"]["praise_count"] + 1
+        database.update_user(target_id, "praise", target_user_datas["user_space_info"]["praise"] + [current_user.user_id])
+        return jsonify(back)
