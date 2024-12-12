@@ -20,7 +20,7 @@ function jump_to_other_page_with_ui(url) {
         loading.in()
         setTimeout(() => {
             window.location.href = url
-        }, 1200)
+        }, 990)
     } else {
         error_alert("不是已经在这个页面了嘛？ (；￣Д￣)？  ")
     }
@@ -257,6 +257,7 @@ function highlight_menu_item(index) {
         $id("to_forum_button_pc"),
         $id("to_mail_button_pc"),
         $id("to_setting_button_pc"),
+        $id("to_friend_button_pc"),
         
     ]
     const menu_list_mobile = [
@@ -266,9 +267,10 @@ function highlight_menu_item(index) {
         $id("to_forum_button_mobile"),
         $id("to_mail_button_mobile"),
         $id("to_setting_button_mobile"),
-        $id("to_user_space_button_mobile")
+        $id("to_friend_button_mobile"),
+        $id("to_user_space_button_mobile"),
     ]
-    if (index !== 6){
+    if (index !== 7){
         menu_list_pc[index].classList.add("menu_this_page_pc");
     }
     menu_list_mobile[index].classList.add("menu_this_page_mobile");

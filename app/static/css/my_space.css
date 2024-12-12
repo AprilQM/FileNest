@@ -168,7 +168,16 @@
 }
 #slogan_text{
     font-size: 15px;
+    background-color: var(--background);
+    width: auto;
+    border: none;
+    border-bottom: var(--background) 2px solid;
     color: var(--text);
+    width: 100%;
+}
+#slogan_text:focus{
+    outline: none;
+    border-bottom: var(--background_conflict) 2px solid;
 }
 #check_in_btn{
     font-size: 15px;

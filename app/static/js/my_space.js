@@ -35,3 +35,25 @@ for(let i of user_data["user_space_info"]["tag"]){
     b.style.backgroundColor = i[1]
     $id("tag_box").appendChild(b)
 }
+
+$id("slogan_text").value = user_data["user_space_info"]["slogan"]
+
+function change_slogan() {
+    if ($id("slogan_text").value.length > 60) {
+        warning_alert("标语过长")
+        return
+    }
+    if ($id("slogan_text").value == user_data["user_space_info"]["slogan"]) {
+        return
+    }
+    ajax("POST", "/api/change_slogan", {
+        "slogan": $id("slogan_text").value
+    }, function (data) {
+        if (data["success"]) {
+            user_data["user_space_info"]["slogan"] = $id("slogan_text").value
+            success_alert("空间标语修改成功！")
+        }
+    }, function () {
+        error_alert("修改失败，网络错误")
+    })
+}

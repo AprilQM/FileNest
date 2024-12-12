@@ -8,4 +8,5 @@ from app.api import webuser
 from app.api import cloud
 from app.api import project
 from app.api import forum
+from app.api import friend
 from app.api import setting

@@ -230,11 +230,11 @@ body {
     fill: var(--background_conflict);
 }
 #menu_navigation_box_pc{
-    height: calc(43% - 25px);
+    height: calc(38% - 25px);
     overflow: auto;
 }
 #menu_function_box_pc{
-    height: calc(27% - 25px);
+    height: calc(32% - 25px);
     overflow: auto;
 }
 #menu_user_box_pc{
@@ -492,7 +492,7 @@ button.disabled {
 #other_btn:hover #other_box {
     transform: translateX(-100vw);
 }
-#to_mail_button_mobile, #to_setting_button_mobile, #to_user_space_button_mobile{
+.other_menu_item{
     height: 50px;
     width: 50px;
 }

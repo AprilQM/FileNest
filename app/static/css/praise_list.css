@@ -24,8 +24,8 @@
     margin-top: 10px;
     padding: 0 20px;
     height: 120px;
-    width: 98%;
-    margin-left: 1%;
+    width: 70%;
+    margin-left: 15%;
     position: relative;
     cursor: pointer;
     display: flex;
@@ -40,14 +40,16 @@
     border-radius: 50%;
 }
 .user_box div{
-    margin-left: 15px;
+    margin-left: 25px;
     display: inline-block;
 }
 .user_box h2{
     margin-top: 10px;
+    font-size: 25px;
     color: var(--background_conflict);
 }
 .user_box h6{
+    font-size: 15px;
     color: var(--text3);
 }
 @media screen and (max-width: 767px) {

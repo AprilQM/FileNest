@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='icon/04/iconfont.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='icon/05/iconfont.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='icon/06/iconfont.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='icon/07/iconfont.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     <style>
         :root{
@@ -62,12 +63,12 @@
         
         
         .loading-out {
-            animation: loading-out 1.5s ease forwards;
+            animation: loading-out 1s ease forwards;
             transform: translateY(100vh);
         }
         
         .loading-in {
-            animation: loading-in 0.8s ease forwards;
+            animation: loading-in 1s ease forwards;
             transform: translateY(0);
         }
         
@@ -160,6 +161,12 @@
                 <h6 class="menu_box_title">功能</h6>
                 <ul>
                     <li>
+                        <button class="menu_btn_pc" id="to_friend_button_pc" onclick="jump_to_other_page_with_ui('/friend')">
+                            <span class="iconfont icon-friend"></span>
+                            <span class="menu_item_hide_pc menu_btn_text_pc">好友</span>
+                        </button>
+                    </li>
+                    <li>
                         <button class="menu_btn_pc" id="to_mail_button_pc" onclick="jump_to_other_page_with_ui('/notification')">
                             <span class="iconfont icon-mail"></span>
                             <span class="menu_item_hide_pc menu_btn_text_pc">消息</span>
@@ -194,9 +201,10 @@
             <span class=" iconfont icon-OTHER_SYSTEM"></span>其他
             <div id="other_box">
                 <h6 id="other_menu_title">其他菜单</h6>
-                <button class="menu_btn_mobile" id="to_user_space_button_mobile" onclick="jump_to_other_page_with_ui('/my_space')"><span class="iconfont icon-username"></span>个人主页</button>
-                <button class="menu_btn_mobile" id="to_mail_button_mobile" onclick="jump_to_other_page_with_ui('/notification')"><span class="iconfont icon-mail"></span>消息</button>
-                <button class="menu_btn_mobile" id="to_setting_button_mobile" onclick="jump_to_other_page_with_ui('/setting')"><span class="iconfont icon-setting"></span>设置</button>
+                <button class="menu_btn_mobile other_menu_item" id="to_user_space_button_mobile" onclick="jump_to_other_page_with_ui('/my_space')"><span class="iconfont icon-username"></span>个人主页</button>
+                <button class="menu_btn_mobile other_menu_item" id="to_friend_button_mobile" onclick="jump_to_other_page_with_ui('/friend')"><span class="iconfont icon-friend"></span>好友</button>
+                <button class="menu_btn_mobile other_menu_item" id="to_mail_button_mobile" onclick="jump_to_other_page_with_ui('/notification')"><span class="iconfont icon-mail"></span>消息</button>
+                <button class="menu_btn_mobile other_menu_item" id="to_setting_button_mobile" onclick="jump_to_other_page_with_ui('/setting')"><span class="iconfont icon-setting"></span>设置</button>
             </div>
         </div>
     </div>

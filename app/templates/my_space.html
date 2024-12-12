@@ -47,7 +47,7 @@
             <button id="check_in_btn" class="disabled">已签到</button>
         {%endif%}
         <div id="slogan_box">
-            <h3 id="slogan_text">{{user_datas["user_space_info"]["slogan"]}}</h3>
+            <input id="slogan_text" onkeydown="if(event.key === 'Enter') change_slogan()">
         </div>
         <div id="tag_box"></div>
     </div>

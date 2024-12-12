@@ -130,3 +130,15 @@ def praise_user():
         back["praise_count"] = target_user_datas["user_space_info"]["praise_count"] + 1
         database.update_user(target_id, "praise", [current_user.user_id] + target_user_datas["user_space_info"]["praise"])
         return jsonify(back)
+
+@api.route("/change_slogan", methods=['POST'])
+@login_required
+def change_slogan():
+    datas = request.get_json()
+    slogan = datas.get('slogan')
+    database.update_user(current_user.user_id, "slogan", slogan)
+    
+    return jsonify({
+        "success" : True
+    })
+        

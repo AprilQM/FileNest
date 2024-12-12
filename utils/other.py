@@ -244,7 +244,7 @@ def get_user_datas(username=None):
             }
         }
     
-def make_png(avatar_path, max_width=100, max_height=100):
+def make_png(avatar_path, max_width=150, max_height=150):
     # 打开头像文件并按比例缩小
     with Image.open(avatar_path) as img:
         # 获取原始图片的宽度和高度
