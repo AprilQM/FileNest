@@ -12,7 +12,9 @@
         "logined_time": "2024-12-12 20:33:21",
         "is_consent_agreement": false,
         "is_banned": false,
-        "is_admin": false
+        "is_admin": false,
+        "password": "9c5301cf06f3139c68359327f783746a2380dee2826defd2a29b82d84439c837",
+        "next_level_need_days": 5
     },
     "user_space_info": {
         "slogan": "某人的小号，应该没人会发现吧 QMQ",
@@ -22,10 +24,23 @@
             3,
             1
         ],
-        "tag": []
+        "tag": [],
+        "praise_count": 2
     },
     "setting": {
         "visit_my_space": false
     },
-    "friends": {}
+    "friends": {
+        "1": false
+    },
+    "other": {
+        "can_check": false,
+        "colors_can_use": [
+            [
+                "艳红",
+                "#ed5a65",
+                "#ffffff"
+            ]
+        ]
+    }
 }

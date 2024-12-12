@@ -75,16 +75,17 @@ def load_user(user_id):
 
 
 # 捕获所有错误
-@app.errorhandler(Exception)
-def handle_exception(e):
-    # 检查是否是 HTTPException 类型
-    if hasattr(e, 'code'):
-        # 针对 HTTP 错误返回对应的错误页面
-        return render_template("error.html", error_code=e.code, error_message=e.description, theme=get_user_theme(), user_datas=get_user_datas()[1]), e.code
-    else:
-        print(e)
-        # 针对非 HTTP 错误返回通用错误页面
-        return render_template("error.html", error_code=500, error_message="Internal Server Error", theme=get_user_theme(), user_datas=get_user_datas()[1]), 500
+if not Config.WEBCONFIG["rear"]["debug"]:
+    @app.errorhandler(Exception)
+    def handle_exception(e):
+        # 检查是否是 HTTPException 类型
+        if hasattr(e, 'code'):
+            # 针对 HTTP 错误返回对应的错误页面
+            return render_template("error.html", error_code=e.code, error_message=e.description, theme=get_user_theme(), user_datas=get_user_datas()[1]), e.code
+        else:
+            print(e)
+            # 针对非 HTTP 错误返回通用错误页面
+            return render_template("error.html", error_code=500, error_message="Internal Server Error", theme=get_user_theme(), user_datas=get_user_datas()[1]), 500
 
 
 

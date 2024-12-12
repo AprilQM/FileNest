@@ -13,7 +13,9 @@
         "is_consent_agreement": false,
         "is_banned": false,
         "is_admin": true,
-        "visit_my_space": false
+        "visit_my_space": false,
+        "password": "9c5301cf06f3139c68359327f783746a2380dee2826defd2a29b82d84439c837",
+        "next_level_need_days": 108
     },
     "user_space_info": {
         "slogan": "代码小扒菜 求大佬带（喜",
@@ -31,13 +33,63 @@
                 "星阁元老",
                 "#163172"
             ]
-        ]
+        ],
+        "praise_count": 5
     },
     "setting": {
         "visit_my_space": false
     },
     "friends": {
-        "1": false,
-        "5": true
+        "5": false
+    },
+    "other": {
+        "can_check": false,
+        "colors_can_use": [
+            [
+                "艳红",
+                "#ed5a65",
+                "#ffffff"
+            ],
+            [
+                "橘橙",
+                "#fba414",
+                "#ffffff"
+            ],
+            [
+                "米黄",
+                "#f4ce69",
+                "#ffffff"
+            ],
+            [
+                "铜绿",
+                "#2bae85",
+                "#ffffff"
+            ],
+            [
+                "钴青",
+                "#1a94bc",
+                "#ffffff"
+            ],
+            [
+                "星阁",
+                "#163172",
+                "#ffffff"
+            ],
+            [
+                "樱紫",
+                "#c06f98",
+                "#ffffff"
+            ],
+            [
+                "黑白",
+                "#f0f0f0",
+                "#171717"
+            ],
+            [
+                "黑金",
+                "#fae9a0",
+                "#171717"
+            ]
+        ]
     }
 }

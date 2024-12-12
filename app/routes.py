@@ -125,8 +125,8 @@ def praise_list():
     return render_template('praise_list.html', theme=get_user_theme(), user_datas=get_user_datas()[1], praise_list=praise_uername_list, slogan_list=slogan_list)
 
 
-# @main.route("/test")
-# def test():
-#     from utils import web
-#     web.send_fuc_to_user(3, "jump_to_other_page_with_ui('/home')")
-#     return "ok"
+@main.route("/test")
+def test():
+    from utils import friend
+    friend.add_friend(5)
+    return "ok"

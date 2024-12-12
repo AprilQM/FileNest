@@ -15,7 +15,7 @@
 
 <div id="friends_list_box">
     {%for i in user_datas["friends"]%}
-        <div class="friend_item_box{%if user_datas['friends'][i][0]%} friend_message_box{%endif%}"  >
+        <div class="friend_item_box{%if user_datas['friends'][i][0]%} friend_message_box{%endif%}"  onclick="get_chat_histroy(this, '{{i}}')">
             <img src="/api/get_user_avatar_small/{{i}}" alt="" class="friends_list_avatar">
             <div class="friend_info">
                 <p class="friends_list_username">{{i}}</p>
