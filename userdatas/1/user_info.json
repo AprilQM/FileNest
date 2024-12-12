@@ -1,5 +1,5 @@
 {
-    "last_modified_time": 1733977925,
+    "last_modified_time": 1733994315,
     "user_datas": {
         "user_id": 1,
         "username": "AprilQM",
@@ -9,17 +9,18 @@
         "check_in_days": 107,
         "last_check_time": 1733960843,
         "register_time": "2024-12-09 12:01:20",
-        "logined_time": "2024-12-12 12:30:33",
+        "logined_time": "2024-12-12 17:02:34",
         "is_consent_agreement": false,
         "is_banned": false,
         "is_admin": true,
-        "visit_my_space": true
+        "visit_my_space": false
     },
     "user_space_info": {
         "slogan": "这个人很懒，什么都没有留下。",
         "avatar_file": "参赛纪念图.jpeg",
         "background_file": "1.png",
         "praise": [
+            5,
             1,
             4,
             3,
@@ -33,7 +34,7 @@
         ]
     },
     "setting": {
-        "visit_my_space": true
+        "visit_my_space": false
     },
     "friends": {}
 }

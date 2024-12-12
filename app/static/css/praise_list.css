@@ -11,12 +11,14 @@
 #title_box h3{
     font-size: 18px;
     margin: 0;
+    font-weight: bold;
 }
 #praise_list_box{
     width: 100%;
-    height: calc(100% - 50px);
+    height: calc(100% - 80px);
     overflow: auto;
     position: relative;
+    margin-top: 30px;
 }
 .user_box{
     margin-top: 10px;
@@ -28,6 +30,9 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+}
+.user_box:hover{
+    background-color: var(--secondary2);
 }
 .user_box img{
     width: 100px;
@@ -57,5 +62,11 @@
         height: 80px;
         border-radius: 50%;
         margin-left: 20px;
+    }
+    .user_box h2{
+        font-size: 20px;
+    }
+    .user_box h6{
+        font-size: 10px;
     }
 }
