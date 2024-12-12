@@ -231,6 +231,14 @@ def get_user_datas(username=None):
             del user_datas["user_datas"]["is_banned"]
             del user_datas["user_datas"]["is_admin"]
             
+            friends_id_dict = user_datas["friends"]
+            del user_datas["friends"]
+            friends_username_dict = {}
+            for i in friends_id_dict:
+                this_user_datas = database.get_user(i)["user"]
+                friends_username_dict[this_user_datas["user_datas"]["username"]] = [friends_id_dict[i], this_user_datas["user_space_info"]["slogan"]]
+            user_datas["friends"] = friends_username_dict
+            
             return True, user_datas
     else:
         return False, {

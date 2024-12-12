@@ -11,6 +11,13 @@
       "font_class": "friend",
       "unicode": "e6cc",
       "unicode_decimal": 59084
+    },
+    {
+      "icon_id": "128736",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e6cd",
+      "unicode_decimal": 59085
     }
   ]
 }

@@ -1,4 +1,4 @@
-highlight_menu_item(6)
+highlight_menu_item(7)
 
 function check_in() {
     ajax("POST", "/api/check_in", null, function (data) {
@@ -39,7 +39,7 @@ for(let i of user_data["user_space_info"]["tag"]){
 $id("slogan_text").value = user_data["user_space_info"]["slogan"]
 
 function change_slogan() {
-    if ($id("slogan_text").value.length > 60) {
+    if ($id("slogan_text").value.length > 45) {
         warning_alert("标语过长")
         return
     }
