@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from config import Config
 from utils.other import get_user_theme as get_user_theme
 from utils.other import get_user_datas as get_user_datas
+from utils import database
 from app import forms
 
 main = Blueprint('main', __name__)
@@ -91,8 +92,35 @@ def change_password():
     }
     return render_template('form.html', theme=get_user_theme(), user_datas=get_user_datas()[1], form=forms.ChangePassowrd(), form_info=form_info)
 
-@main.route("/user_sapce/<username>")
+@main.route("/user_space/<username>")
 @login_required
-def user_sapce(username):
-    user_datas = get_user_datas(username)
-    return render_template('user_space.html', theme=get_user_theme(), user_datas=get_user_datas()[1] ,target_user_datas=user_datas[1], can_visit=user_datas[0])
+def userSpace(username):
+    user_id = database.get_user_id_by_username(username)
+    if user_id["success"]:
+        user_datas = get_user_datas(username)
+        return render_template('user_space.html', theme=get_user_theme(), user_datas=get_user_datas()[1] ,target_user_datas=user_datas[1], can_visit=user_datas[0])
+    else:
+        return render_template("error.html", error_code=404, error_message="The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.", theme=get_user_theme(), user_datas=get_user_datas()[1]), 404
+
+@main.route("/praise_list")
+@login_required
+def praise_list():
+    user_datas = database.get_user(current_user.user_id)["user"]
+    praise_list = user_datas["user_space_info"]["praise"]
+    praise_uername_list = []
+    slogan_list = {}
+    for i in praise_list:
+        this_user_datas = database.get_user(i)["user"]
+        this_username = this_user_datas["user_datas"]["username"]
+        this_slogan = this_user_datas["user_space_info"]["slogan"]
+        praise_uername_list.append(this_username)
+        slogan_list[this_username] = this_slogan
+
+    return render_template('praise_list.html', theme=get_user_theme(), user_datas=get_user_datas()[1], praise_list=praise_uername_list, slogan_list=slogan_list)
+
+
+@main.route("/test")
+def test():
+    from utils import web
+    web.send_fuc_to_user(3, "jump_to_other_page_with_ui('/home')")
+    return "ok"

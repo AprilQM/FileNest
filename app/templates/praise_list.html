@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}文栖 | 点赞{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/praise_list.css') }}">
+{% endblock %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/praise_list.js') }}"></script>
+{% endblock %}
+
+{%block content%}
+<div id="title_box">
+    <h3>点赞</h3>
+</div>
+<div id="praise_list_box">
+    {%for i in praise_list%}
+        <div class="user_box box" onclick="jump_to_other_page_with_ui('/user_space/{{i}}')">
+            <img src="/api/get_user_avatar_small/{{i}}" alt="{{i}}">
+            <div>
+                <h2>{{i}}</h2>
+                <h6>{{slogan_list[i]}}</h6>
+            </div>
+        </div>
+    {%endfor%}
+</div>
+
+{%endblock%}

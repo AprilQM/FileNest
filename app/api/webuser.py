@@ -128,5 +128,5 @@ def praise_user():
     else:
         back["success"] = True
         back["praise_count"] = target_user_datas["user_space_info"]["praise_count"] + 1
-        database.update_user(target_id, "praise", target_user_datas["user_space_info"]["praise"] + [current_user.user_id])
+        database.update_user(target_id, "praise", [current_user.user_id] + target_user_datas["user_space_info"]["praise"])
         return jsonify(back)

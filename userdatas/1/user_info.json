@@ -1,15 +1,15 @@
 {
-    "last_modified_time": 1733927941,
+    "last_modified_time": 1733977925,
     "user_datas": {
         "user_id": 1,
         "username": "AprilQM",
         "email": "april2730391712@outlook.com",
         "level": 6,
-        "color": 5,
-        "check_in_days": 106,
-        "last_check_time": 1733890464,
+        "color": 8,
+        "check_in_days": 107,
+        "last_check_time": 1733960843,
         "register_time": "2024-12-09 12:01:20",
-        "logined_time": "2024-12-11 22:17:12",
+        "logined_time": "2024-12-12 12:30:33",
         "is_consent_agreement": false,
         "is_banned": false,
         "is_admin": true,
@@ -20,7 +20,10 @@
         "avatar_file": "参赛纪念图.jpeg",
         "background_file": "1.png",
         "praise": [
-            1
+            1,
+            4,
+            3,
+            2
         ],
         "tag": [
             [
