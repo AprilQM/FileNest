@@ -60,7 +60,7 @@
 }
 .friends_list_username{
     color: var(--background_conflict);
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 520;
     margin: 0;
 }
@@ -79,4 +79,38 @@
     height: 10px;
     border-radius: 50%;
     background-color: var(--background_conflict);
+}
+#search_friend_box{
+    width: 100%;
+    height: 60px;
+    border-bottom: var(--secondary2) 1px solid;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#search_friend_input{
+    width: 85%;
+    padding: 5px 10px;
+    border: var(--secondary2) 1px solid;
+    color: var(--text);
+    border-radius: 5px;
+    font-weight: 520;
+    background-color: var(--background2);
+}
+#search_friend_input:focus{
+    outline: none;
+}
+#search_friend_btn{
+    width: 15%;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    background-color: initial;
+    color: var(--text3);
+}
+#search_friend_btn:hover{
+    transform: scale(1.1);
+    color: var(--background_conflict);
 }

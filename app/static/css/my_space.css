@@ -8,7 +8,7 @@
     place-items: center;
 }
 #background_img_box:hover {
-    height: 40vh;
+    height: 96vh;
 }
 #background_img_box:hover #background_img{
     transition: all 1s ease;

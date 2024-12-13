@@ -14,6 +14,10 @@
 {%block content%}
 
 <div id="friends_list_box">
+    <div id="search_friend_box">
+        <input type="text" placeholder="搜索" id="search_friend_input">
+        <button class="iconfont icon-search" id="search_friend_btn"></button>
+    </div>
     {%for i in user_datas["friends"]%}
         <div class="friend_item_box{%if user_datas['friends'][i][0]%} friend_message_box{%endif%}"  onclick="get_chat_histroy(this, '{{i}}')">
             <img src="/api/get_user_avatar_small/{{i}}" alt="" class="friends_list_avatar">
