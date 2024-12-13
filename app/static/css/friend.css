@@ -8,12 +8,7 @@
     position: relative;
     background-color: var(--background2);
 }
-@media screen and (max-width: 767px) {
-    #friends_list_box {
-        width: 100%;
-    }
-}
-#chat_box{
+#right_box{
     float: left;
     width: calc(100% - 300px);
     height: 100%;
@@ -98,6 +93,7 @@
     border-radius: 5px;
     font-weight: 520;
     background-color: var(--background2);
+    font-size: 17px;
 }
 #search_friend_input:focus{
     outline: none;
@@ -113,4 +109,46 @@
 #search_friend_btn:hover{
     transform: scale(1.1);
     color: var(--background_conflict);
+}
+#back_to_friend_list{
+    display: none;
+}
+@media screen and (max-width: 767px) {
+    #friends_list_box {
+        width: 100%;
+    }
+    #right_box{
+        width: 0;
+    }
+    .right #friends_list_box{
+        transform: translateX(-100%);
+        white-space: nowrap;
+        width: 0;
+    }
+    .right #right_box{
+        width: 100%;
+    }
+    .right #back_to_friend_list{
+        display: block;
+    }
+}
+#chat_box{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#chat_title_box{
+    width: 100%;
+    background-color: var(--background);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+#back_to_friend_list{
+    border: none;
+    color: var(--background_conflict);
+    font-weight: bold;
+    font-size: 30px;
+    background-color: initial;
 }
