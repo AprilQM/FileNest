@@ -20,6 +20,11 @@
     position: relative;
     margin-top: 30px;
 }
+@media screen and (max-width: 767px) {
+    #praise_list_box {
+        margin-top: 8px;
+    }
+}
 .user_box{
     margin-top: 10px;
     padding: 0 20px;

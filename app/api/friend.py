@@ -28,4 +28,16 @@ def get_chat_histroy():
     else:
         return jsonify({"success": False, "message": "User not found"})
     
+
+@api.route("/search_user", methods=["POST"])
+@login_required
+def search_user():
+    datas = request.get_json()
+    username = datas.get("username")
     
+    user_id = database.get_user_id_by_username(username)
+    
+    if user_id["success"]:
+        return jsonify({"success": True})
+    else:
+        return jsonify({"success": False})

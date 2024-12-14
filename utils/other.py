@@ -128,6 +128,22 @@ def create_user_info(user):
         os.mkdir(os.path.join(Config.USER_INFO_DIR, user_id, "chat"))
     if not os.path.exists(os.path.join(Config.USER_INFO_DIR, user_id, "background")):
         os.mkdir(os.path.join(Config.USER_INFO_DIR, user_id, "background"))
+    
+    # 创建邮件消息文件
+    if not os.path.exists(os.path.join(Config.USER_INFO_DIR, user_id, "notification")):
+        os.mkdir(os.path.join(Config.USER_INFO_DIR, user_id, "notification"))
+    if not os.path.exists(os.path.join(Config.USER_INFO_DIR, user_id, "notification", "login.json")):
+        with open(os.path.join(Config.USER_INFO_DIR, user_id, "notification", "login.json"), "w", encoding="utf-8") as f:
+            json.dump([], f, ensure_ascii=False, indent=4)
+    if not os.path.exists(os.path.join(Config.USER_INFO_DIR, user_id, "notification", "friend.json")):
+        with open(os.path.join(Config.USER_INFO_DIR, user_id, "notification", "friend.json"), "w", encoding="utf-8") as f:
+            json.dump([], f, ensure_ascii=False, indent=4)
+    if not os.path.exists(os.path.join(Config.USER_INFO_DIR, user_id, "notification", "server.json")):
+        with open(os.path.join(Config.USER_INFO_DIR, user_id, "notification", "server.json"), "w", encoding="utf-8") as f:
+            json.dump([], f, ensure_ascii=False, indent=4)
+    if not os.path.exists(os.path.join(Config.USER_INFO_DIR, user_id, "notification", "other.json")):
+        with open(os.path.join(Config.USER_INFO_DIR, user_id, "notification", "other.json"), "w", encoding="utf-8") as f:
+            json.dump([], f, ensure_ascii=False, indent=4)
 
 
 def create_user_info_json(user):
@@ -205,9 +221,11 @@ def get_user_datas(username=None):
                     user_datas["is_praise"] = False
                     
                 
-                del user_datas["friends"]
                 del user_datas["other"]
+                user_datas["is_friend"] = str(current_user.user_id) in user_datas["friends"]
+                del user_datas["friends"]
                 del user_datas["setting"]
+                
                 
                 return True, user_datas
         
@@ -399,5 +417,22 @@ def figout_user_level(days):
             new_level = next_level_need_days_list.index(i) + 1
     return new_level
     
+# 获取用户的消息
+def get_notifications(user_id):
+    notifications_path = f"{Config.USER_INFO_DIR}/{user_id}/notification"
+    b = {}
+    for i in ["friend", "login", "other", "server"]:
+        b[i] = json.loads(open(f"{notifications_path}/{i}.json", "r", encoding="utf-8").read())
+    return b
 
+# 写入消息
+def write_notifications(user_id, notification_type, notification_content):
+    notifications_path = f"{Config.USER_INFO_DIR}/{user_id}/notification"
+    with open(f"{notifications_path}/{notification_type}.json", "r", encoding="utf-8") as f:
+        a = json.loads(f.read())
+    a.append(notification_content)
+    with open(f"{notifications_path}/{notification_type}.json", "w", encoding="utf-8") as f:
+        f.write(json.dumps(a))
+    
+    
 # endregion

@@ -1,95 +1,30 @@
 {
-    "last_modified_time": 1734065747,
+    "last_modified_time": 1734152554,
     "user_datas": {
         "user_id": 1,
         "username": "AprilQM",
         "email": "april2730391712@outlook.com",
         "level": 6,
         "color": 5,
-        "check_in_days": 109,
-        "last_check_time": 1734063003,
-        "register_time": "2024-12-09 12:01:20",
-        "logined_time": "2024-12-13 12:55:47",
+        "check_in_days": 106,
+        "last_check_time": 1734141537,
+        "register_time": "2024-12-13 21:03:21",
+        "logined_time": "2024-12-14 11:24:39",
         "is_consent_agreement": false,
         "is_banned": false,
-        "is_admin": true,
-        "visit_my_space": false,
-        "password": "9c5301cf06f3139c68359327f783746a2380dee2826defd2a29b82d84439c837",
-        "next_level_need_days": 109
+        "is_admin": true
     },
     "user_space_info": {
-        "slogan": "代码小扒菜 求大佬带（喜",
+        "slogan": "代码小扒菜，求大佬带（喜",
         "avatar_file": "参赛纪念图.jpeg",
         "background_file": "1.png",
         "praise": [
-            5,
-            1,
-            4,
-            3,
-            2
+            5
         ],
-        "tag": [
-            [
-                "星阁元老",
-                "#163172"
-            ]
-        ],
-        "praise_count": 5
+        "tag": []
     },
     "setting": {
-        "visit_my_space": false
+        "visit_my_space": true
     },
-    "friends": {
-        "5": false
-    },
-    "other": {
-        "can_check": false,
-        "colors_can_use": [
-            [
-                "艳红",
-                "#ed5a65",
-                "#ffffff"
-            ],
-            [
-                "橘橙",
-                "#fba414",
-                "#ffffff"
-            ],
-            [
-                "米黄",
-                "#f4ce69",
-                "#ffffff"
-            ],
-            [
-                "铜绿",
-                "#2bae85",
-                "#ffffff"
-            ],
-            [
-                "钴青",
-                "#1a94bc",
-                "#ffffff"
-            ],
-            [
-                "星阁",
-                "#163172",
-                "#ffffff"
-            ],
-            [
-                "樱紫",
-                "#c06f98",
-                "#ffffff"
-            ],
-            [
-                "黑白",
-                "#f0f0f0",
-                "#171717"
-            ],
-            [
-                "黑金",
-                "#fae9a0",
-                "#171717"
-            ]
-        ]
-    }
+    "friends": {}
 }

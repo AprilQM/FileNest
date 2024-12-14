@@ -285,8 +285,8 @@ chat_socket.on('connect', function() {
 });
 
 chat_socket.on('message', function (msg) {
-    show_message("有新的未读消息", `你有一条来自 ${msg.from} 的未读消息，点击此处跳转到通知界面。`, () => {
-        jump_to_other_page_with_ui('/notification')
+    show_message("有新的未读消息", `你有一条来自 ${msg.from} 的未读消息，点击此处跳转到好友界面。`, () => {
+        jump_to_other_page_with_ui('/friend')
     })
 });
 
@@ -313,4 +313,22 @@ function check_str_legal(str) {
     }
     return true;
 }
+const notification_socket = io("/notification")
+
+notification_socket.on('connect', function() {
+    console.log("通知已连接");
+});
+
+notification_socket.on('message', function (msg) {
+
+    show_message(msg.data.title, msg.data.content, () => {
+        const t = new Function(msg.data.fuc)
+        t();
+    })
+    
+});
+
+notification_socket.on('disconnect', function() {
+    console.log("通知已断开");
+});
 // endregion

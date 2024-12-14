@@ -27,7 +27,12 @@
                     <span class="iconfont icon-level-{{target_user_datas["user_datas"]["level"]}}" id="user_info_level"></span>
                 </div>
             </div>
-            <div id="praise_box">
+            <div id="fuction_box">
+                {%if not target_user_datas['is_friends']%}
+                    <div id="friends_btn_box">
+                        <button class="iconfont icon-AddFriend" id="add_friends_btn"></button>
+                    </div>
+                {%endif%}
                 {%if target_user_datas["is_praise"] %}
 
                     <div id="praise_btn_box">

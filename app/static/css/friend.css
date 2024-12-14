@@ -1,5 +1,12 @@
 #content_box{
     overflow: hidden;
+    padding: 8px;
+}
+@media screen and (max-width: 767px) {
+    #content_box {
+        overflow: hidden;
+        padding: 8px 0 8px 8px;
+    }
 }
 #friends_list_box{
     float: left;
@@ -7,13 +14,47 @@
     height: 100%;
     position: relative;
     background-color: var(--background2);
+    border-right: var(--secondary2) 1px solid;
+    border-radius: 8px;
+}
+#view_box{
+    overflow: hidden;
+    width: 100%;
+    height: calc(100% - 16px);
+    left: 8px;
+    position: absolute;
+}
+@media screen and (max-width: 767px) {
+    #view_box{
+        width: calc(200% - 8px);
+    }
+    .left{
+        transform: translateX(0);
+    }
+    .right{
+        transform: translateX(calc(-50% - 8px));
+    }
+    #right_box {
+        margin-left: 8px;
+    }
 }
 #right_box{
+    overflow: hidden;
+    border-radius: 8px;
     float: left;
-    width: calc(100% - 300px);
+    width: calc(100% - 324px);
     height: 100%;
     position: relative;
-    background-color: var(--background);
+    margin-left: 8px;
+}
+@media screen and (max-width: 767px) {
+    #friends_list_box{
+        width: calc(50% - 8px);
+    }
+    #right_box{
+        width: calc(50% - 8px);
+        margin-left: 16px;
+    }
 }
 #search_friend_box{
     position: relative;
@@ -110,45 +151,123 @@
     transform: scale(1.1);
     color: var(--background_conflict);
 }
-#back_to_friend_list{
+#title_box{
+    width: 100%;
+    height: 60px;
+    background-color: var(--background2);
+    border-bottom: var(--secondary2) 1px solid;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+#back_to_friend_btn{
+    border: none;
+    background-color: initial;
+    color: var(--background_conflict);
+    height: 100%;
+    font-size: 20px;
     display: none;
+    width: 60px;
 }
-@media screen and (max-width: 767px) {
-    #friends_list_box {
-        width: 100%;
-    }
-    #right_box{
-        width: 0;
-    }
-    .right #friends_list_box{
-        transform: translateX(-100%);
-        white-space: nowrap;
-        width: 0;
-    }
-    .right #right_box{
-        width: 100%;
-    }
-    .right #back_to_friend_list{
-        display: block;
-    }
-}
-#chat_box{
-    position: absolute;
+#title_content_box{
     width: 100%;
     height: 100%;
 }
-#chat_title_box{
+@media screen and (max-width: 767px) {
+    #back_to_friend_btn{
+        display: block;
+    }
+    #title_content_box {
+        width: calc(100% - 120px);
+    }
+}
+
+#search_box, #chat_box{
+    background-color: var(--background2);
     width: 100%;
-    background-color: var(--background);
-    height: 60px;
+    height: calc(100% - 60px);
+}
+#title{
+    color: var(--background_conflict);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+}
+@media screen and (min-width: 767px) {
+    .left #right_box{
+        opacity: 0;
+        transform: translateY(10%);
+        z-index: -1;
+        /* 阻止鼠标操作 */
+        pointer-events: none;
+    }
+}
+#my_friends_box, #all_user_box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+#my_friends_box{
+    height: 70%;
+}
+#all_user_box{
+    height: 30%;
+}
+#my_friends_title,
+#my_friends_search_light, 
+#all_user_title,
+#all_user_search_light{
+    color: var(--text3);
+    font-size: 15px;
+}
+
+#my_friends_search_light, #all_user_search_light{
+    margin: 40px 0;
+}
+#my_friends_search_box,
+#all_user_search_box{
+    overflow: auto;
+    width: calc(100% + 40px);
+    height: 100%;
+    padding: 10px;
+    border-bottom: var(--secondary2) 1px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#all_user_search_box{
+    border-bottom: 0;
+}
+.search_item_box{
+    padding: 0 50px;
+    width: 70%;
     display: flex;
     align-items: center;
-    padding: 0 15px;
+    justify-content: center;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 5px;
 }
-#back_to_friend_list{
-    border: none;
+.search_item_box:hover{
+    background-color: var(--secondary2);
+}
+.search_item_box img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+.search_item_box h6{
+    margin-left: 50px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
     color: var(--background_conflict);
-    font-weight: bold;
-    font-size: 30px;
-    background-color: initial;
 }

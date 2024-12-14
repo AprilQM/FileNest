@@ -14,8 +14,8 @@
     padding: 0 calc(1% + 8px);
 }
 .setting_title{
-    margin: 25px 0 5px 0;
-    color: var(--text);
+    margin: 25px 0 5px 20px;
+    color: var(--text3);
     font-size: 15px;
 }
 .setting_box{
@@ -41,12 +41,12 @@
     position: absolute;
     left: 30px;
     font-size: 18px;
+    color: var(--background_conflict);
 }
 .setting_value{
     position: absolute;
     right: 30px;
     font-size: 15px;
-    color: var(--background_conflict);
 }
 @media screen and (max-width: 767px) {
     .setting_value {

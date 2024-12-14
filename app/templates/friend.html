@@ -12,26 +12,42 @@
 
 
 {%block content%}
-
-<div id="friends_list_box">
-    <div id="search_friend_box">
-        <input type="text" placeholder="搜索" id="search_friend_input">
-        <button class="iconfont icon-search" id="search_friend_btn"></button>
+<div id="view_box" class="left">
+    <div id="friends_list_box">
+        <div id="search_friend_box">
+            <input type="text" placeholder="搜索" id="search_friend_input"  onkeydown="if(event.key === 'Enter') to_search()">
+            <button class="iconfont icon-search" id="search_friend_btn" onclick="to_search('')"></button>
+        </div>
+        {%for i in user_datas["friends"]%}
+            <div class="friend_item_box{%if user_datas['friends'][i][0]%} friend_message_box{%endif%}"  onclick="get_chat_histroy('{{i}}')" id="{{i}}_friend_item">
+                <img src="/api/get_user_avatar_small/{{i}}" alt="" class="friends_list_avatar">
+                <div class="friend_info">
+                    <p class="friends_list_username">{{i}}</p>
+                    <p class="friends_list_slogan">{{user_datas["friends"][i][1]}}</p>
+                </div>
+            </div>
+        {%endfor%}
     </div>
-    {%for i in user_datas["friends"]%}
-        <div class="friend_item_box{%if user_datas['friends'][i][0]%} friend_message_box{%endif%}"  onclick="get_chat_histroy(this, '{{i}}')">
-            <img src="/api/get_user_avatar_small/{{i}}" alt="" class="friends_list_avatar">
-            <div class="friend_info">
-                <p class="friends_list_username">{{i}}</p>
-                <p class="friends_list_slogan">{{user_datas["friends"][i][1]}}</p>
+    <div id="right_box">
+        <div id="title_box">
+            <button class="iconfont icon-back" id="back_to_friend_btn" onclick="back_to_friend_list()"></button>
+            <div id="title_content_box">
+                <h2 id="title"></h2>
             </div>
         </div>
-    {%endfor%}
-</div>
-<div id="right_box">
-    <div id="chat_box">
-        <div id="chat_title_box">
-            <button id="back_to_friend_list"><</button>
+        <div id="search_box">
+            <div id="my_friends_box">
+                <h2 id="my_friends_title">符合关键词的好友</h2>
+                <div id="my_friends_search_box">
+                </div>
+            </div>
+            <div id="all_user_box">
+                <h2 id="all_user_title">该昵称用户</h2>
+                <div id="all_user_search_box">
+                </div>
+            </div>
+        </div>
+        <div id="chat_box">
         </div>
     </div>
 </div>

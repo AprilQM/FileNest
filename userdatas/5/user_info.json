@@ -1,46 +1,30 @@
 {
-    "last_modified_time": 1734065733,
+    "last_modified_time": 1734152561,
     "user_datas": {
         "user_id": 5,
         "username": "April",
         "email": "2730391712@qq.com",
         "level": 1,
         "color": 0,
-        "check_in_days": 3,
-        "last_check_time": 1734065705,
-        "register_time": "2024-12-09 20:35:51",
-        "logined_time": "2024-12-13 12:55:03",
+        "check_in_days": 1,
+        "last_check_time": 1734145712,
+        "register_time": "2024-12-13 21:03:21",
+        "logined_time": "",
         "is_consent_agreement": false,
         "is_banned": false,
-        "is_admin": false,
-        "password": "9c5301cf06f3139c68359327f783746a2380dee2826defd2a29b82d84439c837",
-        "next_level_need_days": 5
+        "is_admin": false
     },
     "user_space_info": {
-        "slogan": "某人的小号，应该没人会发现吧 QMQ",
+        "slogan": "这个人很懒，什么都没有留下。",
         "avatar_file": "",
         "background_file": "",
         "praise": [
-            3,
             1
         ],
-        "tag": [],
-        "praise_count": 2
+        "tag": []
     },
     "setting": {
-        "visit_my_space": false
+        "visit_my_space": true
     },
-    "friends": {
-        "1": false
-    },
-    "other": {
-        "can_check": false,
-        "colors_can_use": [
-            [
-                "艳红",
-                "#ed5a65",
-                "#ffffff"
-            ]
-        ]
-    }
+    "friends": {}
 }

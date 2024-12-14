@@ -5,10 +5,11 @@
     cursor: pointer;
     transition: all 1s ease;
     display: grid;
-    place-items: center;
+    justify-content: center;
+    align-items: center;
 }
 #background_img_box:hover {
-    height: 96vh;
+    height: 80vh;
 }
 #background_img_box:hover #background_img{
     transition: all 1s ease;

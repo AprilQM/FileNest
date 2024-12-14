@@ -16,6 +16,7 @@ class WebUser(UserMixin):
 # endregion
 
 # region websocket
+# 连接部分
 @socketio.on("connect", namespace="/broadcast")
 def on_connect():
     if current_user.is_authenticated:
@@ -25,25 +26,39 @@ def on_connect():
 def on_disconnect():
     if current_user.is_authenticated:
         leave_room(str(current_user.user_id))
+        
+@socketio.on("connect", namespace="/chat")
+def on_connect():
+    if current_user.is_authenticated:
+        join_room(str(current_user.user_id))
     
+@socketio.on("disconnect", namespace="/chat")
+def on_disconnect():
+    if current_user.is_authenticated:
+        leave_room(str(current_user.user_id))
+        
+@socketio.on("connect", namespace="/notification")
+def on_connect():
+    if current_user.is_authenticated:
+        join_room(str(current_user.user_id))
+    
+@socketio.on("disconnect", namespace="/notification")
+def on_disconnect():
+    if current_user.is_authenticated:
+        leave_room(str(current_user.user_id))
+
+# 函数部分
 def send_broadcast_message(title, content, fuc=''):
     socketio.emit("message", {'title':title, 'content': content, 'fuc':fuc}, namespace="/broadcast")
 
 def send_fuc_to_user( _to, fuc):
     socketio.emit("fuc", fuc, room=str(_to), namespace="/broadcast")
     
-@socketio.on("connect", namespace="/chat")
-def on_connect():
-    if current_user.is_authenticated:
-        join_room(str(current_user.user_id))
-        
-@socketio.on("disconnect", namespace="/chat")
-def on_disconnect():
-    if current_user.is_authenticated:
-        leave_room(str(current_user.user_id))
-        
 def send_message_to_user(_from, _to, data):
     username = get_user(_from)["user"]["user_datas"]["username"]
     socketio.emit("message", {'from': username, 'data': data}, room=str(_to), namespace="/chat")
+
+def send_notification_to_user(_to, data):
+    socketio.emit("message", {'data': data}, room=str(_to), namespace="/notification")
 
 # endregion

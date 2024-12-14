@@ -4,6 +4,7 @@ from config import Config
 from utils.other import get_user_theme as get_user_theme
 from utils.other import get_user_datas as get_user_datas
 from utils import database
+from utils import other
 from app import forms
 
 main = Blueprint('main', __name__)
@@ -45,7 +46,7 @@ def forum():
 @main.route("/notification")
 @login_required
 def notification():
-    return render_template('notification.html', theme=get_user_theme(), user_datas=get_user_datas()[1])
+    return render_template('notification.html', theme=get_user_theme(), user_datas=get_user_datas()[1], notifications=other.get_notifications(current_user.user_id))
 
 @main.route("/setting")
 @login_required

@@ -10,12 +10,10 @@ if (target_user_datas["user_datas"]["user_id"] !== 0) {
         if (target_user_datas["is_praise"]) {
             warning_alert("你已经点过赞喽~")
         } else {
-            console.log(target_user_datas["user_datas"]["user_id"]);
             
             ajax("POST", "/api/praise_user", {
                 "target_id": target_user_datas["user_datas"]["user_id"],
             }, function (datas) {
-                console.log(datas);
                 
                 if (datas["success"]) {
                     success_alert("点赞成功")

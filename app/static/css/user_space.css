@@ -9,7 +9,7 @@
 }
 
 #background_img_box:hover {
-    height: 40vh;
+    height: 80vh;
 }
 
 #background_img_box:hover #background_img {
@@ -102,7 +102,7 @@
     }
 }
 
-#praise_box {
+#fuction_box {
     display: flex;
     align-items: center;
     transform: translateY(-20px);
@@ -111,7 +111,8 @@
     right: 50px;
 }
 
-#praise_btn {
+#praise_btn, 
+#add_friends_btn {
     background-color: initial;
     border: none;
     color: var(--text3);
@@ -120,28 +121,33 @@
     transform: translateY(15px);
 }
 
-#praise_btn:hover {
+#praise_btn:hover , 
+#add_friends_btn:hover{
     transition: 0.2s ease;
     color: var(--background_conflict);
 }
 
+#praise_count{
+    margin-top: 3px;
+    font-size: 15px;
+}
 #praise_btn:hover~#praise_count {
     transition: 0.2s ease;
     color: var(--background_conflict);
 }
 
 @media screen and (max-width: 767px) {
-    #praise_btn {
+    #praise_btn, #add_friends_btn{
         font-size: 22px;
         transform: translateY(8px);
     }
 
-    #praise_box {
+    #fuction_box {
         right: 15px;
     }
 }
 
-#praise_btn_box {
+#praise_btn_box, #friends_btn_box{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -179,4 +185,22 @@
     font-weight: bold;
     padding: 5px 10px;
     margin-right: 10px;
+}
+#friends_btn_box{
+    margin-right: 20px;
+    height: 40px;
+    transform: translateY(-13px);
+}
+#add_friends_btn{
+    font-size: 50px;
+}
+@media screen and (max-width: 767px) {
+    #friends_btn_box {
+        margin-right: 10px;
+        height: 40px;
+        transform: translateY(-8px);
+    }
+    #add_friends_btn {
+        font-size: 30px;
+    }
 }

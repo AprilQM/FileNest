@@ -3,6 +3,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.utils import safe_join
 import utils.database as database
 import utils.other as other
+import utils.web as web
 from utils.web import WebUser
 from config import Config
 import os
@@ -119,7 +120,11 @@ def praise_user():
     }
     datas = request.get_json()
     target_id = int(datas.get('target_id'))
-    user_datas = database.get_user(current_user.user_id)["user"]
+    web.send_notification_to_user(target_id, {
+        "title": "有人赞了你",
+        "content": f"{current_user.username} 赞了你,点击跳转到访客列表界面。",
+        "fuc": "jump_to_other_page_with_ui('/praise_list')"
+    })
     target_user_datas = database.get_user(target_id)["user"]
     
     if current_user.user_id in target_user_datas["user_space_info"]["praise"]:
