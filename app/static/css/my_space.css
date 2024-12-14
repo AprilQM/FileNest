@@ -4,9 +4,6 @@
     overflow: hidden;
     cursor: pointer;
     transition: all 1s ease;
-    display: grid;
-    justify-content: center;
-    align-items: center;
 }
 #background_img_box:hover {
     height: 80vh;

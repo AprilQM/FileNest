@@ -1,20 +1,3 @@
-const loading = {
-    container: document.getElementById('loading'),
-    out() {
-        this.container.classList.remove('loading-in')
-        this.container.classList.add('loading-out')
-    },
-    in() {
-        this.container.classList.remove('loading-out')
-        this.container.classList.add('loading-in')
-    }
-}
-
-// 使用 pageshow 事件，确保每次进入页面（包括通过返回键进入）都触发加载效果
-window.addEventListener('pageshow', (event) => {
-    loading.out();
-});
-
 function jump_to_other_page_with_ui(url) {
     if (url !== window.location.pathname) {  
         loading.in()

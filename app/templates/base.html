@@ -217,6 +217,25 @@
     <script>
         const color = {{ theme|tojson }};
         const user_data = {{ user_datas|tojson }}
+        const loading = {
+                container: document.getElementById('loading'),
+                out() {
+                    this.container.classList.remove('loading-in')
+                    this.container.classList.add('loading-out')
+                },
+                in() {
+                    this.container.classList.remove('loading-out')
+                    this.container.classList.add('loading-in')
+                }
+            }
+
+            // 使用 pageshow 事件，确保每次进入页面（包括通过返回键进入）都触发加载效果
+            window.addEventListener('load', () => {
+                loading.out();
+            });
+            window.addEventListener('pageshow', (event) => {
+                loading.out();
+            });
     </script>
     <script src="{{ url_for('static', filename='js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
