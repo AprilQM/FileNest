@@ -46,7 +46,7 @@ def forum():
 @main.route("/notification")
 @login_required
 def notification():
-    return render_template('notification.html', theme=get_user_theme(), user_datas=get_user_datas()[1], notifications=other.get_notifications(current_user.user_id))
+    return render_template('notification.html', theme=get_user_theme(), user_datas=get_user_datas()[1])
 
 @main.route("/setting")
 @login_required

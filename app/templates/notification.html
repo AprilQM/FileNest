@@ -8,25 +8,22 @@
 
 {% block script %}
 <script src="{{ url_for('static', filename='js/notification.js') }}"></script>
-<script>
-    const notifications = {{ notifications | tojson}}
-</script>
 {% endblock %}
 
 {%block content%}
     <h1 id="choose_box_title"><span class="iconfont icon-paperplane"> </span> 消息中心</h1>
     <div id="view_box" class="left">
         <div id="choose_box">
-            <div class="choose_item_box">
+            <div class="choose_item_box" onclick="to_notification_list('登录')">
                 <h1> 登录</h1>
             </div>
-            <div class="choose_item_box">
+            <div class="choose_item_box" onclick="to_notification_list('好友')">
                 <h1> 好友</h1>
             </div>
-            <div class="choose_item_box">
+            <div class="choose_item_box" onclick="to_notification_list('系统')">
                 <h1> 系统</h1>
             </div>
-            <div class="choose_item_box">
+            <div class="choose_item_box" onclick="to_notification_list('其他')">
                 <h1> 其他</h1>
             </div>
         </div>
@@ -34,7 +31,7 @@
             <div id="title_box">
                 <button class="iconfont icon-back" id="back_to_friend_btn" onclick="back_to_friend_list()"></button>
                 <div id="title_content_box">
-                    <h2 id="title">登录消息</h2>
+                    <h2 id="title"></h2>
                 </div>
             </div>
             <div id="notification_content_box">

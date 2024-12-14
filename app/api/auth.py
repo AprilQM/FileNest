@@ -9,6 +9,7 @@ from utils.web import WebUser
 import time
 from datetime import datetime
 import os
+import json
 from app import db
 
 from app.api import api
@@ -38,6 +39,17 @@ def login():
         database.update_user(user_id, "logined_time", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         login_user(WebUser(user_id, user_data["user_datas"]["username"]))
         back["next_url"] = next_url
+        
+        # 记录登录
+        login_hsitory = json.loads(open(Config.USER_INFO_DIR + f"/{user_id}/notification/login.json", "r", encoding="utf-8").read())
+        login_hsitory.append({
+            "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "ip": request.remote_addr,
+            "User-Agent" : request.headers.get('User-Agent')
+        })
+        with open(Config.USER_INFO_DIR + f"{user_id}/notification/login.json", "w", encoding="utf-8") as f:
+            f.write(json.dumps(login_hsitory))
+        
         return jsonify(back)
     else:
         back["message"] = "password_error"
