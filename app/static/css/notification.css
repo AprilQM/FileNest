@@ -193,7 +193,7 @@
     width: 80%;
     max-width: 600px;
     margin: 80px auto;
-    box-shadow: var(--text3) 0 0 8px;
+    box-shadow: var(--text3) 0 0 4px;
     min-height: 200px;
     border-radius: 8px;
     position: relative;

@@ -103,6 +103,11 @@ def create_user_info(user):
                         for i in ["visit_my_space"]:
                             if type(file_user_info["setting"][i]) != bool:
                                 flag = True
+                        
+                        # file_user_info的整形判断
+                        for i in file_user_info["file_user_info"]:
+                            if type(file_user_info["file_user_info"][i]) != int:
+                                flag = True
 
                     except:
                         flag = True
@@ -170,6 +175,7 @@ def create_user_info_json(user):
                 "praise": [],
                 "tag": []
             },
+            "friend_request":[],
             "setting":{
                 "visit_my_space": True,
             },

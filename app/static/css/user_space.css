@@ -4,8 +4,6 @@
     overflow: hidden;
     cursor: pointer;
     transition: all 1s ease;
-    display: grid;
-    place-items: center;
 }
 
 #background_img_box:hover {

@@ -1,34 +1,29 @@
 {
-    "last_modified_time": 1733977903,
+    "last_modified_time": 1734268757,
     "user_datas": {
         "user_id": 2,
         "username": "yueyan",
         "email": "zxc19801129@163.com",
-        "level": 6,
-        "color": 8,
-        "check_in_days": 105,
-        "last_check_time": 1733892459,
-        "register_time": "2024-12-09 20:31:05",
-        "logined_time": "2024-12-12 12:31:02",
+        "level": 1,
+        "color": 0,
+        "check_in_days": 0,
+        "last_check_time": 1734268496,
+        "register_time": "2024-12-15 21:14:56",
+        "logined_time": "",
         "is_consent_agreement": false,
         "is_banned": false,
-        "is_admin": true
+        "is_admin": false
     },
     "user_space_info": {
         "slogan": "这个人很懒，什么都没有留下。",
-        "avatar_file": "微信图片_20241207164825.jpg",
+        "avatar_file": "",
         "background_file": "",
         "praise": [
-            4,
             1
         ],
-        "tag": [
-            [
-                "星阁元老",
-                "#163172"
-            ]
-        ]
+        "tag": []
     },
+    "friend_request": [],
     "setting": {
         "visit_my_space": true
     },
