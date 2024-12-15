@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, request
+from flask import Blueprint, render_template, redirect, request, abort
 from flask_login import login_required, current_user
 from config import Config
 from utils.other import get_user_theme as get_user_theme
@@ -18,7 +18,7 @@ def index():
 @main.route('/auth')
 def auth():
     if current_user.is_authenticated:
-        return redirect('/home')
+        return abort(404)
     next_url = request.args.get('next')
     if not next_url:
         next_url = "/home"

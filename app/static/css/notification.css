@@ -186,3 +186,38 @@
     overflow-y: auto;
     position: relative;
 }
+#notification_content_box::-webkit-scrollbar{
+    width: 0;
+}
+.notification_item_box{
+    width: 80%;
+    max-width: 600px;
+    margin: 80px auto;
+    box-shadow: var(--text3) 0 0 8px;
+    min-height: 200px;
+    border-radius: 8px;
+    position: relative;
+}
+.notification_item_title{
+    width: 100%;
+    padding: 15px 20px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    color: var(--background_conflict);
+    border-bottom: var(--secondary2) 1px solid;
+}
+.notification_item_content{
+    width: 100%;
+    padding: 15px 15px 60px 15px;
+    margin: 0;
+    font-size: 15px;
+    color: var(--text);
+}
+.notification_item_time{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: var(--text3);
+}

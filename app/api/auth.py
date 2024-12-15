@@ -5,11 +5,12 @@ import utils.database as database
 import utils.other as other
 from app.models import DatabaseUser
 from config import Config
-from utils.web import WebUser
+from utils.web import WebUser, send_notification_to_user
 import time
 from datetime import datetime
 import os
 import json
+import re
 from app import db
 
 from app.api import api
@@ -41,14 +42,36 @@ def login():
         back["next_url"] = next_url
         
         # 记录登录
+
+        # 定义正则表达式
+        os_pattern = r"\(([^;]+(?:; [^;)]+)*)\)"  # 匹配操作系统信息
+        browser_pattern = r"(Chrome/\d+\.\d+\.\d+\.\d+|Safari/\d+\.\d+|Firefox/\d+\.\d+)"  # 添加 Firefox 支持
+
+        # 提取操作系统
+        os_match = re.search(os_pattern, request.headers.get('User-Agent'))
+        os_info = os_match.group(1) if os_match else "未知操作系统"
+
+        # 提取浏览器
+        browser_match = re.search(browser_pattern, request.headers.get('User-Agent'))
+        browser_info = browser_match.group(1) if browser_match else "未知浏览器"
+        
         login_hsitory = json.loads(open(Config.USER_INFO_DIR + f"/{user_id}/notification/login.json", "r", encoding="utf-8").read())
         login_hsitory.append({
             "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "ip": request.remote_addr,
-            "User-Agent" : request.headers.get('User-Agent')
+            "os": os_info,
+            "browser": browser_info
         })
+        
         with open(Config.USER_INFO_DIR + f"{user_id}/notification/login.json", "w", encoding="utf-8") as f:
             f.write(json.dumps(login_hsitory))
+        
+        # 给该账号的其他设备发送登录提醒
+        send_notification_to_user(user_id, {
+            "title": "有设备登录了该账号",
+            "content": "有设备登录了该账号，点击查看详细信息。",
+            "fuc": "jump_to_other_page_with_ui('/notification')"
+        })
         
         return jsonify(back)
     else:
