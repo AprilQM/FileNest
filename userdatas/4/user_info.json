@@ -1,5 +1,5 @@
 {
-    "last_modified_time": 1734268496,
+    "last_modified_time": 1734358015,
     "user_datas": {
         "user_id": 4,
         "username": "feiherui",
@@ -7,12 +7,13 @@
         "level": 1,
         "color": 0,
         "check_in_days": 0,
-        "last_check_time": 1734268496,
-        "register_time": "2024-12-15 21:14:56",
+        "last_check_time": 1734358015,
+        "register_time": "2024-12-16 22:06:55",
         "logined_time": "",
         "is_consent_agreement": false,
         "is_banned": false,
-        "is_admin": false
+        "is_admin": false,
+        "unread_message": false
     },
     "user_space_info": {
         "slogan": "这个人很懒，什么都没有留下。",

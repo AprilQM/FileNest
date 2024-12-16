@@ -113,12 +113,14 @@ def update_user_file(user_id, key, value):
                 user_info = json.load(file)
             
             # 更新文件中的字段（如果存在于 user_datas 或 user_space_info 中）
-            user_info_list = ["user_datas", "user_space_info", "setting", "friends"]
+            # 可遍历项目：字典和列表
+            user_info_list = ["user_datas", "user_space_info", "setting", "friends", "friend_request"]
             flag = True
             for user_info_key in user_info_list:
                 if key in user_info[user_info_key]:
                     user_info[user_info_key][key] = value
                     flag = False
+            
             if flag:
                 return {"success": False, "message": f"Field '{key}' not found in user file"}
 

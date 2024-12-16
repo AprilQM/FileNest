@@ -260,23 +260,6 @@ function highlight_menu_item(index) {
 }
 //endregion
 
-//region 聊天消息
-const chat_socket = io("/chat")
-
-chat_socket.on('connect', function() {
-    console.log("聊天已连接");
-});
-
-chat_socket.on('message', function (msg) {
-    show_message("有新的未读消息", `你有一条来自 ${msg.from} 的未读消息，点击此处跳转到好友界面。`, () => {
-        jump_to_other_page_with_ui('/friend')
-    })
-});
-
-chat_socket.on('disconnect', function() {
-    console.log("聊天已断开");
-});
-
 // region 其他功能
 const illegal_characters = [
         '/', '\\', ':', '*', '?', '"', "'", '<', '>', '|', ';',
@@ -305,8 +288,10 @@ notification_socket.on('connect', function() {
 notification_socket.on('message', function (msg) {
 
     show_message(msg.data.title, msg.data.content, () => {
-        const t = new Function(msg.data.fuc)
-        t();
+        if (msg.data.fuc) {
+            const t = new Function(msg.data.fuc)
+            t();
+        }
     })
     
 });

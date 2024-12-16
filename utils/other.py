@@ -62,7 +62,7 @@ def create_user_info(user):
                         if file_user_info["user_datas"]["user_id"] != user.user_id or file_user_info["user_datas"]["username"] != user.username or file_user_info["user_datas"]["email"] != user.email:
                             flag = True
                     
-                        for i in ["last_modified_time", "user_datas", "user_space_info"]:
+                        for i in ["last_modified_time", "user_datas", "user_space_info", "friends", "setting", "friend_request"]:
                             if i not in file_user_info:
                                 flag = True
                             
@@ -77,7 +77,7 @@ def create_user_info(user):
                                 flag = True
                         
                         # user_datas子字典的布尔判断
-                        for i in ["is_consent_agreement", "is_banned", "is_admin"]:
+                        for i in ["is_consent_agreement", "is_banned", "is_admin", "unread_message"]:
                             if type(file_user_info["user_datas"][i]) != bool:
                                 flag = True
                     
@@ -102,11 +102,6 @@ def create_user_info(user):
                         # setting的布尔判断
                         for i in ["visit_my_space"]:
                             if type(file_user_info["setting"][i]) != bool:
-                                flag = True
-                        
-                        # file_user_info的整形判断
-                        for i in file_user_info["file_user_info"]:
-                            if type(file_user_info["file_user_info"][i]) != int:
                                 flag = True
 
                     except:
@@ -166,7 +161,8 @@ def create_user_info_json(user):
                 "logined_time": "", 
                 "is_consent_agreement": False, 
                 "is_banned": False,
-                "is_admin": False
+                "is_admin": False,
+                "unread_message": False
             },
             "user_space_info":{
                 "slogan":"这个人很懒，什么都没有留下。",
