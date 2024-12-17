@@ -287,7 +287,7 @@ body {
     width: 80px;
 }
 .menu_btn_text_pc{
-    font-size: 18px;
+    font-size: 16px;
     color: var(--text3);
     white-space: nowrap;
     transition: 0.5s ease;

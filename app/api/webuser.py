@@ -8,6 +8,7 @@ from utils.web import WebUser
 from config import Config
 import os
 import time
+from datetime import datetime
 
 
 from app.api import api
@@ -125,6 +126,13 @@ def praise_user():
         "content": f"{current_user.username} 赞了你,点击跳转到访客列表界面。",
         "fuc": "jump_to_other_page_with_ui('/praise_list')"
     })
+    param = {
+        "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 
+        "title": "有人赞了你", 
+        "username": current_user.username
+        }
+    other.write_notifications(target_id, "other", param)
+    
     target_user_datas = database.get_user(target_id)["user"]
     
     if current_user.user_id in target_user_datas["user_space_info"]["praise"]:

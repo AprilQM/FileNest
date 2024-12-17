@@ -28,30 +28,36 @@ function to_notification_list(title) {
         // 取最新的15条消息
         const will_show_notification = response["notification"].slice(-15)
 
-        if (title === "登录") {
-            for (let i of will_show_notification) {
-                const notification_item_box = document.createElement("div")
-                notification_item_box.classList.add("notification_item_box")
-                const notification_item_title = document.createElement("h1")
-                notification_item_title.classList.add("notification_item_title")
-                const notification_item_content = document.createElement("p")
-                notification_item_content.classList.add("notification_item_content")
-                const notification_item_time = document.createElement("span")
-                notification_item_time.classList.add("notification_item_time")
-        
+        for (let i of will_show_notification) {
+            const notification_item_box = document.createElement("div")
+            notification_item_box.classList.add("notification_item_box")
+            const notification_item_title = document.createElement("h1")
+            notification_item_title.classList.add("notification_item_title")
+            const notification_item_content = document.createElement("p")
+            notification_item_content.classList.add("notification_item_content")
+            const notification_item_time = document.createElement("span")
+            notification_item_time.classList.add("notification_item_time")
+    
+            
+            let content;
+            if (title === "登录") {
                 notification_item_title.innerText = "有设备登录了账号"
-                const content = `设备系统: ${i["os"]}
+                content = `设备系统: ${i["os"]}
                                 设备浏览器: ${i["browser"]}
                                 设备IP: ${i["ip"]}`
-                notification_item_content.innerText = content
-                notification_item_time.innerText = i["time"]
-        
-                notification_item_box.appendChild(notification_item_title)
-                notification_item_box.appendChild(notification_item_content)
-                notification_item_box.appendChild(notification_item_time)
-        
-                $id("notification_content_box").appendChild(notification_item_box)
+            } else if (title === "其他"){
+                notification_item_title.innerText = i["title"]
+                content = `有新的用户为你的个人主页点赞了，这个用户是：${i["username"]}，快去他的主页回赞他吧~`
             }
+            
+            notification_item_content.innerText = content
+            notification_item_time.innerText = i["time"]
+    
+            notification_item_box.appendChild(notification_item_title)
+            notification_item_box.appendChild(notification_item_content)
+            notification_item_box.appendChild(notification_item_time)
+    
+            $id("notification_content_box").appendChild(notification_item_box)
         }
 
         // 将滚轮滚到最底部
