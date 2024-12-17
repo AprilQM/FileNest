@@ -105,7 +105,7 @@ def userSpace(username):
     user_id = database.get_user_id_by_username(username)
     if user_id["success"]:
         user_datas = get_user_datas(username)
-        return render_template('user_space.html', theme=get_user_theme(), user_datas=get_user_datas()[1] ,target_user_datas=user_datas[1], can_visit=user_datas[0])
+        return render_template('user_space.html', theme=get_user_theme(username), user_datas=get_user_datas()[1] ,target_user_datas=user_datas[1], can_visit=user_datas[0])
     else:
         return render_template("error.html", error_code=404, error_message="The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.", theme=get_user_theme(), user_datas=get_user_datas()[1]), 404
 

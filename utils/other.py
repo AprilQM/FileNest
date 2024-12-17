@@ -182,17 +182,27 @@ def create_user_info_json(user):
 # endregion
 
 # region 前端工具
-def get_user_theme():
-    if current_user.is_authenticated:
-        user_data = database.get_user(current_user.user_id)
+def get_user_theme(username=""):
+    if username == "":
+        if current_user.is_authenticated:
+            user_data = database.get_user(current_user.user_id)
+            if user_data["success"]:
+                user_data = user_data["user"]
+                color_index = user_data["user_datas"]["color"]
+                return Config.WEBCONFIG["front"]["themes"][color_index]
+            else:
+                return KeyError(f"未知ID: {current_user.user_id}")
+        else:
+            return Config.WEBCONFIG["front"]["themes"][0]
+    else:
+        user_id = database.get_user_id_by_username(username)["user_id"]
+        user_data = database.get_user(user_id)
         if user_data["success"]:
             user_data = user_data["user"]
             color_index = user_data["user_datas"]["color"]
             return Config.WEBCONFIG["front"]["themes"][color_index]
         else:
-            return KeyError(f"未知ID: {current_user.user_id}")
-    else:
-        return Config.WEBCONFIG["front"]["themes"][0]
+            return KeyError(f"未知ID: {user_id}")
 
 def get_user_datas(username=None):
     if username:
