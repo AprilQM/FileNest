@@ -221,3 +221,10 @@
     right: 10px;
     color: var(--text3);
 }
+.notification_item_a{
+    color: var(--background_conflict);
+    font-weight: 530;
+}
+.notification_item_a:hover{
+    color: var(--background_conflict);
+}

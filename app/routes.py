@@ -122,7 +122,7 @@ def praise_list():
         this_slogan = this_user_datas["user_space_info"]["slogan"]
         praise_uername_list.append(this_username)
         slogan_list[this_username] = this_slogan
-
+        
     return render_template('praise_list.html', theme=get_user_theme(), user_datas=get_user_datas()[1], praise_list=praise_uername_list, slogan_list=slogan_list)
 
 

@@ -71,6 +71,10 @@ def create_user_info(user):
                             if type(file_user_info["user_datas"][i]) != int:
                                 flag = True
                         
+                        # 判断等级范围
+                        if not 0 <= file_user_info["user_datas"]["level"] <= 6:
+                            flag = True
+
                         # user_datas子字典的字符串判断
                         for i in ["username", "email", "register_time", "logined_time"]:
                             if type(file_user_info["user_datas"][i]) != str:
@@ -199,8 +203,20 @@ def get_user_theme(username=""):
         user_data = database.get_user(user_id)
         if user_data["success"]:
             user_data = user_data["user"]
-            color_index = user_data["user_datas"]["color"]
-            return Config.WEBCONFIG["front"]["themes"][color_index]
+            if user_data["setting"]["visit_my_space"]:
+                color_index = user_data["user_datas"]["color"]
+                return Config.WEBCONFIG["front"]["themes"][color_index]
+            else:
+                if current_user.is_authenticated:
+                    user_data = database.get_user(current_user.user_id)
+                    if user_data["success"]:
+                        user_data = user_data["user"]
+                        color_index = user_data["user_datas"]["color"]
+                        return Config.WEBCONFIG["front"]["themes"][color_index]
+                    else:
+                        return KeyError(f"未知ID: {current_user.user_id}")
+                else:
+                    return Config.WEBCONFIG["front"]["themes"][0]
         else:
             return KeyError(f"未知ID: {user_id}")
 
