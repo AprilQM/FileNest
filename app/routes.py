@@ -126,6 +126,23 @@ def praise_list():
     return render_template('praise_list.html', theme=get_user_theme(), user_datas=get_user_datas()[1], praise_list=praise_uername_list, slogan_list=slogan_list)
 
 
+@main.route("/friend_request")
+@login_required
+def friend_request():
+    user_datas = database.get_user(current_user.user_id)["user"]
+    friend_request_list = user_datas["friend_request"]
+    friend_request_uername_list = []
+    slogan_list = {}
+    for i in friend_request_list:
+        this_user_datas = database.get_user(i)["user"]
+        this_username = this_user_datas["user_datas"]["username"]
+        this_slogan = this_user_datas["user_space_info"]["slogan"]
+        friend_request_uername_list.append(this_username)
+        slogan_list[this_username] = this_slogan
+        
+    return render_template('friend_request.html', theme=get_user_theme(), user_datas=get_user_datas()[1], friend_request_list=friend_request_list, slogan_list=slogan_list)
+
+
 @main.route("/test")
 def test():
     from utils import web

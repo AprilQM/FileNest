@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}文栖 | 好友请求{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/friend_request.css') }}">
+{% endblock %}
+
+{%block script%}
+<script src="{{ url_for('static', filename='js/friend_request.js') }}"></script>
+{%endblock%}
+
+{%block content%}
+<div id="title_box">
+    <h3>我的好友请求</h3>
+</div>
+<div id="friend_request_list_box">
+</div>
+{%endblock%}

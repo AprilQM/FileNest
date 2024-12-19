@@ -23,6 +23,7 @@
 @media screen and (max-width: 767px) {
     #praise_list_box {
         margin-top: 8px;
+        height: calc(100% - 58px);
     }
 }
 .user_box{

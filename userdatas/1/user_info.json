@@ -1,13 +1,13 @@
 {
-    "last_modified_time": 1734500989,
+    "last_modified_time": 1734610797,
     "user_datas": {
         "user_id": 1,
         "username": "AprilQM",
         "email": "april2730391712@outlook.com",
         "level": 6,
         "color": 8,
-        "check_in_days": 106,
-        "last_check_time": 1734500027,
+        "check_in_days": 107,
+        "last_check_time": 1734610780,
         "register_time": "2024-12-16 22:06:55",
         "logined_time": "2024-12-18 13:28:28",
         "is_consent_agreement": false,
@@ -28,7 +28,7 @@
     },
     "friend_request": [],
     "setting": {
-        "visit_my_space": false
+        "visit_my_space": true
     },
     "friends": {}
 }
