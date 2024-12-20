@@ -5,6 +5,7 @@ from utils.other import get_user_theme as get_user_theme
 from utils.other import get_user_datas as get_user_datas
 from utils import database
 from utils import other
+from utils import friend as friend_utils
 from app import forms
 
 main = Blueprint('main', __name__)
@@ -129,15 +130,8 @@ def praise_list():
 @main.route("/friend_request")
 @login_required
 def friend_request():
-    user_datas = database.get_user(current_user.user_id)["user"]
-    friend_request_list = user_datas["friend_request"]
-    friend_request_uername_list = {}
-    for i in friend_request_list:
-        this_user_datas = database.get_user(int(i))["user"]
-        this_username = this_user_datas["user_datas"]["username"]
-        friend_request_uername_list[this_username] = friend_request_list[i]
-        
-    return render_template('friend_request.html', theme=get_user_theme(), user_datas=get_user_datas()[1], friend_request_list=friend_request_uername_list, )
+    friend_request_list = friend_utils.get_friend_request_list()
+    return render_template('friend_request.html', theme=get_user_theme(), user_datas=get_user_datas()[1], friend_request_list=friend_request_list )
 
 
 @main.route("/test")

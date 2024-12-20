@@ -95,7 +95,7 @@ body {
 #message_box {
     position: fixed;
     width: 400px;
-    height: 200px;
+    min-height: 200px;
     box-shadow: 0 0 5px  var(--secondary2);
     z-index: 9998;
     border-radius: 30px;

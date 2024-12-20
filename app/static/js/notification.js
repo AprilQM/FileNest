@@ -43,13 +43,23 @@ function to_notification_list(title) {
             if (title === "登录") {
                 notification_item_title.innerText = "有设备登录了账号"
                 content = `设备系统: ${i["os"]}
-                                设备浏览器: ${i["browser"]}
-                                设备IP: ${i["ip"]}`
+                            设备浏览器: ${i["browser"]}
+                            设备IP: ${i["ip"]}`
                 notification_item_content.innerText = content
             } else if (title === "其他"){
                 notification_item_title.innerText = i["title"]
                 content = `有新的用户为你的个人主页点赞了，这个用户是：<a href="/user_space/${i["username"]}" class="notification_item_a">${i["username"]}</a>，快去他的主页回赞他吧~`
                 notification_item_content.innerHTML = content
+            } else if (title === "好友") {
+                if (i["is_agree"]) {
+                    notification_item_title.innerText = `新朋友`
+                    content = `用户: <a href="/user_space/${i["username"]}" class="notification_item_a">${i["username"]}</a> 同意了你的好友请求`
+                    notification_item_content.innerHTML = content
+                } else {
+                    notification_item_title.innerText = `请求被拒绝`
+                    content = `用户: <a href="/user_space/${i["username"]}" class="notification_item_a">${i["username"]}</a> 拒绝了你的好友请求`
+                    notification_item_content.innerHTML = content
+                }
             }
             
             notification_item_time.innerText = i["time"]
@@ -71,6 +81,3 @@ function to_notification_list(title) {
     })
     
 }
-
-// 默认显示登录消息
-to_notification_list("登录")

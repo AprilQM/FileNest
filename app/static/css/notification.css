@@ -223,6 +223,7 @@
 }
 .notification_item_a{
     color: var(--background_conflict);
+    font-size: 15px;
     font-weight: 530;
 }
 .notification_item_a:hover{

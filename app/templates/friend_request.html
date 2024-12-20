@@ -23,8 +23,8 @@
                 <h6>{{friend_request_list[i]}}</h6>
             </div>
             <div class="btn_box">
-                <button class="yes">同意</button>
-                <button class="no">拒绝</button>
+                <button class="yes" onclick="agree_request('{{i}}')">同意</button>
+                <button class="no" onclick="reject_request('{{i}}')">拒绝</button>
             </div>
         </div>
     {%endfor%}

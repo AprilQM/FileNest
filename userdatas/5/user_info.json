@@ -1,5 +1,5 @@
 {
-    "last_modified_time": 1734691495,
+    "last_modified_time": 1734699005,
     "user_datas": {
         "user_id": 5,
         "username": "April",
@@ -7,9 +7,9 @@
         "level": 1,
         "color": 0,
         "check_in_days": 0,
-        "last_check_time": 1734689665,
-        "register_time": "2024-12-20 18:14:25",
-        "logined_time": "2024-12-20 18:36:35",
+        "last_check_time": 1734698341,
+        "register_time": "2024-12-20 20:39:01",
+        "logined_time": "",
         "is_consent_agreement": false,
         "is_banned": false,
         "is_admin": false,
@@ -17,17 +17,14 @@
     },
     "user_space_info": {
         "slogan": "这个人很懒，什么都没有留下。",
-        "avatar_file": "1.jpeg",
+        "avatar_file": "",
         "background_file": "",
-        "praise": [
-            1
-        ],
+        "praise": [],
         "tag": []
     },
     "friend_request": {},
     "setting": {
         "visit_my_space": 0
     },
-    "friends": {
-    }
+    "friends": {}
 }
