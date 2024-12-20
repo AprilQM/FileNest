@@ -1,0 +1,14 @@
+[13:13:48] [GET] [NORMAL] (ID : 0) - /
+[13:13:48] [GET] [NORMAL] (ID : 0) - /home
+[13:13:52] [GET] [NORMAL] (ID : 0) - /my_space
+[13:13:52] [GET] [NORMAL] (ID : 0) - /auth
+[13:14:01] [GET] [NORMAL] (ID : 1) - /my_space
+[13:14:05] [GET] [NORMAL] (ID : 1) - /notification
+[13:16:56] [GET] [NORMAL] (ID : 1) - /friend_request
+[13:17:03] [GET] [NORMAL] (ID : 1) - /notification
+[13:17:43] [GET] [NORMAL] (ID : 1) - /my_space
+[13:17:45] [GET] [NORMAL] (ID : 1) - /praise_list
+[13:19:04] [GET] [NORMAL] (ID : 1) - /friend_request
+[13:19:41] [GET] [NORMAL] (ID : 1) - /friend_request
+[13:20:19] [GET] [NORMAL] (ID : 1) - /friend_request
+[13:20:47] [GET] [NORMAL] (ID : 1) - /friend_request

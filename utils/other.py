@@ -175,7 +175,7 @@ def create_user_info_json(user):
                 "praise": [],
                 "tag": []
             },
-            "friend_request":[],
+            "friend_request":{},
             "setting":{
                 "visit_my_space": True,
             },
