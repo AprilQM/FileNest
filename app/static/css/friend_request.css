@@ -36,21 +36,51 @@
     width: 70%;
     margin-left: 15%;
     position: relative;
-    cursor: pointer;
     display: flex;
     align-items: center;
-}
-.friend_request_item_box:hover{
-    background-color: var(--secondary2);
 }
 .friend_request_item_box img{
     width: 100px;
     height: 100px;
     border-radius: 50%;
 }
-.friend_request_item_box div{
+.friend_request_item_box .info_box{
     margin-left: 25px;
     display: inline-block;
+    width: 30%;
+}
+.friend_request_item_box .btn_box{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+}
+.yes, .no{
+    margin-right: 20px;
+    background-color: initial;
+    border: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+@media screen and (max-width: 767px) {
+    .yes,
+    .no {
+        margin-right: 8px;
+    font-size: 12px;
+    }
+}
+.yes:hover, 
+.no:hover{
+    transform: scale(1.1);
+    text-shadow: 2px 2px 3px var(--secondary2);
+}
+.yes{
+    color: #94dc64;
+}
+.no{
+    color: #e07171;
 }
 .friend_request_item_box h2{
     margin-top: 10px;

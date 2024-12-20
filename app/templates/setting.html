@@ -43,8 +43,10 @@
         </div>
         <div class="setting_box box">
             <button class="setting_item" onclick="change_privacy_mode()"><span class="setting_key"><span class="iconfont icon-Privacy"></span>个人空间</span><span class="setting_value" id="privacy_text">
-            {%if user_datas["setting"]["visit_my_space"]%}
+            {%if user_datas["setting"]["visit_my_space"] == 0%}
             公开
+            {%elif user_datas["setting"]["visit_my_space"] == 1%}
+            好友
             {%else%}
             隐藏
             {%endif%}

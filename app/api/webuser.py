@@ -48,7 +48,8 @@ def get_user_avatar(username):
 
         
         # 检查文件是否存在
-        if not os.path.exists(avatar_path) or avatar_file == "" or (not user_datas["setting"]["visit_my_space"] and current_user.user_id != user_id):
+        can_visit = other.get_user_datas(username)[0]
+        if not os.path.exists(avatar_path) or avatar_file == "" or not can_visit:
             return send_from_directory(Config.STATIC_DIR, "default_avatar.png")
 
         # 返回处理后的图片
@@ -63,18 +64,19 @@ def get_user_background(username):
     user_id = database.get_user_id_by_username(username)["user_id"]
     with current_app.app_context():
         user_datas = database.get_user(user_id)["user"]
-        avatar_file = user_datas["user_space_info"]["background_file"]
+        background_file = user_datas["user_space_info"]["background_file"]
         
         # 构建头像文件路径，使用 os.path.join 正确拼接
-        avatar_path = os.path.join(Config.USER_INFO_DIR, str(user_id),"background", avatar_file)
+        background_path = os.path.join(Config.USER_INFO_DIR, str(user_id),"background", background_file)
 
         
         # 检查文件是否存在
-        if not os.path.exists(avatar_path) or avatar_file == "" or (not user_datas["setting"]["visit_my_space"] and current_user.user_id != user_id):
+        can_visit = other.get_user_datas(username)[0]
+        if not os.path.exists(background_path) or background_file == "" or not can_visit:
             return send_from_directory(Config.STATIC_DIR, "default_background.png")
 
         # 返回处理后的图片
-        return send_file("." + avatar_path, mimetype='image/jpeg')
+        return send_file("." + background_path, mimetype='image/jpeg')
     
 
 

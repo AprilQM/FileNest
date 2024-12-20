@@ -1,5 +1,5 @@
 {
-    "last_modified_time": 1734414810,
+    "last_modified_time": 1734689665,
     "user_datas": {
         "user_id": 2,
         "username": "yueyan",
@@ -7,26 +7,24 @@
         "level": 1,
         "color": 0,
         "check_in_days": 0,
-        "last_check_time": 1734358015,
-        "register_time": "2024-12-16 22:06:55",
+        "last_check_time": 1734689665,
+        "register_time": "2024-12-20 18:14:25",
         "logined_time": "",
         "is_consent_agreement": false,
         "is_banned": false,
         "is_admin": false,
-        "unread_message": true
+        "unread_message": false
     },
     "user_space_info": {
         "slogan": "这个人很懒，什么都没有留下。",
         "avatar_file": "",
         "background_file": "",
-        "praise": [
-            1
-        ],
+        "praise": [],
         "tag": []
     },
     "friend_request": {},
     "setting": {
-        "visit_my_space": true
+        "visit_my_space": 0
     },
     "friends": {}
 }

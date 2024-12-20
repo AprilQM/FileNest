@@ -131,16 +131,13 @@ def praise_list():
 def friend_request():
     user_datas = database.get_user(current_user.user_id)["user"]
     friend_request_list = user_datas["friend_request"]
-    friend_request_uername_list = []
-    slogan_list = {}
+    friend_request_uername_list = {}
     for i in friend_request_list:
-        this_user_datas = database.get_user(i)["user"]
+        this_user_datas = database.get_user(int(i))["user"]
         this_username = this_user_datas["user_datas"]["username"]
-        this_slogan = this_user_datas["user_space_info"]["slogan"]
-        friend_request_uername_list.append(this_username)
-        slogan_list[this_username] = this_slogan
+        friend_request_uername_list[this_username] = friend_request_list[i]
         
-    return render_template('friend_request.html', theme=get_user_theme(), user_datas=get_user_datas()[1], friend_request_list=friend_request_list, slogan_list=slogan_list)
+    return render_template('friend_request.html', theme=get_user_theme(), user_datas=get_user_datas()[1], friend_request_list=friend_request_uername_list, )
 
 
 @main.route("/test")

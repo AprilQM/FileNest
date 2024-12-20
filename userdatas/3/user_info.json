@@ -1,15 +1,15 @@
 {
-    "last_modified_time": 1734408745,
+    "last_modified_time": 1734689665,
     "user_datas": {
         "user_id": 3,
         "username": "August13",
         "email": "zr2385290553@outlook.com",
         "level": 1,
         "color": 0,
-        "check_in_days": 1,
-        "last_check_time": 1734408745,
-        "register_time": "2024-12-16 22:06:55",
-        "logined_time": "2024-12-17 12:11:12",
+        "check_in_days": 0,
+        "last_check_time": 1734689665,
+        "register_time": "2024-12-20 18:14:25",
+        "logined_time": "",
         "is_consent_agreement": false,
         "is_banned": false,
         "is_admin": false,
@@ -19,14 +19,12 @@
         "slogan": "这个人很懒，什么都没有留下。",
         "avatar_file": "",
         "background_file": "",
-        "praise": [
-            1
-        ],
+        "praise": [],
         "tag": []
     },
     "friend_request": {},
     "setting": {
-        "visit_my_space": true
+        "visit_my_space": 0
     },
     "friends": {}
 }

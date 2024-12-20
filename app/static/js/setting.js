@@ -43,12 +43,8 @@ function change_to_this_color(color) {
 
 function change_privacy_mode(){
     ajax('POST', '/api/change_privacy_mode', null, function(data){
-        if(data["success"]){
-            if (data["state"]){
-                $id("privacy_text").innerText = "公开"
-            }else{
-                $id("privacy_text").innerText = "隐藏"
-            }
+        if (data["success"]) {
+            $id("privacy_text").innerText = ["公开", "好友", "隐藏"][data["state"]]
         }
     }, 
     function(err){

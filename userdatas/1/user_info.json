@@ -1,34 +1,32 @@
 {
-    "last_modified_time": 1734671643,
+    "last_modified_time": 1734693044,
     "user_datas": {
         "user_id": 1,
         "username": "AprilQM",
         "email": "april2730391712@outlook.com",
         "level": 6,
-        "color": 8,
-        "check_in_days": 108,
-        "last_check_time": 1734671643,
-        "register_time": "2024-12-16 22:06:55",
-        "logined_time": "2024-12-20 13:14:00",
+        "color": 0,
+        "check_in_days": 105,
+        "last_check_time": 1734689702,
+        "register_time": "2024-12-20 18:14:25",
+        "logined_time": "",
         "is_consent_agreement": false,
         "is_banned": false,
         "is_admin": true,
         "unread_message": false
     },
     "user_space_info": {
-        "slogan": "代码小扒菜，求大佬带（喜",
+        "slogan": "这个人很懒，什么都没有留下。",
         "avatar_file": "1.jpeg",
         "background_file": "1.png",
-        "praise": [
-            4,
-            5,
-            3
-        ],
+        "praise": [],
         "tag": []
     },
-    "friend_request": {},
+    "friend_request": {
+        "5": "加个好友呗~"
+    },
     "setting": {
-        "visit_my_space": true
+        "visit_my_space": 2
     },
     "friends": {}
 }

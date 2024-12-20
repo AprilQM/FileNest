@@ -68,11 +68,12 @@ def change_privacy_mode():
     try:
         user_datas = get_user(current_user.user_id)["user"]
         visit_my_space = user_datas["setting"]["visit_my_space"]
-        update_user(current_user.user_id, "visit_my_space", not visit_my_space)
+        new_visit_my_space = (visit_my_space + 1)%3
+        update_user(current_user.user_id, "visit_my_space", new_visit_my_space)
 
         return jsonify({
             "success": True,
-            "state": not visit_my_space
+            "state": new_visit_my_space
         })
     except:
         return jsonify(

@@ -15,13 +15,18 @@
     <h3>我的好友请求</h3>
 </div>
 <div id="friend_request_list_box">
-    <div class="friend_request_item_box box">
-        <img src="/api/get_user_avatar_small/AprilQM" alt="AprilQM">
-        <div>
-            <h2>AprilQM</h2>
-            <h6>想要成为你的好友</h6>
+    {%for i in friend_request_list%}
+        <div class="friend_request_item_box box">
+            <img src="/api/get_user_avatar_small/{{i}}" alt="AprilQM">
+            <div class="info_box">
+                <h2>{{i}}</h2>
+                <h6>{{friend_request_list[i]}}</h6>
+            </div>
+            <div class="btn_box">
+                <button class="yes">同意</button>
+                <button class="no">拒绝</button>
+            </div>
         </div>
-
-    </div>
+    {%endfor%}
 </div>
 {%endblock%}

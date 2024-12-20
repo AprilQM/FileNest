@@ -103,9 +103,9 @@ def create_user_info(user):
                         if "tag" not in file_user_info["user_space_info"]:
                             flag = True
                             
-                        # setting的布尔判断
+                        # setting的整形判断
                         for i in ["visit_my_space"]:
-                            if type(file_user_info["setting"][i]) != bool:
+                            if type(file_user_info["setting"][i]) != int:
                                 flag = True
 
                     except:
@@ -177,7 +177,8 @@ def create_user_info_json(user):
             },
             "friend_request":{},
             "setting":{
-                "visit_my_space": True,
+                # 公开 好友 不公开
+                "visit_my_space": 0,
             },
             "friends" : {}
         }
@@ -203,7 +204,7 @@ def get_user_theme(username=""):
         user_data = database.get_user(user_id)
         if user_data["success"]:
             user_data = user_data["user"]
-            if user_data["setting"]["visit_my_space"]:
+            if user_data["setting"]["visit_my_space"] == 0 or (user_data["setting"]["visit_my_space"] == 1 and str(current_user.user_id) in user_data["friends"])  or current_user.user_id == user_id:
                 color_index = user_data["user_datas"]["color"]
                 return Config.WEBCONFIG["front"]["themes"][color_index]
             else:
@@ -226,7 +227,7 @@ def get_user_datas(username=None):
     
         user_datas = database.get_user(user_id)
         
-        if user_datas["user"]["setting"]["visit_my_space"]:
+        if user_datas["user"]["setting"]["visit_my_space"] == 0 or (user_datas["user"]["setting"]["visit_my_space"] == 1 and str(current_user.user_id) in user_datas["user"]["friends"])  or current_user.user_id == user_id:
             user_datas = database.get_user(user_id)
             if user_datas["success"]:
                 user_datas = user_datas["user"]

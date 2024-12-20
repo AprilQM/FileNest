@@ -1,33 +1,33 @@
 {
-    "last_modified_time": 1734420126,
+    "last_modified_time": 1734691495,
     "user_datas": {
         "user_id": 5,
         "username": "April",
         "email": "2730391712@qq.com",
         "level": 1,
         "color": 0,
-        "check_in_days": 1,
-        "last_check_time": 1734419222,
-        "register_time": "2024-12-16 22:06:55",
-        "logined_time": "2024-12-17 15:06:51",
+        "check_in_days": 0,
+        "last_check_time": 1734689665,
+        "register_time": "2024-12-20 18:14:25",
+        "logined_time": "2024-12-20 18:36:35",
         "is_consent_agreement": false,
         "is_banned": false,
         "is_admin": false,
         "unread_message": false
     },
     "user_space_info": {
-        "slogan": "某人的小号，猜猜是谁？",
-        "avatar_file": "",
+        "slogan": "这个人很懒，什么都没有留下。",
+        "avatar_file": "1.jpeg",
         "background_file": "",
         "praise": [
-            1,
-            3
+            1
         ],
         "tag": []
     },
     "friend_request": {},
     "setting": {
-        "visit_my_space": true
+        "visit_my_space": 0
     },
-    "friends": {}
+    "friends": {
+    }
 }
