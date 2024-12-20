@@ -299,15 +299,24 @@ def get_user_datas(username=None):
             }
         }
     
+
 def make_png(avatar_path, max_width=150, max_height=150):
-    # 打开头像文件并按比例缩小
+    # 打开头像文件
     with Image.open(avatar_path) as img:
+        # 如果图片是 GIF 动图，提取第一帧
+        if img.format == 'GIF' and getattr(img, "is_animated", False):
+            img.seek(0)  # 定位到第一帧
+
+        # 检查图片模式，如果不是 RGB 模式则进行转换
+        if img.mode in ("RGBA", "P"):  # 包括透明和调色板模式
+            img = img.convert("RGB")  # 转换为 RGB 模式以支持 JPEG
+
         # 获取原始图片的宽度和高度
         width, height = img.size
 
         # 计算缩放比例，保持等比缩放
         ratio = min(max_width / width, max_height / height)
-        
+
         # 根据计算出的比例调整图片大小
         new_width = int(width * ratio)
         new_height = int(height * ratio)
@@ -317,9 +326,8 @@ def make_png(avatar_path, max_width=150, max_height=150):
         img_io = io.BytesIO()
         img.save(img_io, format='JPEG', quality=85)  # 调整质量参数 (0-100)
         img_io.seek(0)
-        
+
         return img_io
-# endregion
 
 # region 日志
 def re_analyze_log(log):
