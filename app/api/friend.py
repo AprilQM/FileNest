@@ -56,7 +56,7 @@ def friend_request():
         # 清除好友请求
         friend.clear_friend_request(user_id)
         if is_agree:
-            # friend.add_friend(user_id)
+            friend.add_friend(user_id)
             
             send_notification_to_user(user_id, {
                 "title": "新朋友",
@@ -67,8 +67,8 @@ def friend_request():
             
             target_user_param = {
                 "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                "username": current_user.username,
-                "is_agree": True,
+                "title": "同意好友请求",
+                "content": f"<a href='/user_space/{current_user.username}' class='notification_item_a'>{current_user.username}</a> 同意了你的好友请求。",
             }
             other.write_notifications(user_id, "friend", target_user_param)
             
@@ -89,8 +89,8 @@ def friend_request():
             
             target_user_param = {
                 "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                "username": current_user.username,
-                "is_agree": False,
+                "title": "拒绝好友请求",
+                "content": f"<a href='/user_space/{current_user.username}' class='notification_item_a'>{current_user.username}</a> 拒绝了你的好友请求。",
             }
             other.write_notifications(user_id, "friend", target_user_param)
             

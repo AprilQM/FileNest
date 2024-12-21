@@ -247,3 +247,9 @@
 [20:55:13] [GET] [NORMAL] (ID : 1) - /notification
 [20:55:14] [GET] [NORMAL] (ID : 1) - /friend_request
 [20:55:20] [GET] [NORMAL] (ID : 1) - /friend_request
+[20:56:05] [GET] [NORMAL] (ID : 1) - /friend_request
+[21:01:37] [GET] [NORMAL] (ID : 1) - /
+[21:01:37] [GET] [NORMAL] (ID : 1) - /home
+[21:01:40] [GET] [NORMAL] (ID : 1) - /my_space
+[21:01:53] [GET] [NORMAL] (ID : 1) - /setting
+[21:01:57] [GET] [NORMAL] (ID : 1) - /friend

@@ -136,6 +136,6 @@ def friend_request():
 
 @main.route("/test")
 def test():
-    from utils import web
-    web.send_notification_to_user(1, {"title": "test", "content": "test"})
+    from utils import friend
+    print(friend.delete_friend(5))
     return "ok"

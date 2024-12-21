@@ -131,7 +131,7 @@ def praise_user():
     param = {
         "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 
         "title": "有人赞了你", 
-        "username": current_user.username
+        "content": f"<a href='/user_space/{current_user.username}' class='notification_item_a'>{current_user.username}</a> 赞了你, 快去Ta的主页回赞吧~"
         }
     other.write_notifications(target_id, "other", param)
     
