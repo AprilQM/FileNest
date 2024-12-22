@@ -3,7 +3,7 @@ function jump_to_other_page_with_ui(url) {
         loading.in()
         setTimeout(() => {
             window.location.href = url
-        }, 590)
+        }, 690)
     } else {
         error_alert("不是已经在这个页面了嘛？ (；￣Д￣)？  ")
     }
