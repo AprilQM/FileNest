@@ -17,6 +17,7 @@
         <div id="search_friend_box">
             <input type="text" placeholder="搜索" id="search_friend_input"  onkeydown="if(event.key === 'Enter') to_search()">
             <button class="iconfont icon-search" id="search_friend_btn" onclick="to_search('')"></button>
+            <a class="iconfont icon-friendadd" id="friend_request_btn" href="/friend_request"></a>
         </div>
         {%for i in user_datas["friends"]%}
             <div class="friend_item_box{%if user_datas['friends'][i][0]%} friend_message_box{%endif%}"  onclick="get_chat_histroy('{{i}}')" id="{{i}}_friend_item">

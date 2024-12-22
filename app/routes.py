@@ -137,5 +137,5 @@ def friend_request():
 @main.route("/test")
 def test():
     from utils import friend
-    print(friend.delete_friend(5))
+    print(friend.delete_friend(4))
     return "ok"

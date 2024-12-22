@@ -127,7 +127,7 @@
     align-items: center;
 }
 #search_friend_input{
-    width: 85%;
+    width: 70%;
     padding: 5px 10px;
     border: var(--secondary2) 1px solid;
     color: var(--text);
@@ -139,7 +139,7 @@
 #search_friend_input:focus{
     outline: none;
 }
-#search_friend_btn{
+#search_friend_btn, #friend_request_btn{
     width: 15%;
     font-weight: bold;
     font-size: 20px;
@@ -147,9 +147,17 @@
     background-color: initial;
     color: var(--text3);
 }
-#search_friend_btn:hover{
+#friend_request_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 23px;
+    cursor: pointer;
+}
+#search_friend_btn:hover, #friend_request_btn:hover{
     transform: scale(1.1);
     color: var(--background_conflict);
+    text-decoration: none;
 }
 #title_box{
     width: 100%;
