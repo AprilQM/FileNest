@@ -1,34 +1,32 @@
 {
-    "last_modified_time": 1734876711,
+    "last_modified_time": 1735103694,
     "user_datas": {
         "user_id": 1,
         "username": "AprilQM",
         "email": "april2730391712@outlook.com",
-        "level": 6,
+        "level": 1,
         "color": 0,
-        "check_in_days": 108,
-        "last_check_time": 1734876197,
-        "register_time": "2024-12-20 20:39:01",
-        "logined_time": "2024-12-22 09:39:46",
+        "check_in_days": 0,
+        "last_check_time": 1735103694,
+        "register_time": "2024-12-25 13:14:54",
+        "logined_time": "",
         "is_consent_agreement": false,
         "is_banned": false,
-        "is_admin": true,
+        "is_admin": false,
         "unread_message": false
     },
     "user_space_info": {
         "slogan": "这个人很懒，什么都没有留下。",
-        "avatar_file": "马达马达黑.gif",
+        "avatar_file": "",
         "background_file": "",
-        "praise": [
-            1,
-            4,
-            5
-        ],
+        "praise": [],
         "tag": []
     },
     "friend_request": {},
     "setting": {
         "visit_my_space": 0
     },
-    "friends": {}
+    "friends": {
+        "2": false
+    }
 }

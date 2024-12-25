@@ -34,3 +34,25 @@ if (target_user_datas["user_datas"]["user_id"] !== 0) {
         }
     })
 }
+
+function friend_add(username){
+    const param = {
+        "username" : username,
+        "text" : "好友"
+    }
+
+    ajax('POST', "/api/add_friend", param, function(response){
+        if (response["success"]){
+            success_alert("成功提交申请")
+        }else{
+            if (response["msg"] === "request_already"){
+                error_alert("你已经提交过申请了")
+            }else if(response["msg"] === "no_user"){
+                error_alert("对方不存在")
+            }
+        }
+    }, 
+    function(err){
+        error_alert(err)
+    })
+}
