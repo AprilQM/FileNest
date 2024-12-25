@@ -47,8 +47,12 @@ function friend_add(username){
         }else{
             if (response["msg"] === "request_already"){
                 error_alert("你已经提交过申请了")
+            }else if(response["msg"] === "friend_already"){
+                error_alert("你已经是对方的好友了")
             }else if(response["msg"] === "no_user"){
                 error_alert("对方不存在")
+            }else if(response["msg"] === "can_add_self"){
+                error_alert("不能添加自己为好友")
             }
         }
     }, 

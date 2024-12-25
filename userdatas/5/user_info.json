@@ -1,15 +1,15 @@
 {
-    "last_modified_time": 1734753766,
+    "last_modified_time": 1735105820,
     "user_datas": {
         "user_id": 5,
         "username": "April",
         "email": "2730391712@qq.com",
         "level": 1,
         "color": 0,
-        "check_in_days": 1,
-        "last_check_time": 1734753766,
-        "register_time": "2024-12-20 20:39:01",
-        "logined_time": "2024-12-21 12:02:44",
+        "check_in_days": 0,
+        "last_check_time": 1735105820,
+        "register_time": "2024-12-25 13:50:20",
+        "logined_time": "",
         "is_consent_agreement": false,
         "is_banned": false,
         "is_admin": false,
@@ -19,9 +19,7 @@
         "slogan": "这个人很懒，什么都没有留下。",
         "avatar_file": "",
         "background_file": "",
-        "praise": [
-            1
-        ],
+        "praise": [],
         "tag": []
     },
     "friend_request": {},

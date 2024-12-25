@@ -9,6 +9,7 @@ from config import Config
 from utils.web import WebUser
 from utils.web import send_notification_to_user
 import time
+import json
 from datetime import datetime
 from utils import friend
 import os
@@ -71,6 +72,30 @@ def friend_request():
                 "content": f"<a href='/user_space/{current_user.username}' class='notification_item_a'>{current_user.username}</a> 同意了你的好友请求。",
             }
             other.write_notifications(user_id, "friend", target_user_param)
+
+            # 删除我方对对方的好友请求
+
+            user_datas = database.get_user(user_id)
+            if user_datas["success"]:
+                user_datas = user_datas["user"]
+
+                if str(current_user.user_id) in user_datas["friend_request"]:
+                    del user_datas["friend_request"][str(current_user.user_id)]
+                    
+                    del user_datas["user_datas"]["password"]
+                    del user_datas["user_datas"]["next_level_need_days"]
+                    del user_datas["user_space_info"]["praise_count"]
+                    del user_datas["other"]
+
+                    user_folder = os.path.join(Config.USER_INFO_DIR, str(user_id))
+                    user_file_path = os.path.join(user_folder, "user_info.json")
+
+                    with open(user_file_path, "w", encoding="utf-8") as file:
+                        json.dump(user_datas, file, ensure_ascii=False, indent=4)
+            
+
+
+
             
             return jsonify(
                 {
@@ -107,3 +132,72 @@ def friend_request():
             "friend_request_list": friend.get_friend_request_list()
         }
     )
+
+
+@api.route("/add_friend", methods=['POST'])
+def add_friend():
+    datas = request.get_json()
+    username = datas.get('username')
+    text = datas.get('text')
+    user_id = database.get_user_id_by_username(username)
+    
+    if user_id["success"]:
+        user_id = user_id["user_id"]
+
+        user_datas = database.get_user(user_id)["user"]
+
+        target_user_friend_list = user_datas["friend_request"]
+
+        if current_user.user_id == user_datas["user_datas"]["user_id"]:
+            return jsonify({
+                "success": False, 
+                "msg" : "can_add_self"
+            })
+        
+        if str(current_user.user_id) in target_user_friend_list:
+            return jsonify({
+                "success": False, 
+                "msg" : "request_already"
+            })
+        
+        if str(current_user.user_id) in user_datas["friends"]:
+            return jsonify({
+                "success": False, 
+                "msg" : "friend_already"
+            })
+        
+        send_notification_to_user(user_id, {
+            "title" : "有新的好友申请",
+            "content" : f"{current_user.username} 请求添加你为好友，点击跳转到好友请求页面", 
+            "fuc" : "jump_to_other_page_with_ui('/friend_request')"
+        } )
+
+        other.write_notifications(user_id, "friend", {
+            "time" : datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 
+            "title": "你有新的好友申请",
+            "content" : f"<a href='/user_space/{current_user.username}' class='notification_item_a'>{current_user.username}</a> 请求添加你为好友，快去好友界面处理一下吧~", 
+        })
+
+
+        del user_datas["user_datas"]["password"]
+        del user_datas["user_datas"]["next_level_need_days"]
+        del user_datas["user_space_info"]["praise_count"]
+        del user_datas["other"]
+
+        user_datas["friend_request"][str(current_user.user_id)] = text
+
+        user_folder = os.path.join(Config.USER_INFO_DIR, str(user_id))
+        user_file_path = os.path.join(user_folder, "user_info.json")
+
+        with open(user_file_path, "w", encoding="utf-8") as file:
+            json.dump(user_datas, file, ensure_ascii=False, indent=4)
+
+        return jsonify({
+            "success": True,
+        })
+
+    else:
+        return jsonify({
+            "success": False, 
+            "msg" : "no_user"
+        })

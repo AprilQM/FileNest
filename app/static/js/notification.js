@@ -29,7 +29,6 @@ function to_notification_list(title) {
         const will_show_notification = response["notification"].slice(-15)
 
         for (let i of will_show_notification) {
-            console.log(i);
             
             const notification_item_box = document.createElement("div")
             notification_item_box.classList.add("notification_item_box")
@@ -70,4 +69,10 @@ function to_notification_list(title) {
         error_alert(error)
     })
     
+}
+
+// 电脑端默认显示登录
+const window_width = window.innerWidth;
+if (window_width > 767){
+    to_notification_list("登录")
 }
