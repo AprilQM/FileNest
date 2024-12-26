@@ -96,3 +96,11 @@ function to_search() {
         error_alert(error)
     })
 }
+
+let function_box_state = false
+function show_function_box(){
+    if(!function_box_state){
+        $id("friend_function_box").classList.add("friend_function_box_show")
+        $id("friend_function_box").classList.remove("friend_function_box_hide")
+    }
+}
