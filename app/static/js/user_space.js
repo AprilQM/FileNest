@@ -36,12 +36,12 @@ if (target_user_datas["user_datas"]["user_id"] !== 0) {
 }
 
 function friend_add(username){
-    show_input_box("给Ta的留言", `friend_request_submit("${username}")`)
+    show_input_box("给Ta的留言", `friend_request_submit("${username}", $id("gray_input").value)`)
 }
-function friend_request_submit(username){
+function friend_request_submit(username, text){
     const param = {
         "username" : username,
-        "text" : "好友"
+        "text" : text
     }
     ajax('POST', "/api/add_friend", param, function(response){
         if (response["success"]){

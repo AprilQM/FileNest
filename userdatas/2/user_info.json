@@ -1,5 +1,5 @@
 {
-    "last_modified_time": 1735105820,
+    "last_modified_time": 1735187973,
     "user_datas": {
         "user_id": 2,
         "username": "yueyan",
@@ -9,7 +9,7 @@
         "check_in_days": 0,
         "last_check_time": 1735105820,
         "register_time": "2024-12-25 13:50:20",
-        "logined_time": "",
+        "logined_time": "2024-12-26 12:39:11",
         "is_consent_agreement": false,
         "is_banned": false,
         "is_admin": false,
@@ -19,12 +19,18 @@
         "slogan": "这个人很懒，什么都没有留下。",
         "avatar_file": "",
         "background_file": "",
-        "praise": [],
+        "praise": [
+            1
+        ],
         "tag": []
     },
-    "friend_request": {},
+    "friend_request": {
+        "5": "123"
+    },
     "setting": {
         "visit_my_space": 0
     },
-    "friends": {}
+    "friends": {
+        "1": false
+    }
 }

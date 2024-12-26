@@ -50,11 +50,12 @@
     width: 30%;
 }
 .friend_request_item_box .btn_box{
-    width: 60%;
+    width: auto;
     height: 100%;
+    position: absolute;
+    right: 20px;
     display: flex;
     flex-direction: row;
-    justify-content: end;
     align-items: center;
 }
 .yes, .no{
@@ -63,6 +64,7 @@
     border: none;
     font-weight: bold;
     font-size: 18px;
+    float: right;
 }
 @media screen and (max-width: 767px) {
     .yes,

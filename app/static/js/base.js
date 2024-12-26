@@ -312,6 +312,12 @@ function show_input_box(title, fuc=undefined){
     $id("gray_backgrouand").classList.remove("gray_hide")
     $id("gray_input_box").style.display = "flex"
     $id("gray_input_title").innerText = title
+
+    $id("gray_input_yes").onclick = function(){
+        const t = new Function(fuc)
+        t()
+        hide_gray()
+    }
 }
 
 //endregion
