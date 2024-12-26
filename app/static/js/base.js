@@ -300,3 +300,18 @@ notification_socket.on('disconnect', function() {
     console.log("通知已断开");
 });
 // endregion
+
+// region 全屏灰屏
+function hide_gray(){
+    $id("gray_backgrouand").classList.add("gray_hide")
+    $id("gray_backgrouand").classList.remove("gray_show")
+    $id("gray_input").value = ""
+}
+function show_input_box(title, fuc=undefined){
+    $id("gray_backgrouand").classList.add("gray_show")
+    $id("gray_backgrouand").classList.remove("gray_hide")
+    $id("gray_input_box").style.display = "flex"
+    $id("gray_input_title").innerText = title
+}
+
+//endregion

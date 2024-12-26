@@ -1,5 +1,5 @@
 {
-    "last_modified_time": 1735105820,
+    "last_modified_time": 1735172532,
     "user_datas": {
         "user_id": 3,
         "username": "August13",
@@ -13,16 +13,20 @@
         "is_consent_agreement": false,
         "is_banned": false,
         "is_admin": false,
-        "unread_message": false
+        "unread_message": true
     },
     "user_space_info": {
         "slogan": "这个人很懒，什么都没有留下。",
         "avatar_file": "",
         "background_file": "",
-        "praise": [],
+        "praise": [
+            1
+        ],
         "tag": []
     },
-    "friend_request": {},
+    "friend_request": {
+        "1": "好友"
+    },
     "setting": {
         "visit_my_space": 0
     },
