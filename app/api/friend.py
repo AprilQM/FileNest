@@ -201,3 +201,25 @@ def add_friend():
             "success": False, 
             "msg" : "no_user"
         })
+    
+
+@api.route("/delete_friend", methods=["POST"])
+def delete_friend():
+    datas = request.get_json()
+    username = datas.get("username")
+    user_id = database.get_user_id_by_username(username)
+    if user_id["success"]:
+        user_id = user_id["user_id"]
+        friend.delete_friend(user_id)
+        
+        user_datas = database.get_user(current_user.user_id)["user"]
+        
+        
+        return jsonify(
+            {
+                "success": True,
+                "friend_list": other.get_user_datas()[1]["friends"]
+            }
+            )
+    
+    return jsonify({"success": False})

@@ -509,26 +509,37 @@ button.disabled {
 }
 #gray_backgrouand{
     position: fixed;
-    z-index: 9997;
     background-color: rgba(0, 0, 0, 0.2);
     width: 100vw;
     height: 100vh;
     position: fixed;
     justify-content: center;
     align-items: center;
+    display: flex;
+    transition: 0s ease;
 }
 .gray_show{
-    display: flex;
+    opacity: 1;
+    z-index: 9997;
 }
 .gray_hide{
-    display: none;
+    opacity: 0;
+    z-index: -1;
+}
+.gray_show #gray_input_box{
+    transform: scale(1);
+}
+
+.gray_hide #gray_input_box{
+    transform: scale(0.3);
 }
 #gray_input_box{
     min-height: 300px;
     min-width: 500px;
+    transition: 0.5s ease;
     background-color: var(--background2);
     border-radius: 8px;
-    border: var(--background_conflict) 2px solid;
+    border: var(--background_conflict) 1px solid;
     align-items: center;
     flex-direction: column;
     padding: 40px;
@@ -548,6 +559,7 @@ button.disabled {
 #gray_input_yes{
     right: 100px;
     border: var(--background_conflict) 2px solid;
+    border-radius: 3px;
     background-color: var(--background2);
     color: var(--background_conflict);
 }
@@ -569,6 +581,7 @@ button.disabled {
     font-size: 20px;
     font-weight: 530;
     width: 80%;
+    color: var(--text);
     border: none;
     border-bottom: var(--secondary1) 2px solid;
     background-color: var(--background2);
@@ -579,13 +592,10 @@ button.disabled {
     border-bottom: var(--background_conflict) 2px solid;
 }
 @media screen and (max-width: 767px) {
-    .gray_show{
-        display: block;
-    }
     #gray_input_box{
-        width: 100vw;
-        height: calc(100vh - 60px);
-        border-radius: 0;
+        width: 96vw;
+        height: calc(60vh - 80px);
+        margin-bottom: 60px;
         padding: 20px;
         min-width: 0;
         align-items: start;

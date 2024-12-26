@@ -1,5 +1,5 @@
 {
-    "last_modified_time": 1735188974,
+    "last_modified_time": 1735358861,
     "user_datas": {
         "user_id": 5,
         "username": "April",
@@ -28,7 +28,5 @@
     "setting": {
         "visit_my_space": 0
     },
-    "friends": {
-        "1": false
-    }
+    "friends": {}
 }

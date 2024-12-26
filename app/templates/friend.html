@@ -19,15 +19,17 @@
             <button class="iconfont icon-search" id="search_friend_btn" onclick="to_search('')"></button>
             <a class="iconfont icon-friendadd" id="friend_request_btn" href="/friend_request"></a>
         </div>
-        {%for i in user_datas["friends"]%}
-            <div class="friend_item_box{%if user_datas['friends'][i][0]%} friend_message_box{%endif%}"  onclick="get_chat_histroy('{{i}}')" id="{{i}}_friend_item">
-                <img src="/api/get_user_avatar_small/{{i}}" alt="" class="friends_list_avatar">
-                <div class="friend_info">
-                    <p class="friends_list_username">{{i}}</p>
-                    <p class="friends_list_slogan">{{user_datas["friends"][i][1]}}</p>
+        <div id="friends_item_list_box">
+            {%for i in user_datas["friends"]%}
+                <div class="friend_item_box{%if user_datas['friends'][i][0]%} friend_message_box{%endif%}"  onclick="get_chat_histroy('{{i}}')" id="{{i}}_friend_item">
+                    <img src="/api/get_user_avatar_small/{{i}}" alt="" class="friends_list_avatar">
+                    <div class="friend_info">
+                        <p class="friends_list_username">{{i}}</p>
+                        <p class="friends_list_slogan">{{user_datas["friends"][i][1]}}</p>
+                    </div>
                 </div>
-            </div>
-        {%endfor%}
+            {%endfor%}
+        </div>
     </div>
     <div id="right_box">
         <div id="title_box">
@@ -50,6 +52,11 @@
             </div>
         </div>
         <div id="friend_function_box" class="friend_function_box_hide">
+            <h2 id="function_box_title">聊天设置</h2>
+            <button class="iconfont icon-back" id="hide_function_btn" onclick="hide_function()"></button>
+            <div id="friend_function_content_box">
+                <button id="delete_friend_btn" class="function_btn" onclick="show_confirm_delete()">删除好友</button>
+            </div>
         </div>
         <div id="chat_box">
 

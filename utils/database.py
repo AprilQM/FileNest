@@ -167,3 +167,10 @@ def get_user_id_by_email(email):
     if user:
         return {"success": True, "user_id": user.user_id}
     return {"success": False, "message": "User not found"}
+
+def get_username_by_user_id(user_id):
+    user_id = int(user_id)
+    user = DatabaseUser.query.filter_by(user_id=user_id).first()
+    if user:
+        return {"success": True, "username": user.username}
+    return {"success": False, "message": "User not found"}

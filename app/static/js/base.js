@@ -307,11 +307,13 @@ function hide_gray(){
     $id("gray_backgrouand").classList.remove("gray_show")
     $id("gray_input").value = ""
 }
-function show_input_box(title, fuc=undefined){
+function show_input_box(title, fuc=undefined, color="var(--background_conflict)", size="35px"){
     $id("gray_backgrouand").classList.add("gray_show")
     $id("gray_backgrouand").classList.remove("gray_hide")
     $id("gray_input_box").style.display = "flex"
     $id("gray_input_title").innerText = title
+    $id("gray_input_title").style.color = color
+    $id("gray_input_title").style.fontSize = size
 
     $id("gray_input_yes").onclick = function(){
         const t = new Function(fuc)
