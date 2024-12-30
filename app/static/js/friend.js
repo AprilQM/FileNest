@@ -124,7 +124,7 @@ function hide_function() {
 }
 
 function  show_confirm_delete() {
-    show_input_box("输入好友名字，以接触关系", "delete_friend()", "var(--background_conflict)", "24px")
+    show_input_box("输入好友名字，以确认解除关系", "delete_friend()", "var(--background_conflict)", "24px")
 }
 function delete_friend() {
     console.log($id("gray_input").value, $id("chat_box").getAttribute("target_user_name"));

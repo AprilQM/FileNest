@@ -315,11 +315,22 @@ function show_input_box(title, fuc=undefined, color="var(--background_conflict)"
     $id("gray_input_title").style.color = color
     $id("gray_input_title").style.fontSize = size
 
+    $id("gray_input").onkeydown = function(event){
+        if(event.key === 'Enter'){
+            run_gray_input_fuc(fuc)
+        }
+    }
+
     $id("gray_input_yes").onclick = function(){
-        const t = new Function(fuc)
-        t()
-        hide_gray()
+        run_gray_input_fuc(fuc)
     }
 }
+
+function run_gray_input_fuc(fuc){
+    const t = new Function(fuc)
+    t()
+    hide_gray()
+}
+
 
 //endregion

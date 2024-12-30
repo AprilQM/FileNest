@@ -593,14 +593,15 @@ button.disabled {
 }
 @media screen and (max-width: 767px) {
     #gray_input_box{
-        width: 96vw;
+        width: 94vw;
         height: calc(60vh - 80px);
         margin-bottom: 60px;
-        padding: 20px;
+        padding: 30px;
         min-width: 0;
         align-items: start;
     }
     #gray_input{
-        width: 100%;
+        width: 90%;
+        margin: 90px auto;
     }
 }
