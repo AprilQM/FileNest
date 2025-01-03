@@ -1,15 +1,15 @@
 {
-    "last_modified_time": 1735543724,
+    "last_modified_time": 1735870019,
     "user_datas": {
         "user_id": 4,
         "username": "哔哩哔哩官方",
         "email": "feiherui@outlook.com",
         "level": 6,
-        "color": 0,
-        "check_in_days": 106,
-        "last_check_time": 1735543526,
+        "color": 4,
+        "check_in_days": 107,
+        "last_check_time": 1735867877,
         "register_time": "2024-12-25 13:50:20",
-        "logined_time": "2024-12-30 15:28:43",
+        "logined_time": "2025-01-03 09:32:18",
         "is_consent_agreement": false,
         "is_banned": false,
         "is_admin": true,
@@ -20,6 +20,7 @@
         "avatar_file": "uninstallerIcon.ico",
         "background_file": "IMG_20240324_134514_edit_18679000742981.jpg",
         "praise": [
+            3,
             1,
             4
         ],
