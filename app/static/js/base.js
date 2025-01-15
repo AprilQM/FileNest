@@ -296,6 +296,19 @@ notification_socket.on('message', function (msg) {
     
 });
 
+notification_socket.on('chat_notification', function (msg) {
+    // 判断当前的url
+    const current_url = window.location.pathname;
+    
+    if (current_url !== "/friend") { 
+        console.log(msg);
+        
+        show_message(msg.sender_username, `你有一条来自${msg.sender_username}的新消息，点击跳转到好友界面`, () => {
+            jump_to_other_page_with_ui("/friend")
+        })
+    }
+});
+
 notification_socket.on('disconnect', function() {
     console.log("通知已断开");
 });

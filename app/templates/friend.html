@@ -59,9 +59,11 @@
             </div>
         </div>
         <div id="chat_box">
+            <div id="chat_content_box">
+            </div>
             <div id="chat_input_box">
-                <textarea name="" id="chat_input" placeholder="在此输入消息"></textarea>
-                <button id="chat_input_btn">发送</button>
+                <textarea name="" id="chat_input" placeholder="在此输入消息 ( ctrl/shift+enter 换行 )"></textarea>
+                <button id="chat_input_btn" onclick="send_message()">发送</button>
             </div>
         </div>
     </div>

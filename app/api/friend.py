@@ -7,7 +7,7 @@ import utils.other as other
 from app.models import DatabaseUser
 from config import Config
 from utils.web import WebUser
-from utils.web import send_notification_to_user
+from utils.web import send_notification_to_user, send_chat_message
 import time
 import json
 from datetime import datetime
@@ -26,8 +26,16 @@ def get_chat_histroy():
     user = database.get_user(int(target_user_id))
     
     if user["success"]:
-        friend.clear_message_light(target_user_id)
-        return friend.clear_message_light(target_user_id)
+        t = friend.clear_message_light(target_user_id)
+        if t["success"]:
+            return jsonify(
+                {
+                    "success": True,
+                    "chat_histroy": friend.get_chat_histroy(int(target_user_id))
+                }
+            )
+        else:
+            return jsonify({"success": False, "message": "User not found"})
     else:
         return jsonify({"success": False, "message": "User not found"})
     
@@ -223,3 +231,21 @@ def delete_friend():
             )
     
     return jsonify({"success": False})
+
+@api.route("/send_message", methods=["POST"])
+def send_message():
+    datas = request.get_json()
+    target_user_name = datas.get("target_user_name")
+    message = datas.get("message")
+    user_id = database.get_user_id_by_username(target_user_name)
+    if user_id["success"]:
+        user_id = user_id["user_id"]
+    
+    t = friend.write_message(user_id, message)
+    if t["success"]:
+        send_chat_message(user_id, message)
+        return jsonify({"success": True})
+    else:
+        return jsonify({"success": False})
+    
+    

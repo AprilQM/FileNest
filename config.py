@@ -55,6 +55,7 @@ class Config:
                         "text": "#333333",
                         "text2": "#ffffff",
                         "text3": "#777777",
+                        "chat_text": "#ffffff",
                         "other": "#ffffff"
                     }
                 },
@@ -71,6 +72,7 @@ class Config:
                         "text": "#333333",
                         "text2": "#ffffff",
                         "text3": "#777777",
+                        "chat_text": "#ffffff",
                         "other": "#ffffff"
                     }
                 },
@@ -87,6 +89,7 @@ class Config:
                         "text": "#333333",
                         "text2": "#ffffff",
                         "text3": "#777777",
+                        "chat_text": "#ffffff",
                         "other": "#ffffff"
                     }
                 },
@@ -103,6 +106,7 @@ class Config:
                         "text": "#333333",
                         "text2": "#ffffff",
                         "text3": "#777777",
+                        "chat_text": "#ffffff",
                         "other": "#ffffff"
                     }
                 },
@@ -119,6 +123,7 @@ class Config:
                         "text": "#333333",
                         "text2": "#ffffff",
                         "text3": "#777777",
+                        "chat_text": "#ffffff",
                         "other": "#ffffff"
                     }
                 },
@@ -135,6 +140,7 @@ class Config:
                         "text": "#333333",
                         "text2": "#ffffff",
                         "text3": "#777777",
+                        "chat_text": "#ffffff",
                         "other": "#ffffff"
                     }
                 },
@@ -151,6 +157,7 @@ class Config:
                         "text": "#333333",
                         "text2": "#ffffff",
                         "text3": "#777777",
+                        "chat_text": "#ffffff",
                         "other": "#ffffff"
                     }
                 },
@@ -167,6 +174,7 @@ class Config:
                         "text": "#f0f0f0",
                         "text2": "#ffffff",
                         "text3": "#777777",
+                        "chat_text": "#000000",
                         "other": "#ffffff"
                     }
                 },
@@ -183,6 +191,7 @@ class Config:
                         "text": "#f0f0f0",
                         "text2": "#fae9a0",
                         "text3": "#e3bf71",
+                        "chat_text": "#000000",
                         "other": "#fae9a0"
                     }
                 }

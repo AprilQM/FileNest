@@ -5,6 +5,7 @@ function get_chat_histroy(target_user_name) {
     if (current_username) {
         $id(`${current_username}_friend_item`).style.backgroundColor = "var(--background2)"
     }
+    
     current_username = target_user_name
     $id(`${current_username}_friend_item`).style.backgroundColor = "var(--secondary2)"
     $id("chat_box").style.display = "block"
@@ -19,8 +20,46 @@ function get_chat_histroy(target_user_name) {
         "target_user_name": target_user_name
     }
 
+    ajax('POST', "/api/get_chat_histroy", param, function (response) {
+        
+        if (response["success"]) { 
+            // 删除所有聊天记录
+            while ($id("chat_content_box").firstChild) {
+                $id("chat_content_box").removeChild($id("chat_content_box").firstChild)
+            }
 
-    ajax('POST', "/api/get_chat_histroy",param, function (response) {
+            // 显示聊天记录
+            for (let i in response["chat_histroy"]) {
+                if (response["chat_histroy"][i][0] === "0") {
+                    const msg_box = document.createElement("div")
+                    msg_box.classList.add("msg_box")
+                    const img = document.createElement("img")
+                    img.src = "/api/get_user_avatar_small/" + user_data["user_datas"]["username"]
+                    img.classList.add("my_avatar")
+                    const p = document.createElement("p")
+                    p.classList.add("my_msg")
+                    p.innerHTML = response["chat_histroy"][i][1]
+                    msg_box.appendChild(img)
+                    msg_box.appendChild(p)
+                    $id("chat_content_box").appendChild(msg_box)
+                } else if (response["chat_histroy"][i][0] === "1") {
+                    const msg_box = document.createElement("div")
+                    msg_box.classList.add("msg_box")
+                    const img = document.createElement("img")
+                    img.src = "/api/get_user_avatar_small/" + current_username
+                    img.classList.add("target_avatar")
+                    const p = document.createElement("p")
+                    p.classList.add("target_msg")
+                    p.innerHTML = response["chat_histroy"][i][1]
+                    msg_box.appendChild(img)
+                    msg_box.appendChild(p)
+                    $id("chat_content_box").appendChild(msg_box)
+                }
+            }
+            $id("chat_content_box").scrollTop = $id("chat_content_box").scrollHeight
+        } else {
+            error_alert(response["message"])
+        }
         
     }, function (error) {
         error_alert(error)
@@ -183,3 +222,76 @@ function delete_friend() {
         error_alert("输入的用户名不正确")
     }
 }
+$id("chat_input").addEventListener("keydown", function (event) {
+    if (event.keyCode === 13) {
+        if (event.ctrlKey || event.shiftKey) {
+            // 换行
+            event.preventDefault()
+            $id("chat_input").value += "\n"
+        } else {
+            send_message()
+            event.preventDefault()
+        }
+    }
+})
+function send_message() {
+    const message = $id("chat_input").value
+    
+    if (!message.trim()) {
+        error_alert("消息不能为空！")
+        return
+    }
+    const param = {
+        "target_user_name": $id("chat_box").getAttribute("target_user_name"),
+        "message": message
+    }
+    ajax('POST', "/api/send_message", param, function (response) {
+        if (response["success"]) {
+            $id("chat_input").value = ""
+            const msg_box = document.createElement("div")
+            msg_box.classList.add("msg_box")
+            const img = document.createElement("img")
+            img.src = "/api/get_user_avatar_small/" + user_data["user_datas"]["username"]
+            img.classList.add("my_avatar")
+            const p = document.createElement("p")
+            p.classList.add("my_msg")
+            p.innerHTML = message
+            msg_box.appendChild(img)
+            msg_box.appendChild(p)
+            $id("chat_content_box").appendChild(msg_box)
+            $id("chat_content_box").scrollTop = $id("chat_content_box").scrollHeight
+
+        } else {
+            error_alert("发送失败")
+        }
+    }, function (error) {
+        error_alert(error)
+    })
+}
+
+const chat_socket = io('/chat');
+
+chat_socket.on('connect', function() {
+    console.log("聊天已连接");
+});
+
+chat_socket.on('message', function (data) {
+    if (data._from === current_username) {
+        const msg_box = document.createElement("div")
+        msg_box.classList.add("msg_box")
+        const img = document.createElement("img")
+        img.src = "/api/get_user_avatar_small/" + data._from
+        img.classList.add("target_avatar")
+        const p = document.createElement("p")
+        p.classList.add("target_msg")
+        p.innerHTML = data.content
+        msg_box.appendChild(img)
+        msg_box.appendChild(p)
+        $id("chat_content_box").appendChild(msg_box)
+            $id("chat_content_box").scrollTop = $id("chat_content_box").scrollHeight
+    }
+});
+
+chat_socket.on('disconnect', function() {
+    console.log("聊天已断开");
+});

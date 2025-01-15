@@ -193,3 +193,79 @@ def delete_friend(target_user_id):
 
     return {"success": False, "message": "User not found"}
                 
+
+def write_message(target_user_id, message):
+    if current_user.is_authenticated:
+        
+        # 不需要调用config中的非法字符，只需要排除一些特殊字符即可
+        for i in ["\\"]:
+            message = message.replace(i, "")
+                
+        if len(message) == 0:
+            return {"success": False, "message": "Message is empty"}
+        
+        user_folder_list = os.path.join(Config.USER_INFO_DIR, str(current_user.user_id), "chat", str(target_user_id))
+        last_message_file = 1
+        for i in os.listdir(user_folder_list):
+            if i.isdigit() and int(i) > last_message_file:
+                last_message_file = int(i)
+        last_message_file_path = os.path.join(user_folder_list, str(last_message_file))
+        old_message = open(last_message_file_path, "r", encoding="utf-8").readlines()
+        
+        # 在原来内容基础上加新消息和消息id
+        old_message.append(f"{(last_message_file - 1) * 100 + len(old_message) + 1} {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} 0 {message}\n")
+        
+        
+        if len(old_message) > 100:
+            # 创建新的消息文件
+            new_message_file = open(os.path.join(user_folder_list, str(last_message_file+1)), "w+", encoding="utf-8")
+            new_message_file.write(f"{(last_message_file - 1) * 100 + len(old_message) + 1} {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} 0 {message}\n")
+            new_message_file.close()
+            
+            
+        else:
+            # 写入消息
+            with open(last_message_file_path, "w", encoding="utf-8") as f:
+                f.write("".join(old_message))
+                
+                
+        # 同理在对方的消息列表中写入消息
+        user_folder_list = os.path.join(Config.USER_INFO_DIR, str(target_user_id), "chat", str(current_user.user_id))
+        last_message_file = 1
+        for i in os.listdir(user_folder_list):
+            if i.isdigit() and int(i) > last_message_file:
+                last_message_file = int(i)
+        last_message_file_path = os.path.join(user_folder_list, str(last_message_file))
+        old_message = open(last_message_file_path, "r", encoding="utf-8").readlines()
+        
+        # 在原来内容基础上加新消息
+        old_message.append(f"{(last_message_file - 1) * 100 + len(old_message) + 1} {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} 1 {message}\n")
+        
+        
+        if len(old_message) > 100:
+            # 创建新的消息文件
+            new_message_file = open(os.path.join(user_folder_list, str(last_message_file+1)), "w+", encoding="utf-8")
+            new_message_file.write(f"{(last_message_file - 1) * 100 + len(old_message) + 1} {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} 1 {message}\n")
+            new_message_file.close()
+            
+            
+        else:
+            # 写入消息
+            with open(last_message_file_path, "w", encoding="utf-8") as f:
+                f.write("".join(old_message))
+                
+        return {"success": True, "message": "success"}
+    return {"success": False, "message": "User not found"}
+
+def get_chat_histroy(target_user_id):
+    if current_user.is_authenticated:
+        chat_histroy_list = []
+        user_folder_list = os.path.join(Config.USER_INFO_DIR, str(current_user.user_id), "chat", str(target_user_id))
+        chat_histroy_list_temp = open(os.path.join(user_folder_list, str(len(os.listdir(user_folder_list)))), "r", encoding="utf-8").readlines()
+        for chat_content in chat_histroy_list_temp:
+            chat_content = chat_content.split()
+            content = ""
+            for i in chat_content[4:]:
+                content += i + " "
+            chat_histroy_list.append([chat_content[3], content[:-1]])
+        return chat_histroy_list

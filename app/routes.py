@@ -136,6 +136,6 @@ def friend_request():
 
 @main.route("/test")
 def test():
-    from utils.web import send_fuc_to_user
-    print(send_fuc_to_user(4, "jump_to_other_page_with_ui('/api/logout')"))
+    from utils.web import send_chat_message
+    send_chat_message(5, "hello")
     return "ok"
