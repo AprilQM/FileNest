@@ -88,12 +88,13 @@ def send_chat_notification(_to, content):
     try:
         if socketio.notification_room_count[str(_to)] != 0:
             socketio.emit("chat_notification", {'sender_username': current_user.username, "content": content}, room=str(_to), namespace="/notification")
+            friend.set_unread(int(_to), current_user.user_id)
         else:
             database.update_user(int(_to), "unread_message", True)
-            friend.set_unread(int(_to))
+            friend.set_unread(int(_to), current_user.user_id)
     except:
         database.update_user(int(_to), "unread_message", True)
-        friend.set_unread(int(_to))
+        friend.set_unread(int(_to), current_user.user_id)
 
 
 @socketio.on("connect", namespace="/chat")
@@ -113,6 +114,6 @@ def send_chat_message(_to, message):
 @socketio.on("set_unread", namespace="/chat")
 def change_unread(data):
     user_id = database.get_user_id_by_username(data["username"])["user_id"]
-    friend.set_unread(user_id)
+    friend.set_unread(current_user.user_id, user_id)
     
 # endregion

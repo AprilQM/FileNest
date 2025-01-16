@@ -272,19 +272,19 @@ def get_chat_histroy(target_user_id):
                 chat_histroy_list.append([chat_content[3], content[:-1]])
         return chat_histroy_list, len(os.listdir(user_folder_list))
     
-def set_unread(user_id):
-    user_datas = database.get_user(current_user.user_id)
+def set_unread(my_user_id, target_user_id):
+    user_datas = database.get_user(my_user_id)
     if user_datas["success"]:
         user_data = user_datas["user"]
         
-        user_data["friends"][str(user_id)] = True
+        user_data["friends"][str(target_user_id)] = True
         
         del user_data["user_datas"]["password"]
         del user_data["user_datas"]["next_level_need_days"]
         del user_data["user_space_info"]["praise_count"]
         del user_data["other"]
         
-        with open(os.path.join(Config.USER_INFO_DIR, str(current_user.user_id), "user_info.json"), "w+", encoding="utf-8") as f:
+        with open(os.path.join(Config.USER_INFO_DIR, str(my_user_id), "user_info.json"), "w+", encoding="utf-8") as f:
             json.dump(user_data, f, ensure_ascii=False, indent=4)
             
 def get_last_message_page(current_history_page, target_user_name):
