@@ -138,7 +138,7 @@ function show_message(title, content, fuc = () => { }) {
     const message_title = $id("message_title");
     const message_content = $id("message_content");
     message_title.innerHTML = title;
-    message_content.innerHTML = content;
+    message_content.innerText = content;
     
     // 清除之前的计时器
     clearInterval(message_box_timer);
@@ -301,9 +301,7 @@ notification_socket.on('chat_notification', function (msg) {
     const current_url = window.location.pathname;
     
     if (current_url !== "/friend") { 
-        console.log(msg);
-        
-        show_message(msg.sender_username, `你有一条来自${msg.sender_username}的新消息，点击跳转到好友界面`, () => {
+        show_message(msg.sender_username, msg.content, () => {
             jump_to_other_page_with_ui("/friend")
         })
     }

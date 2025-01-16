@@ -7,7 +7,7 @@ import utils.other as other
 from app.models import DatabaseUser
 from config import Config
 from utils.web import WebUser
-from utils.web import send_notification_to_user, send_chat_message
+from utils.web import send_notification_to_user, send_chat_message, send_chat_notification
 import time
 import json
 from datetime import datetime
@@ -28,10 +28,12 @@ def get_chat_histroy():
     if user["success"]:
         t = friend.clear_message_light(target_user_id)
         if t["success"]:
+            chat_info = friend.get_chat_histroy(int(target_user_id))
             return jsonify(
                 {
                     "success": True,
-                    "chat_histroy": friend.get_chat_histroy(int(target_user_id))
+                    "chat_histroy": chat_info[0],
+                    "current_history_page" : chat_info[1]
                 }
             )
         else:
@@ -220,9 +222,6 @@ def delete_friend():
         user_id = user_id["user_id"]
         friend.delete_friend(user_id)
         
-        user_datas = database.get_user(current_user.user_id)["user"]
-        
-        
         return jsonify(
             {
                 "success": True,
@@ -243,9 +242,26 @@ def send_message():
     
     t = friend.write_message(user_id, message)
     if t["success"]:
+        send_chat_notification(user_id, message)
         send_chat_message(user_id, message)
         return jsonify({"success": True})
     else:
         return jsonify({"success": False})
     
-    
+@api.route("/get_last_message_page", methods=["POST"])
+def get_last_message_page():
+    datas = request.get_json()
+    current_history_page = datas.get("current_history_page")
+    target_user_name = datas.get("target_user_name")
+    if current_history_page == 1:
+        return jsonify({
+            "success" : False
+        }
+    )
+    chat_info = friend.get_last_message_page(current_history_page, target_user_name)
+    return jsonify({
+            "success" : True,
+            "last_page_content" : chat_info[0],
+            "current_history_page" : chat_info[1]
+        }
+    )

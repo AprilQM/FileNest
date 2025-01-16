@@ -1,6 +1,7 @@
 highlight_menu_item(6)
 
 let current_username;
+let current_history_page;
 function get_chat_histroy(target_user_name) {
     if (current_username) {
         $id(`${current_username}_friend_item`).style.backgroundColor = "var(--background2)"
@@ -21,8 +22,9 @@ function get_chat_histroy(target_user_name) {
     }
 
     ajax('POST', "/api/get_chat_histroy", param, function (response) {
-        
         if (response["success"]) { 
+            current_history_page = response["current_history_page"]
+            
             // 删除所有聊天记录
             while ($id("chat_content_box").firstChild) {
                 $id("chat_content_box").removeChild($id("chat_content_box").firstChild)
@@ -30,31 +32,30 @@ function get_chat_histroy(target_user_name) {
 
             // 显示聊天记录
             for (let i in response["chat_histroy"]) {
+                
+                const msg_box = document.createElement("div")
+                msg_box.classList.add("msg_box")
+                const img = document.createElement("img")
+                const p = document.createElement("p")
                 if (response["chat_histroy"][i][0] === "0") {
-                    const msg_box = document.createElement("div")
-                    msg_box.classList.add("msg_box")
-                    const img = document.createElement("img")
                     img.src = "/api/get_user_avatar_small/" + user_data["user_datas"]["username"]
                     img.classList.add("my_avatar")
-                    const p = document.createElement("p")
                     p.classList.add("my_msg")
-                    p.innerHTML = response["chat_histroy"][i][1]
-                    msg_box.appendChild(img)
-                    msg_box.appendChild(p)
-                    $id("chat_content_box").appendChild(msg_box)
+                    img.onclick = () => {
+                        jump_to_other_page_with_ui("/user_space/" + user_data["user_datas"]["username"])
+                    }
                 } else if (response["chat_histroy"][i][0] === "1") {
-                    const msg_box = document.createElement("div")
-                    msg_box.classList.add("msg_box")
-                    const img = document.createElement("img")
                     img.src = "/api/get_user_avatar_small/" + current_username
                     img.classList.add("target_avatar")
-                    const p = document.createElement("p")
+                    img.onclick = () => {
+                        jump_to_other_page_with_ui("/user_space/" + current_username)
+                    }
                     p.classList.add("target_msg")
-                    p.innerHTML = response["chat_histroy"][i][1]
-                    msg_box.appendChild(img)
-                    msg_box.appendChild(p)
-                    $id("chat_content_box").appendChild(msg_box)
                 }
+                p.innerText = response["chat_histroy"][i][1]
+                msg_box.appendChild(img)
+                msg_box.appendChild(p)
+                $id("chat_content_box").appendChild(msg_box)
             }
             $id("chat_content_box").scrollTop = $id("chat_content_box").scrollHeight
         } else {
@@ -71,6 +72,7 @@ function back_to_friend_list() {
     if (current_username) {
         $id(`${current_username}_friend_item`).style.backgroundColor = "var(--background2)"
     }
+    current_username = ""
 }
 
 function to_search() {
@@ -166,7 +168,6 @@ function  show_confirm_delete() {
     show_input_box("输入好友名字，以确认解除关系", "delete_friend()", "var(--background_conflict)", "24px")
 }
 function delete_friend() {
-    console.log($id("gray_input").value, $id("chat_box").getAttribute("target_user_name"));
 
     if ($id("gray_input").value === $id("chat_box").getAttribute("target_user_name")) {
         const param = {
@@ -253,9 +254,12 @@ function send_message() {
             const img = document.createElement("img")
             img.src = "/api/get_user_avatar_small/" + user_data["user_datas"]["username"]
             img.classList.add("my_avatar")
+            img.onclick = () => {
+                jump_to_other_page_with_ui("/user_space/" + user_data["user_datas"]["username"])
+            }
             const p = document.createElement("p")
             p.classList.add("my_msg")
-            p.innerHTML = message
+            p.innerText = message
             msg_box.appendChild(img)
             msg_box.appendChild(p)
             $id("chat_content_box").appendChild(msg_box)
@@ -282,16 +286,72 @@ chat_socket.on('message', function (data) {
         const img = document.createElement("img")
         img.src = "/api/get_user_avatar_small/" + data._from
         img.classList.add("target_avatar")
+        img.onclick = () => {
+            jump_to_other_page_with_ui("/user_space/" + current_username)
+        }
         const p = document.createElement("p")
         p.classList.add("target_msg")
-        p.innerHTML = data.content
+        p.innerText = data.content
         msg_box.appendChild(img)
         msg_box.appendChild(p)
         $id("chat_content_box").appendChild(msg_box)
-            $id("chat_content_box").scrollTop = $id("chat_content_box").scrollHeight
+        $id("chat_content_box").scrollTop = $id("chat_content_box").scrollHeight
+    } else {
+        $id(data._from + "_friend_item").classList.add("friend_message_box")
+        
+        // 告知后端要写入文件
+        chat_socket.emit("set_unread", {"username": data._from})
     }
 });
 
 chat_socket.on('disconnect', function() {
     console.log("聊天已断开");
 });
+
+// 监听滚轮事件
+let old_scroll_height = 0;
+$id("chat_content_box").addEventListener("wheel", (event) => { 
+    if ($id("chat_content_box").scrollTop === 0 && event.deltaY < 0) {
+        const param = {
+            "target_user_name": $id("chat_box").getAttribute("target_user_name"),
+            "current_history_page": current_history_page
+        }
+        old_scroll_height = $id("chat_content_box").scrollHeight
+        ajax('POST', "/api/get_last_message_page", param, function (response) {
+            if (response["success"]) {
+                current_history_page = response["current_history_page"]
+                for (let i in response["last_page_content"]) {
+                    
+                    const msg_box = document.createElement("div")
+                    msg_box.classList.add("msg_box")
+                    const img = document.createElement("img")
+                    const p = document.createElement("p")
+                    if (response["last_page_content"][i][0] === "0") {
+                        img.src = "/api/get_user_avatar_small/" + user_data["user_datas"]["username"]
+                        img.classList.add("my_avatar")
+                        p.classList.add("my_msg")
+                        img.onclick = () => {
+                            jump_to_other_page_with_ui("/user_space/" + user_data["user_datas"]["username"])
+                        }
+                    } else if (response["last_page_content"][i][0] === "1") {
+                        img.src = "/api/get_user_avatar_small/" + current_username
+                        img.classList.add("target_avatar")
+                        img.onclick = () => {
+                            jump_to_other_page_with_ui("/user_space/" + current_username)
+                        }
+                        p.classList.add("target_msg")
+                    }
+                    p.innerText = response["last_page_content"][i][1]
+                    msg_box.appendChild(img)
+                    msg_box.appendChild(p)
+                    $id("chat_content_box").prepend(msg_box)
+                }
+
+                $id("chat_content_box").scrollTop = $id("chat_content_box").scrollHeight - old_scroll_height - 30 //-30是为了让这次滑动有互动
+
+            } else {
+                warning_alert("上面已经没有消息啦！")
+            }
+        })
+    }
+})

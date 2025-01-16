@@ -4,6 +4,7 @@ from flask_login import current_user
 from flask_socketio import join_room, leave_room, send, rooms
 from utils.database import get_user
 from utils import database
+from utils import friend
 from config import Config
 import os
 import json
@@ -83,28 +84,16 @@ def send_notification_to_user(_to, data):
     # 发送通知
     socketio.emit("message", {'data': data}, room=str(_to), namespace="/notification")
     
-def send_chat_notification(_to):
-    def set_unread(_to):
-        user_datas = database.get_user(_to)
-        if user_datas["success"]:
-            user_data = user_datas["user"]
-            
-            user_data["friends"][str(current_user.user_id)] = True
-            
-            del user_data["user_datas"]["password"]
-            del user_data["user_datas"]["next_level_need_days"]
-            del user_data["user_space_info"]["praise_count"]
-            del user_data["other"]
-            
-            with open(os.path.join(Config.USER_INFO_DIR, str(_to), "user_info.json"), "w+", encoding="utf-8") as f:
-                json.dump(user_data, f, ensure_ascii=False, indent=4)
+def send_chat_notification(_to, content):
     try:
         if socketio.notification_room_count[str(_to)] != 0:
-            socketio.emit("chat_notification", {'sender_username': current_user.username}, room=str(_to), namespace="/notification")
+            socketio.emit("chat_notification", {'sender_username': current_user.username, "content": content}, room=str(_to), namespace="/notification")
         else:
-            set_unread(_to)
+            database.update_user(int(_to), "unread_message", True)
+            friend.set_unread(int(_to))
     except:
-        set_unread(_to)
+        database.update_user(int(_to), "unread_message", True)
+        friend.set_unread(int(_to))
 
 
 @socketio.on("connect", namespace="/chat")
@@ -117,6 +106,13 @@ def on_disconnect():
     leave_room(str(current_user.user_id))
 
 def send_chat_message(_to, message):
+    # 向前端询问是否要改变文件中的未读状态
     socketio.emit("message", {'_from': current_user.username, 'content': message}, room=str(_to), namespace="/chat")
+    
+
+@socketio.on("set_unread", namespace="/chat")
+def change_unread(data):
+    user_id = database.get_user_id_by_username(data["username"])["user_id"]
+    friend.set_unread(user_id)
     
 # endregion

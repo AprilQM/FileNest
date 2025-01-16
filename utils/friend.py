@@ -198,8 +198,8 @@ def write_message(target_user_id, message):
     if current_user.is_authenticated:
         
         # 不需要调用config中的非法字符，只需要排除一些特殊字符即可
-        for i in ["\\"]:
-            message = message.replace(i, "")
+        message = message.replace("\n", "\\n")
+            
                 
         if len(message) == 0:
             return {"success": False, "message": "Message is empty"}
@@ -267,5 +267,42 @@ def get_chat_histroy(target_user_id):
             content = ""
             for i in chat_content[4:]:
                 content += i + " "
+            if content:
+                content = content.replace("\\n", "\n")
+                chat_histroy_list.append([chat_content[3], content[:-1]])
+        return chat_histroy_list, len(os.listdir(user_folder_list))
+    
+def set_unread(user_id):
+    user_datas = database.get_user(current_user.user_id)
+    if user_datas["success"]:
+        user_data = user_datas["user"]
+        
+        user_data["friends"][str(user_id)] = True
+        
+        del user_data["user_datas"]["password"]
+        del user_data["user_datas"]["next_level_need_days"]
+        del user_data["user_space_info"]["praise_count"]
+        del user_data["other"]
+        
+        with open(os.path.join(Config.USER_INFO_DIR, str(current_user.user_id), "user_info.json"), "w+", encoding="utf-8") as f:
+            json.dump(user_data, f, ensure_ascii=False, indent=4)
+            
+def get_last_message_page(current_history_page, target_user_name):
+    target_user_id = database.get_user_id_by_username(target_user_name)["user_id"]
+    
+    chat_histroy_list = []
+    user_folder_list = os.path.join(Config.USER_INFO_DIR, str(current_user.user_id), "chat", str(target_user_id))
+    chat_histroy_list_temp = open(os.path.join(user_folder_list, str(int(current_history_page) - 1)), "r", encoding="utf-8").readlines()
+    for chat_content in chat_histroy_list_temp:
+        chat_content = chat_content.split()
+        content = ""
+        for i in chat_content[4:]:
+            content += i + " "
+        if content:
+            content = content.replace("\\n", "\n")
             chat_histroy_list.append([chat_content[3], content[:-1]])
-        return chat_histroy_list
+            
+    # 由于前段是倒着渲染的 所以在这里奖聊天内容进行翻转
+    chat_histroy_list.reverse()
+    
+    return chat_histroy_list, int(current_history_page) - 1

@@ -427,9 +427,6 @@
     padding: 10px;
     overflow-y: auto;
 }
-#chat_content_box::-webkit-scrollbar{
-    width: 0;
-}
 .msg_box, .msg_box{
     position: relative;
     display: block;
@@ -444,6 +441,7 @@
     height: 50px;
     border-radius: 50%;
     box-shadow: var(--secondary2) 0 0 3px;
+    cursor: pointer;
 }
 .target_avatar{
     float: left;
@@ -453,6 +451,7 @@
 }
 .target_msg, .my_msg{
     padding: 10px;
+    position: relative;
     border-radius: 8px;
     color: var(--text);
     font-size: 13px;
