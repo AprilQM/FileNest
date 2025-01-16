@@ -30,7 +30,7 @@
             <div id="fuction_box">
                 {%if not target_user_datas['is_friends']%}
                     <div id="friends_btn_box">
-                        <button class="iconfont icon-friend_add" id="add_friends_btn" onclick="friend_add('{{target_user_datas["user_datas"]["username"]}}')"></button>
+                        <button class="iconfont icon-friendadd" id="add_friends_btn" onclick="friend_add('{{target_user_datas["user_datas"]["username"]}}')"></button>
                     </div>
                 {%endif%}
                 {%if target_user_datas["is_praise"] %}

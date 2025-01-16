@@ -1,0 +1,117 @@
+@font-face {
+  font-family: "iconfont"; /* Project id  */
+  src: url('iconfont.ttf?t=1737038389913') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-friendadd:before {
+  content: "\e6ca";
+}
+
+.icon-friend:before {
+  content: "\e6cc";
+}
+
+.icon-fenxiang:before {
+  content: "\f016f";
+}
+
+.icon-paperplane:before {
+  content: "\eb97";
+}
+
+.icon-home:before {
+  content: "\e657";
+}
+
+.icon-project:before {
+  content: "\e609";
+}
+
+.icon-8search:before {
+  content: "\e63e";
+}
+
+.icon-color:before {
+  content: "\e760";
+}
+
+.icon-mail:before {
+  content: "\e60f";
+}
+
+.icon-cloud:before {
+  content: "\e7d9";
+}
+
+.icon-lv:before {
+  content: "\e646";
+}
+
+.icon-lv1:before {
+  content: "\e647";
+}
+
+.icon-lv2:before {
+  content: "\e648";
+}
+
+.icon-lv3:before {
+  content: "\e649";
+}
+
+.icon-lv4:before {
+  content: "\e64a";
+}
+
+.icon-lv5:before {
+  content: "\e64b";
+}
+
+.icon-add-friend:before {
+  content: "\e61a";
+}
+
+.icon-icons_password:before {
+  content: "\e629";
+}
+
+.icon-forum:before {
+  content: "\e644";
+}
+
+.icon-plus:before {
+  content: "\e745";
+}
+
+.icon-knock:before {
+  content: "\e606";
+}
+
+.icon-praise:before {
+  content: "\e50b";
+}
+
+.icon-username:before {
+  content: "\e514";
+}
+
+.icon-OTHER_SYSTEM:before {
+  content: "\ea75";
+}
+
+.icon-setting:before {
+  content: "\e65e";
+}
+
+.icon-privacy:before {
+  content: "\e64f";
+}
+
