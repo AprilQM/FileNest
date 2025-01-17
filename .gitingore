@@ -1,0 +1,12 @@
+__pycache__
+.idea
+.vscode
+.git
+userfiles
+userdatas
+projects
+notice
+logs
+instance
+forums
+flask_session
